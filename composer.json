@@ -16,19 +16,20 @@
         }
     ],
     "require": {
-        "php": "^7.1"
+        "php": "^7.1",
+        "yosymfony/resource-watcher": "^1.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0"
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\PhpunitWatcher\\": "src"
+            "Spatie\\PhpUnitWatcher\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\PhpunitWatcher\\Test\\": "tests"
+            "Spatie\\PhpUnitWatcher\\Test\\": "tests"
         }
     },
     "scripts": {
