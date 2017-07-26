@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\Skeleton\Test;
+namespace Spatie\PhpUnitWatcher\Test;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Process\Process;
