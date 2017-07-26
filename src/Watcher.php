@@ -40,7 +40,7 @@ class Watcher
     public function startWatching()
     {
         $this->clearScreen();
-        $this->rerunTests();
+        $this->runTests();
 
         $cache = new ResourceCacheFile(
             $this->pathToCacheFile
@@ -55,12 +55,12 @@ class Watcher
 
             if ($watcher->hasChanges()) {
                 $this->clearScreen();
-                $this->rerunTests();
+                $this->runTests();
             }
         }
     }
 
-    protected function rerunTests()
+    protected function runTests()
     {
         (new Process("vendor/bin/phpunit {$this->phpunitArguments}"))
             ->setTty(true)
