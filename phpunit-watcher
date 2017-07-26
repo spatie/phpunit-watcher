@@ -8,6 +8,26 @@ if (file_exists(__DIR__.'/vendor/autoload.php')) {
     require __DIR__.'/../../autoload.php';
 }
 
+prepareArgs();
+
 $application = new Spatie\PhpUnitWatcher\ConsoleApplication();
 
 $application->run();
+
+function prepareArgs() {
+    $arguments = $_SERVER['argv'];
+
+    if ($arguments[1] !== "watch") {
+        return;
+    }
+
+    if (count($arguments) <= 2) {
+        return;
+    }
+
+    $newArguments = array_slice($arguments, 0, 2);
+
+    $newArguments[] = "'" . implode(' ', array_slice($arguments, 2)) . "'";
+
+    $_SERVER['argv'] = $newArguments;
+}

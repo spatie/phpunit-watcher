@@ -18,6 +18,7 @@
     "require": {
         "php": "^7.1",
         "symfony/console": "^3.3",
+        "symfony/process": "^3.3",
         "yosymfony/resource-watcher": "^1.2"
     },
     "require-dev": {
@@ -31,7 +32,10 @@
     "autoload-dev": {
         "psr-4": {
             "Spatie\\PhpUnitWatcher\\Test\\": "tests"
-        }
+        },
+        "files": [
+            "tests/helpers.php"
+        ]
     },
     "scripts": {
         "test": "vendor/bin/phpunit"

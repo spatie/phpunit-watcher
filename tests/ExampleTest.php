@@ -10,6 +10,11 @@ class ExampleTest extends TestCase
     public function true_is_true()
     {
         $this->assertTrue(true);
+    }
 
+    /** @test */
+    public function ha_ha_ha()
+    {
+        $this->assertTrue(false);
     }
 }
