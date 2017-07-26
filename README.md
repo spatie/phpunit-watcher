@@ -1,3 +1,5 @@
+**WORK IN PROGRESS, DO NOT USE YET**
+
 # Automatically rerun PHPUnit tests when source code changes
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/phpunit-watcher.svg?style=flat-square)](https://packagist.org/packages/spatie/phpunit-watcher)
