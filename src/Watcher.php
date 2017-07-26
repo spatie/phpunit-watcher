@@ -49,6 +49,6 @@ class Watcher
 
     protected function rerunTests()
     {
-        echo 'rerun phpunit tests';
+        passthru('vendor/bin/phpunit');
     }
 }

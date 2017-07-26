@@ -17,6 +17,7 @@
     ],
     "require": {
         "php": "^7.1",
+        "symfony/console": "^3.3",
         "yosymfony/resource-watcher": "^1.2"
     },
     "require-dev": {
