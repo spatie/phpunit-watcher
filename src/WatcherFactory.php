@@ -10,7 +10,9 @@ class WatcherFactory
     {
         $finder = new Finder();
 
-        $finder->files()
+        $finder
+            ->name('*.php')
+            ->files()
             ->in([
                 getcwd() . "/src",
                 getcwd() . "/tests",

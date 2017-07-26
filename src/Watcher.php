@@ -30,6 +30,9 @@ class Watcher
 
     public function startWatching()
     {
+        $this->clearScreen();
+        $this->rerunTests();
+
         $cache = new ResourceCacheFile(
             $this->pathToCacheFile
         );
@@ -42,6 +45,7 @@ class Watcher
             $watcher->findChanges();
 
             if ($watcher->hasChanges()) {
+                $this->clearScreen();
                 $this->rerunTests();
             }
         }
@@ -50,5 +54,10 @@ class Watcher
     protected function rerunTests()
     {
         passthru('vendor/bin/phpunit');
+    }
+
+    protected function clearScreen()
+    {
+        passthru("echo '\033\143'");
     }
 }
