@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\HttpStatusCheck;
+namespace Spatie\PhpUnitWatcher;
 
 use Symfony\Component\Console\Application;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Spatie\HttpStatusCheck;
+namespace Spatie\PhpUnitWatcher;
 
 use Spatie\PhpUnitWatcher\WatcherFactory;
 use Symfony\Component\Console\Command\Command;

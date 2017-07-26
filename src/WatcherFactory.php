@@ -6,14 +6,14 @@ use Symfony\Component\Finder\Finder;
 
 class WatcherFactory
 {
-    public function create(array $config): Watcher
+    public static function create(array $config): Watcher
     {
         $finder = new Finder();
 
         $finder->files()
             ->in([
-                __DIR__ . "/src",
-                __DIR__ . "/tests",
+                getcwd() . "/src",
+                getcwd() . "/tests",
             ]);
 
         $watcher = (new Watcher($finder));
