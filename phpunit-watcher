@@ -17,11 +17,15 @@ $application->run();
 function prepareArgs() {
     $arguments = $_SERVER['argv'];
 
-    if ($arguments[1] !== "watch") {
+    if (! is_array($arguments)) {
         return;
     }
 
     if (count($arguments) <= 2) {
+        return;
+    }
+
+    if ($arguments[1] !== "watch") {
         return;
     }
 
