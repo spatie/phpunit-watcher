@@ -13,7 +13,7 @@ class WatcherCommand extends Command
     {
         $this->setName('watch')
             ->setDescription('Rerun PHPUnit tests when source code changes.')
-            ->addArgument('phpunit-options', InputArgument::OPTIONAL, "Options passed to phpunit");
+            ->addArgument('phpunit-options', InputArgument::OPTIONAL, 'Options passed to phpunit');
     }
 
     /**
