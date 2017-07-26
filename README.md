@@ -4,7 +4,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/phpunit-watcher.svg?style=flat-square)](https://packagist.org/packages/spatie/phpunit-watcher)
 [![Build Status](https://img.shields.io/travis/spatie/phpunit-watcher/master.svg?style=flat-square)](https://travis-ci.org/spatie/phpunit-watcher)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/xxxxxxxxx.svg?style=flat-square)](https://insight.sensiolabs.com/projects/xxxxxxxxx)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/7b6b575b-81b1-4fac-826a-9257d46c5c6c.svg?style=flat-square)](https://insight.sensiolabs.com/projects/7b6b575b-81b1-4fac-826a-9257d46c5c6c)
 [![Quality Score](https://img.shields.io/scrutinizer/g/spatie/phpunit-watcher.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/phpunit-watcher)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/phpunit-watcher.svg?style=flat-square)](https://packagist.org/packages/spatie/phpunit-watcher)
 
