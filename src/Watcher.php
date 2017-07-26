@@ -4,8 +4,8 @@ namespace Spatie\PhpUnitWatcher;
 
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
-use Yosymfony\ResourceWatcher\ResourceCacheFile;
 use Yosymfony\ResourceWatcher\ResourceWatcher;
+use Yosymfony\ResourceWatcher\ResourceCacheFile;
 
 class Watcher
 {
@@ -28,8 +28,6 @@ class Watcher
     public function useCacheFile(string $pathToCacheFile)
     {
         $this->pathToCacheFile = $pathToCacheFile;
-
-        return;
     }
 
     public function usePhpunitArguments(string $arguments)

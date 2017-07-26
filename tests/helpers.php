@@ -1,8 +1,8 @@
 <?php
 
-function dd(... $args)
+function dd(...$args)
 {
-    foreach($args as $arg) {
+    foreach ($args as $arg) {
         var_dump($arg);
     }
 

@@ -33,8 +33,8 @@ class WatcherFactory
         $options = array_merge($options, [
             'watch' => [
                 'directories' => [
-                    "src",
-                    "tests",
+                    'src',
+                    'tests',
                 ],
                 'fileMask' => '*.php',
             ],
@@ -42,7 +42,7 @@ class WatcherFactory
         ]);
 
         foreach ($options['watch']['directories'] as $index => $directory) {
-            $options['watch']['directories'][$index] = getcwd() . "/{$directory}";
+            $options['watch']['directories'][$index] = getcwd()."/{$directory}";
         }
 
         return $options;
