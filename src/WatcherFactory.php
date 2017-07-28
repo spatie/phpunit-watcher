@@ -2,7 +2,6 @@
 
 namespace Spatie\PhpUnitWatcher;
 
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
 class WatcherFactory
@@ -10,7 +9,6 @@ class WatcherFactory
     public static function create(array $options = []): array
     {
         $options = static::mergeWithDefaultOptions($options);
-
 
         $finder = (new Finder())
             ->name($options['watch']['fileMask'])
