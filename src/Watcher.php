@@ -59,6 +59,11 @@ class Watcher
         }
     }
 
+    protected function clearScreen()
+    {
+        passthru("echo '\033\143'");
+    }
+
     protected function runTests()
     {
         (new Process("vendor/bin/phpunit {$this->phpunitArguments}"))
@@ -66,10 +71,5 @@ class Watcher
             ->run(function ($type, $line) {
                 echo $line;
             });
-    }
-
-    protected function clearScreen()
-    {
-        passthru("echo '\033\143'");
     }
 }
