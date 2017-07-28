@@ -1,5 +1,3 @@
-**WORK IN PROGRESS, DO NOT USE YET**
-
 # Automatically rerun PHPUnit tests when source code changes
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/phpunit-watcher.svg?style=flat-square)](https://packagist.org/packages/spatie/phpunit-watcher)
@@ -9,9 +7,9 @@
 [![StyleCI](https://styleci.io/repos/98163923/shield?branch=master)](https://styleci.io/repos/98163923)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/phpunit-watcher.svg?style=flat-square)](https://packagist.org/packages/spatie/phpunit-watcher)
 
-Wouldn't it be great if your PHPUnit tests would be automatically rerun whenever you change some code? This repository contains a binary that does exactly that.
+Wouldn't it be great if your PHPUnit tests would be automatically rerun whenever you change some code? This package can do exactly that.
 
-With the binary installed you can do this simply by executing:
+With the package installed you can do run this:
 
 ```php
 phpunit-watcher watch
@@ -56,7 +54,7 @@ For performance reasons the package will create a `.phpunit-watcher.cache.php` i
 
 ## Usage
 
-All the examples assume you've installed the package globally. If you opted for the local installation append `vendor/bin/` everywhere where `phpunit-watcher` is mentioned.
+All the examples assume you've installed the package globally. If you opted for the local installation prepend `vendor/bin/` everywhere where `phpunit-watcher` is mentioned.
 
 You can start the watcher with:
 
@@ -66,7 +64,7 @@ phpunit-watcher watch
 
 This will run the tests and rerun them whenever a file in the `src` or `tests` directory is modified.
 
-You can customize the directories being watched by create a file named `.phpunit-watcher.yml` in your project directory. Here's some example content:
+You can customize the directories being watched by creating a file named `.phpunit-watcher.yml` in your project directory. Here's some example content:
 
 ```yaml
 watch:
