@@ -53,7 +53,7 @@ class WatcherCommand extends Command
     {
         $output = new SymfonyStyle($input, $output);
 
-        $output->title('Starting PHPUnit Watcher');
+        $output->title('PHPUnit Watcher');
 
         $output->text("Tests will be rerun when {$options['watch']['fileMask']} files are modified in");
 

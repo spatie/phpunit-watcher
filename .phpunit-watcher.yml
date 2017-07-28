@@ -1,5 +1,5 @@
-fileMask: '*.php'
-
-directories:
-  - src
-  - tests2333
+watch:
+  fileMask: '*.php'
+  directories:
+    - src
+    - tests
