@@ -70,7 +70,6 @@ You can customize the directories being watched by create a file named `.phpunit
 
 ```yaml
 watch:
-
   directories:
     - src
     - tests
