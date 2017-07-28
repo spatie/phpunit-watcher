@@ -9,7 +9,21 @@
 [![StyleCI](https://styleci.io/repos/98163923/shield?branch=master)](https://styleci.io/repos/98163923)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/phpunit-watcher.svg?style=flat-square)](https://packagist.org/packages/spatie/phpunit-watcher)
 
-Wouldn't it be great if your test would be automatically rerun whenever you cang
+Wouldn't it be great if your PHPUnit tests would be automatically rerun whenever you change some code? This repository contains a binary that does exactly that.
+
+With the binary installed you can do this simply by executing:
+
+```php
+phpunit-watcher watch
+```
+
+This will run the tests and rerun them whenever a file in the `src` or `tests` directory is modified.
+
+Want to pass some arguments to PHPUnit no problem, just tack them on:
+
+```php
+phpunit-watcher watch --filter=it_can_run_a_single_test
+```
 
 ## Postcardware
 
