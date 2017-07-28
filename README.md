@@ -11,7 +11,7 @@ Wouldn't it be great if your PHPUnit tests would be automatically rerun whenever
 
 With the package installed you can do run this:
 
-```php
+```bash
 phpunit-watcher watch
 ```
 
@@ -19,7 +19,7 @@ This will run the tests and rerun them whenever a file in the `src` or `tests` d
 
 Want to pass some arguments to PHPUnit? No problem, just tack them on:
 
-```php
+```bash
 phpunit-watcher watch --filter=it_can_run_a_single_test
 ```
 
@@ -58,7 +58,7 @@ All the examples assume you've installed the package globally. If you opted for 
 
 You can start the watcher with:
 
-```php
+```bash
 phpunit-watcher watch
 ```
 
@@ -76,7 +76,7 @@ watch:
 
 Want to pass some arguments to PHPUnit no problem, just tack them on:
 
-```php
+```bash
 phpunit-watcher watch --filter=it_can_run_a_single_test
 ```
 
