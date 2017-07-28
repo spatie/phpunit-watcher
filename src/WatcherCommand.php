@@ -2,12 +2,12 @@
 
 namespace Spatie\PhpUnitWatcher;
 
+use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Yaml\Yaml;
 
 class WatcherCommand extends Command
 {
@@ -40,7 +40,7 @@ class WatcherCommand extends Command
 
     protected function getOptionsFromConfigFile(): array
     {
-        $configFile = getcwd() . '/.phpunit-watcher.yml';
+        $configFile = getcwd().'/.phpunit-watcher.yml';
 
         if (! file_exists($configFile)) {
             return [];
@@ -53,7 +53,7 @@ class WatcherCommand extends Command
     {
         $output = new SymfonyStyle($input, $output);
 
-        $output->title("Starting PHPUnit Watcher");
+        $output->title('Starting PHPUnit Watcher');
 
         $output->text("Tests will be rerun when {$options['watch']['fileMask']} files are modified in");
 
