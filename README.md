@@ -35,17 +35,52 @@ We publish all received postcards [on our company website](https://spatie.be/en/
 
 ## Installation
 
-You can install the package via composer:
+You can install this package globally like this
 
 ```bash
-composer require spatie/phpunit-watcher
+composer global require spatie/phpunit-watcher
 ```
+
+After that `phpunit-watcher watch` can be run in any directory on your system.
+
+Alternatively you can install the package locally as a dev dependency in your project
+
+```bash
+composer require spatie/phpunit-watcher --dev
+```
+
+Locally installed you can run it with `vendor/bin/phpunit-watcher watch`
+
+For performance reasons the package will create a `.phpunit-watcher.cache.php` inside the directory where it is run. You should add an entry for that file in your [global gitignore](https://murze.be/2014/12/create-a-global-gitignore/).
+
 
 ## Usage
 
-``` php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+All the examples assume you've installed the package globally. If you opted for the local installation append `vendor/bin/` everywhere where `phpunit-watcher` is mentioned.
+
+You can start the watcher with:
+
+```php
+phpunit-watcher watch
+```
+
+This will run the tests and rerun them whenever a file in the `src` or `tests` directory is modified.
+
+You can customize the directories being watched by create a file named `.phpunit-watcher.yml` in your project directory. Here's some example content:
+
+```yaml
+watch:
+
+  directories:
+    - src
+    - tests
+  fileMask: '*.php'
+```
+
+Want to pass some arguments to PHPUnit no problem, just tack them on:
+
+```php
+phpunit-watcher watch --filter=it_can_run_a_single_test
 ```
 
 ## Changelog
