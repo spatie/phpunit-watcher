@@ -19,6 +19,7 @@
         "php": "^7.0",
         "symfony/console": "^3.0",
         "symfony/process": "^3.0",
+        "symfony/yaml": "^3.3",
         "yosymfony/resource-watcher": "^1.2"
     },
     "require-dev": {

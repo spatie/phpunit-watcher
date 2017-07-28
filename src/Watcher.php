@@ -39,7 +39,6 @@ class Watcher
 
     public function startWatching()
     {
-        $this->clearScreen();
         $this->runTests();
 
         $cache = new ResourceCacheFile(

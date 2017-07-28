@@ -1,0 +1,5 @@
+fileMask: '*.php'
+
+directories:
+  - src
+  - tests2333

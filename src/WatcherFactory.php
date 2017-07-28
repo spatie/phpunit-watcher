@@ -2,13 +2,15 @@
 
 namespace Spatie\PhpUnitWatcher;
 
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Finder\Finder;
 
 class WatcherFactory
 {
-    public static function create(array $options = []): Watcher
+    public static function create(array $options = []): array
     {
         $options = static::mergeWithDefaultOptions($options);
+
 
         $finder = (new Finder())
             ->name($options['watch']['fileMask'])
@@ -25,12 +27,12 @@ class WatcherFactory
             $watcher->usePhpunitArguments($options['phpunitArguments']);
         }
 
-        return $watcher;
+        return [$watcher, $options];
     }
 
     protected static function mergeWithDefaultOptions(array $options): array
     {
-        $options = array_merge($options, [
+        $options = array_merge([
             'watch' => [
                 'directories' => [
                     'src',
@@ -39,7 +41,7 @@ class WatcherFactory
                 'fileMask' => '*.php',
             ],
             'cache' => '.phpunit-watcher-cache.php',
-        ]);
+        ], $options);
 
         foreach ($options['watch']['directories'] as $index => $directory) {
             $options['watch']['directories'][$index] = getcwd()."/{$directory}";
