@@ -56,6 +56,8 @@ class Watcher
                 $this->clearScreen();
                 $this->runTests();
             }
+
+            sleep(1);
         }
     }
 
