@@ -11,6 +11,8 @@ class WatcherFactory
         $options = static::mergeWithDefaultOptions($options);
 
         $finder = (new Finder())
+            ->ignoreDotFiles(false)
+            ->ignoreVCS(false)
             ->name($options['watch']['fileMask'])
             ->files()
             ->in($options['watch']['directories']);
