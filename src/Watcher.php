@@ -57,7 +57,7 @@ class Watcher
                 $this->runTests();
             }
 
-            sleep(1);
+            usleep(250000);
         }
     }
 
