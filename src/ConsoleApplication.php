@@ -8,7 +8,7 @@ class ConsoleApplication extends Application
 {
     public function __construct()
     {
-        parent::__construct('PHPUnit Watcher', '1.0.0');
+        parent::__construct('PHPUnit Watcher', '1.0.1');
 
         $this->add(new WatcherCommand());
     }
