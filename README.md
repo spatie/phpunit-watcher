@@ -9,7 +9,7 @@
 
 Wouldn't it be great if your PHPUnit tests would be automatically rerun whenever you change some code? This package can do exactly that.
 
-With the package installed you can do run this:
+With the package installed you can do this:
 
 ```bash
 phpunit-watcher watch
