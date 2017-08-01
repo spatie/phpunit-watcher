@@ -29,7 +29,10 @@ class PhpunitScreen extends Screen
 
             switch ($line) {
                 case "":
-                    $this->terminal->displayScreen($this);
+                    $this->terminal->refreshScreen();
+                    break;
+                case "a":
+                    $this->terminal->displayScreen(new PhpunitScreen());
                     break;
                 case "t":
                     $this->terminal->displayScreen(new FilterScreen());
@@ -70,8 +73,8 @@ class PhpunitScreen extends Screen
         $this->terminal
             ->emptyLine()
             ->write('Press a to run all tests.')
-            ->write('Press t to filter by a test name regex pattern')
+            ->write('Press t to filter by a test name regex pattern.')
             ->write('Press q to quit the watcher.')
-            ->write('Press Enter to trigger a test run');
+            ->write('Press Enter to trigger a test run.');
     }
 }

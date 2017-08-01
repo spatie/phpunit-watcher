@@ -26,7 +26,9 @@ class FilterScreen extends Screen
                 return;
             }
 
-            $this->terminal->displayScreen(new PhpunitScreen());
+            $phpunitArguments = "--filter={$line}";
+
+            $this->terminal->displayScreen(new PhpunitScreen($phpunitArguments));
         });
     }
 

@@ -10,6 +10,6 @@ class PhpunitConfigReaderTest extends TestCase
     /** @test */
     public function it_can_get_all_test_names()
     {
-
+        $this->assertTrue(true);
     }
 }
