@@ -18,8 +18,6 @@ class FilterFileName extends Screen
     public function registerListeners()
     {
         $this->terminal->on('data', function ($line) {
-            $line = trim($line);
-
             if ($line == '') {
                 $this->terminal->goBack();
 

@@ -25,7 +25,7 @@ class Terminal
     public function on(string $eventName, callable $callable)
     {
         $this->io->on($eventName, function ($line) use ($callable) {
-            $callable($line);
+            $callable(trim($line));
         });
     }
 
