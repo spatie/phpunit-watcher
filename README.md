@@ -12,7 +12,7 @@ Wouldn't it be great if your PHPUnit tests would be automatically rerun whenever
 With the package installed you can do this:
 
 ```bash
-phpunit-watcher watch
+phpunit-watcher
 ```
 
 This will run the tests and rerun them whenever a file in the `src` or `tests` directory is modified.
@@ -20,7 +20,7 @@ This will run the tests and rerun them whenever a file in the `src` or `tests` d
 Want to pass some arguments to PHPUnit? No problem, just tack them on:
 
 ```bash
-phpunit-watcher watch --filter=it_can_run_a_single_test
+phpunit-watcher --filter=it_can_run_a_single_test
 ```
 
 ## Postcardware
@@ -39,7 +39,7 @@ You can install this package globally like this
 composer global require spatie/phpunit-watcher
 ```
 
-After that `phpunit-watcher watch` can be run in any directory on your system.
+After that `phpunit-watcher` can be run in any directory on your system.
 
 Alternatively you can install the package locally as a dev dependency in your project
 
@@ -47,7 +47,7 @@ Alternatively you can install the package locally as a dev dependency in your pr
 composer require spatie/phpunit-watcher --dev
 ```
 
-Locally installed you can run it with `vendor/bin/phpunit-watcher watch`
+Locally installed you can run it with `vendor/bin/phpunit-watcher`
 
 For performance reasons the package will create a `.phpunit-watcher.cache.php` inside the directory where it is run. You should add an entry for that file in your [global gitignore](https://murze.be/2014/12/create-a-global-gitignore/).
 
@@ -59,7 +59,7 @@ All the examples assume you've installed the package globally. If you opted for 
 You can start the watcher with:
 
 ```bash
-phpunit-watcher watch
+phpunit-watcher
 ```
 
 This will run the tests and rerun them whenever a file in the `src` or `tests` directory is modified.
@@ -77,7 +77,7 @@ watch:
 Want to pass some arguments to PHPUnit no problem, just tack them on:
 
 ```bash
-phpunit-watcher watch --filter=it_can_run_a_single_test
+phpunit-watcher --filter=it_can_run_a_single_test
 ```
 
 ## Changelog
