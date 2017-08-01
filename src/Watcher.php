@@ -6,7 +6,7 @@ use Clue\React\Stdio\Stdio;
 use React\EventLoop\Factory;
 use Symfony\Component\Finder\Finder;
 use Yosymfony\ResourceWatcher\ResourceWatcher;
-use Spatie\PhpUnitWatcher\Screens\PhpunitScreen;
+use Spatie\PhpUnitWatcher\Screens\Phpunit;
 use Yosymfony\ResourceWatcher\ResourceCacheMemory;
 
 class Watcher
@@ -29,7 +29,7 @@ class Watcher
 
         $this->loop = Factory::create();
 
-        $this->terminal = new Terminal(new Stdio($this->loop));
+        $this->terminal = new Terminal($this->loop);
     }
 
     public function usePhpunitArguments(string $arguments)
@@ -41,14 +41,14 @@ class Watcher
 
     public function startWatching()
     {
-        $this->terminal->displayScreen(new PhpunitScreen($this->phpunitArguments), false);
+        $this->terminal->displayScreen(new Phpunit($this->phpunitArguments), false);
 
         $watcher = new ResourceWatcher(new ResourceCacheMemory());
 
         $watcher->setFinder($this->finder);
 
         $this->loop->addPeriodicTimer(1 / 4, function () use ($watcher) {
-            if (! $this->terminal->isDisplayingScreen(PhpunitScreen::class)) {
+            if (! $this->terminal->isDisplayingScreen(Phpunit::class)) {
                 return;
             }
 

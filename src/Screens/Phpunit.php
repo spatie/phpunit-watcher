@@ -4,7 +4,7 @@ namespace Spatie\PhpUnitWatcher\Screens;
 
 use Symfony\Component\Process\Process;
 
-class PhpunitScreen extends Screen
+class Phpunit extends Screen
 {
     /** @var string */
     protected $phpunitArguments;
@@ -31,13 +31,13 @@ class PhpunitScreen extends Screen
                     $this->terminal->refreshScreen();
                     break;
                 case 'a':
-                    $this->terminal->displayScreen(new PhpunitScreen());
+                    $this->terminal->displayScreen(new Phpunit());
                     break;
                 case 't':
-                    $this->terminal->displayScreen(new FilterTestNameScreen());
+                    $this->terminal->displayScreen(new FilterTestName());
                     break;
                 case 'p':
-                    $this->terminal->displayScreen(new FilterFileNameScreen());
+                    $this->terminal->displayScreen(new FilterFileName());
                     break;
                 case 'q':
                     die();

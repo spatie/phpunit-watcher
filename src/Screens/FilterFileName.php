@@ -2,7 +2,7 @@
 
 namespace Spatie\PhpUnitWatcher\Screens;
 
-class FilterFileNameScreen extends Screen
+class FilterFileName extends Screen
 {
     public function draw()
     {
@@ -26,7 +26,7 @@ class FilterFileNameScreen extends Screen
 
             $phpunitArguments = "{$line}";
 
-            $this->terminal->displayScreen(new PhpunitScreen($phpunitArguments));
+            $this->terminal->displayScreen(new Phpunit($phpunitArguments));
         });
     }
 }
