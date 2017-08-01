@@ -29,6 +29,14 @@ class Terminal
         });
     }
 
+    public function onKeyPress(callable $callable)
+    {
+        $this->io->getInput()->once('data', function ($line) use ($callable) {
+            $this->io->getReadline()->deleteChar(0);
+            $callable(trim($line));
+        });
+    }
+
     public function emptyLine()
     {
         $this->write('');

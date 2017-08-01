@@ -23,7 +23,7 @@ class Phpunit extends Screen
 
     public function registerListeners()
     {
-        $this->terminal->on('data', function ($line) {
+        $this->terminal->onKeyPress(function ($line) {
             $line = strtolower($line);
 
             switch ($line) {
