@@ -11,17 +11,20 @@ class Terminal
     /**  @var \Clue\React\Stdio\Stdio */
     protected $io;
 
-    protected $displayingScreen = null;
+    /** @var \Spatie\PhpUnitWatcher\Screens\Screen */
+    protected $previousScreen = null;
+
+    /** @var \Spatie\PhpUnitWatcher\Screens\Screen */
+    protected $currentScreen = null;
 
     public function __construct(Stdio $io)
     {
         $this->io = $io;
     }
 
-    public function onEnter(callable $callable)
+    public function on(string $eventName, callable $callable)
     {
-        $this->io->on('data', function ($line) use ($callable) {
-            echo 'on callable';
+        $this->io->on($eventName, function ($line) use ($callable) {
             $callable($line);
         });
     }
@@ -53,30 +56,71 @@ class Terminal
         return $this;
     }
 
-    public function displayScreen(Screen $screen)
+    public function displayScreen(Screen $screen, $clearScreen = true)
     {
-        $this->displayingScreen = $screen;
+        $this->previousScreen = $this->currentScreen;
+
+        $this->currentScreen = $screen;
 
         $screen
             ->useTerminal($this)
+            ->clearPrompt()
             ->removeAllListeners()
-            ->registerListeners()
-            ->clear()
-            ->draw();
+            ->registerListeners();
+
+        if ($clearScreen) {
+            $screen->clear();
+        }
+
+        $screen->draw();
+    }
+
+    public function goBack()
+    {
+        if (is_null($this->previousScreen)) {
+           return;
+        }
+
+        $this->currentScreen = $this->previousScreen;
+
+        return $this;
+    }
+
+    public function refreshScreen()
+    {
+        if (is_null($this->currentScreen)) {
+            return;
+        }
+
+        $this->displayScreen($this->currentScreen);
     }
 
     public function isDisplayingScreen(string $screenClassName): bool
     {
-        if (is_null($this->displayingScreen)) {
+        if (is_null($this->currentScreen)) {
             return false;
         }
 
-        return $screenClassName === get_class($this->displayingScreen);
+        return $screenClassName === get_class($this->currentScreen);
     }
 
     public function removeAllListeners()
     {
         $this->io->removeAllListeners();
+
+        return $this;
+    }
+
+    public function prompt(string $prompt)
+    {
+        $this->io->getReadline()->setPrompt($prompt);
+
+        return $this;
+    }
+
+    public function clearPrompt()
+    {
+        $this->io->getReadline()->setPrompt("");
 
         return $this;
     }

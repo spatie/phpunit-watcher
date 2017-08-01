@@ -21,7 +21,7 @@ abstract class Screen
         return $this;
     }
 
-    public function registerListerers()
+    public function registerListeners()
     {
         return $this;
     }
@@ -36,6 +36,13 @@ abstract class Screen
     public function removeAllListeners()
     {
         $this->terminal->removeAllListeners();
+
+        return $this;
+    }
+
+    public function clearPrompt()
+    {
+        $this->terminal->clearPrompt();
 
         return $this;
     }
