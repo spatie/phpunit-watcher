@@ -35,7 +35,10 @@ class PhpunitScreen extends Screen
                     $this->terminal->displayScreen(new PhpunitScreen());
                     break;
                 case "t":
-                    $this->terminal->displayScreen(new FilterScreen());
+                    $this->terminal->displayScreen(new FilterTestNameScreen());
+                    break;
+                case "p":
+                    $this->terminal->displayScreen(new FilterFileNameScreen());
                     break;
                 case "q":
                     die();
@@ -74,6 +77,7 @@ class PhpunitScreen extends Screen
             ->emptyLine()
             ->write('Press a to run all tests.')
             ->write('Press t to filter by a test name.')
+            ->write('Press p to filter by a file name.')
             ->write('Press q to quit the watcher.')
             ->write('Press Enter to trigger a test run.');
     }
