@@ -8,7 +8,7 @@ use Symfony\Component\Console\Formatter\OutputFormatter;
 
 class Terminal
 {
-    /**  @var \Clue\React\Stdio\Stdio */
+    /** @var \Clue\React\Stdio\Stdio */
     protected $io;
 
     /** @var \Spatie\PhpUnitWatcher\Screens\Screen */
@@ -78,7 +78,7 @@ class Terminal
     public function goBack()
     {
         if (is_null($this->previousScreen)) {
-           return;
+            return;
         }
 
         $this->currentScreen = $this->previousScreen;
@@ -120,7 +120,7 @@ class Terminal
 
     public function clearPrompt()
     {
-        $this->io->getReadline()->setPrompt("");
+        $this->io->getReadline()->setPrompt('');
 
         return $this;
     }
