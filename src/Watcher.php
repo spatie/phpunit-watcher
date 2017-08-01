@@ -5,15 +5,12 @@ namespace Spatie\PhpUnitWatcher;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use Yosymfony\ResourceWatcher\ResourceWatcher;
-use Yosymfony\ResourceWatcher\ResourceCacheFile;
+use Yosymfony\ResourceWatcher\ResourceCacheMemory;
 
 class Watcher
 {
     /** @var \Symfony\Component\Finder\Finder */
     protected $finder;
-
-    /** @var string */
-    protected $pathToCacheFile;
 
     /** @var $string */
     protected $phpunitArguments;
@@ -21,13 +18,6 @@ class Watcher
     public function __construct(Finder $finder)
     {
         $this->finder = $finder;
-
-        $this->pathToCacheFile = '.phpunit-watcher-cache.php';
-    }
-
-    public function useCacheFile(string $pathToCacheFile)
-    {
-        $this->pathToCacheFile = $pathToCacheFile;
     }
 
     public function usePhpunitArguments(string $arguments)
@@ -41,11 +31,7 @@ class Watcher
     {
         $this->runTests();
 
-        $cache = new ResourceCacheFile(
-            $this->pathToCacheFile
-        );
-
-        $watcher = new ResourceWatcher($cache);
+        $watcher = new ResourceWatcher(new ResourceCacheMemory());
 
         $watcher->setFinder($this->finder);
 

@@ -17,11 +17,7 @@ class WatcherFactory
             ->files()
             ->in($options['watch']['directories']);
 
-        $watcher = (new Watcher($finder));
-
-        if (isset($options['cache'])) {
-            $watcher->useCacheFile($options['cache']);
-        }
+        $watcher = new Watcher($finder);
 
         if (isset($options['phpunitArguments'])) {
             $watcher->usePhpunitArguments($options['phpunitArguments']);
@@ -40,7 +36,6 @@ class WatcherFactory
                 ],
                 'fileMask' => '*.php',
             ],
-            'cache' => '.phpunit-watcher-cache.php',
         ], $options);
 
         foreach ($options['watch']['directories'] as $index => $directory) {
