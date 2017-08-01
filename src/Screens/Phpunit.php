@@ -80,8 +80,8 @@ class Phpunit extends Screen
         $this->terminal
             ->emptyLine()
             ->write('Press a to run all tests.')
-            ->write('Press t to filter by a test name.')
-            ->write('Press p to filter by a file name.')
+            ->write('Press t to filter by test name.')
+            ->write('Press p to filter by file name.')
             ->write('Press q to quit the watcher.')
             ->write('Press Enter to trigger a test run.');
 

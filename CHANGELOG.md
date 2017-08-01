@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.1.0 - 2017-08-02
+
+- add interactive commands
+
 ## 1.0.4 - 2017-08-01
 
 - do not halt when watching a non existing directory
