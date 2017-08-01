@@ -4,7 +4,7 @@ namespace Spatie\PhpUnitWatcher;
 
 use Clue\React\Stdio\Stdio;
 use React\EventLoop\Factory;
-use Symfony\Component\Console\Formatter\OutputFormatter;
+use Spatie\PhpUnitWatcher\Screens\Phpunit;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Process\Process;
 use Yosymfony\ResourceWatcher\ResourceWatcher;
@@ -42,7 +42,9 @@ class Watcher
 
     public function startWatching()
     {
-        $this->runTestsAndRebuildScreen(false);
+        $this->terminal->displayScreen(new Phpunit(function() {
+            $this->runTests();
+        }));
 
         $watcher = new ResourceWatcher(new ResourceCacheMemory());
 
@@ -52,26 +54,13 @@ class Watcher
             $watcher->findChanges();
 
             if ($watcher->hasChanges()) {
-                $this->runTestsAndRebuildScreen();
+                $this->terminal->displayScreen(new Phpunit(function() {
+                    $this->runTests();
+                }));
             }
         });
 
-        $this->terminal->onEnter(function ($line) {
-            $this->runTestsAndRebuildScreen();
-        });
-
         $this->loop->run();
-    }
-
-    protected function runTestsAndRebuildScreen(bool $clearScreenFirst = true)
-    {
-        if ($clearScreenFirst) {
-            $this->terminal->clear();
-        }
-
-        $this->writeTestRunHeader();
-        $this->runTests();
-        $this->displayManual();
     }
 
     protected function runTests()
@@ -81,25 +70,5 @@ class Watcher
             ->run(function ($type, $line) {
                 echo $line;
             });
-    }
-
-    private function writeTestRunHeader()
-    {
-        $title = 'Starting PHPUnit';
-
-        if (! empty($this->phpunitArguments)) {
-            $title .= " with arguments: `{$this->phpunitArguments}`";
-        }
-
-        $this->terminal
-            ->comment($title)
-            ->emptyLine();
-    }
-
-    protected function displayManual()
-    {
-        $this->terminal
-            ->emptyLine()
-            ->write('Press enter to run tests again');
     }
 }
