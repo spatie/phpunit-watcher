@@ -15,7 +15,7 @@ With the package installed you can do this:
 phpunit-watcher watch
 ```
 
-Here's how it looks like
+Here's how it looks like:
 
 ![watcher screenshot](https://spatie.github.io/phpunit-watcher/screenshots/watcher.jpg)
 
