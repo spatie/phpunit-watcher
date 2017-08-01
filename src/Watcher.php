@@ -29,7 +29,7 @@ class Watcher
 
         $this->loop = Factory::create();
 
-        $this->terminal = new Terminal($this->loop);
+        $this->terminal = new Terminal(new Stdio($this->loop));
     }
 
     public function usePhpunitArguments(string $arguments)

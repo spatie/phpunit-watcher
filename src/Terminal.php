@@ -17,30 +17,15 @@ class Terminal
     /** @var \Spatie\PhpUnitWatcher\Screens\Screen */
     protected $currentScreen = null;
 
-    protected $loop;
-
-    public function __construct(Stdio $loop)
+    public function __construct(Stdio $io)
     {
-        $this->io = new Stdio($io);
-
-        $this->loop = $loop;
+        $this->io = $io;
     }
 
     public function on(string $eventName, callable $callable)
     {
         $this->io->on($eventName, function ($line) use ($callable) {
             $callable($line);
-        });
-    }
-
-    public function on2(string $eventName, callable $callable)
-    {
-        $stdin = new ReadableResourceStream(STDIN, $this->loop);
-
-        $stream = new ControlCodeParser($stdin);
-
-        $stream->on('data', function ($chunk) {
-            var_dump($chunk);
         });
     }
 
