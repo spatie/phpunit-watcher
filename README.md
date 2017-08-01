@@ -49,8 +49,6 @@ composer require spatie/phpunit-watcher --dev
 
 Locally installed you can run it with `vendor/bin/phpunit-watcher watch`
 
-For performance reasons the package will create a `.phpunit-watcher.cache.php` inside the directory where it is run. You should add an entry for that file in your [global gitignore](https://murze.be/2014/12/create-a-global-gitignore/).
-
 
 ## Usage
 
