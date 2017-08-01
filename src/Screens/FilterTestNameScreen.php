@@ -2,8 +2,6 @@
 
 namespace Spatie\PhpUnitWatcher\Screens;
 
-use Clue\React\Stdio\Readline;
-
 class FilterTestNameScreen extends Screen
 {
     public function draw()
@@ -20,7 +18,7 @@ class FilterTestNameScreen extends Screen
     public function registerListeners()
     {
         $this->terminal->on('data', function ($line) {
-            if ($line == "") {
+            if ($line == '') {
                 $this->terminal->goBack();
 
                 return;
@@ -31,6 +29,4 @@ class FilterTestNameScreen extends Screen
             $this->terminal->displayScreen(new PhpunitScreen($phpunitArguments));
         });
     }
-
-
 }

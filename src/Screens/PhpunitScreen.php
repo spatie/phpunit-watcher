@@ -9,7 +9,7 @@ class PhpunitScreen extends Screen
     /** @var string */
     protected $phpunitArguments;
 
-    public function __construct(string $phpunitArguments = "")
+    public function __construct(string $phpunitArguments = '')
     {
         $this->phpunitArguments = $phpunitArguments;
     }
@@ -24,23 +24,22 @@ class PhpunitScreen extends Screen
     public function registerListeners()
     {
         $this->terminal->on('data', function ($line) {
-
             $line = trim(strtolower($line));
 
             switch ($line) {
-                case "":
+                case '':
                     $this->terminal->refreshScreen();
                     break;
-                case "a":
+                case 'a':
                     $this->terminal->displayScreen(new PhpunitScreen());
                     break;
-                case "t":
+                case 't':
                     $this->terminal->displayScreen(new FilterTestNameScreen());
                     break;
-                case "p":
+                case 'p':
                     $this->terminal->displayScreen(new FilterFileNameScreen());
                     break;
-                case "q":
+                case 'q':
                     die();
                     break;
             }
@@ -53,7 +52,7 @@ class PhpunitScreen extends Screen
     {
         $title = 'Starting PHPUnit';
 
-        if (!empty($this->phpunitArguments)) {
+        if (! empty($this->phpunitArguments)) {
             $title .= " with arguments: `{$this->phpunitArguments}`";
         }
 

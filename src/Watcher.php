@@ -4,10 +4,9 @@ namespace Spatie\PhpUnitWatcher;
 
 use Clue\React\Stdio\Stdio;
 use React\EventLoop\Factory;
-use Spatie\PhpUnitWatcher\Screens\PhpunitScreen;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Process\Process;
 use Yosymfony\ResourceWatcher\ResourceWatcher;
+use Spatie\PhpUnitWatcher\Screens\PhpunitScreen;
 use Yosymfony\ResourceWatcher\ResourceCacheMemory;
 
 class Watcher

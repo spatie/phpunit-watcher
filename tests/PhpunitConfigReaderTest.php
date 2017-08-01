@@ -3,7 +3,6 @@
 namespace Spatie\PhpUnitWatcher\Test;
 
 use PHPUnit\Framework\TestCase;
-use Spatie\PhpUnitWatcher\PhpunitConfigReader;
 
 class PhpunitConfigReaderTest extends TestCase
 {
