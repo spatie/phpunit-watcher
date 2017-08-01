@@ -53,7 +53,7 @@ class Phpunit extends Screen
     {
         $title = 'Starting PHPUnit';
 
-        if (!empty($this->phpunitArguments)) {
+        if (! empty($this->phpunitArguments)) {
             $title .= " with arguments: `{$this->phpunitArguments}`";
         }
 
