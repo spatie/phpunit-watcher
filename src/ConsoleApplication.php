@@ -11,6 +11,8 @@ class ConsoleApplication extends Application
         parent::__construct('PHPUnit Watcher', '1.0.1');
 
         $this->add(new WatcherCommand());
+
+        $this->setDefaultCommand('watch');
     }
 
     public function getLongVersion()
