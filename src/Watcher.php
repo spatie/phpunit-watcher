@@ -21,8 +21,8 @@ class Watcher
     /** @var \React\EventLoop\LibEventLoop */
     protected $loop;
 
-    /** @var \Clue\React\Stdio\Stdio */
-    protected $io;
+    /** @var \Spatie\PhpUnitWatcher\Terminal */
+    protected $terminal;
 
     public function __construct(Finder $finder)
     {
@@ -30,7 +30,7 @@ class Watcher
 
         $this->loop = Factory::create();
 
-        $this->io = new Stdio($this->loop);
+        $this->terminal = new Terminal(new Stdio($this->loop));
     }
 
     public function usePhpunitArguments(string $arguments)
@@ -56,7 +56,7 @@ class Watcher
             }
         });
 
-        $this->io->on('data', function ($line) {
+        $this->terminal->onEnter(function ($line) {
             $this->runTestsAndRebuildScreen();
         });
 
@@ -66,7 +66,7 @@ class Watcher
     protected function runTestsAndRebuildScreen(bool $clearScreenFirst = true)
     {
         if ($clearScreenFirst) {
-            $this->clearScreen();
+            $this->terminal->clear();
         }
 
         $this->writeTestRunHeader();
@@ -91,29 +91,15 @@ class Watcher
             $title .= " with arguments: `{$this->phpunitArguments}`";
         }
 
-        $this->writeToScreen($title, 'comment');
-        $this->writeToScreen('');
-    }
-
-    protected function clearScreen()
-    {
-        passthru("echo '\033\143'");
+        $this->terminal
+            ->comment($title)
+            ->emptyLine();
     }
 
     protected function displayManual()
     {
-        $this->writeToScreen();
-        $this->writeToScreen('Press enter to run tests again', 'comment');
-    }
-
-    protected function writeToScreen($message = '', $level = null)
-    {
-        if ($level != '') {
-            $message = "<{$level}>$message</{$level}>";
-        }
-
-        $formattedMessage = (new OutputFormatter(true))->format($message);
-
-        $this->io->writeln($formattedMessage);
+        $this->terminal
+            ->emptyLine()
+            ->write('Press enter to run tests again');
     }
 }
