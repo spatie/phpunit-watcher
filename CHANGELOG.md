@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.0.4 - 2017-08-01
+
+- do not halt when watching a non existing directory
+
 ## 1.0.3 - 2017-08-01
 
 - switch to in memory cache
