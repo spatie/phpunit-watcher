@@ -2,9 +2,11 @@
 
 namespace Spatie\PhpUnitWatcher;
 
+use Clue\React\Stdio\Stdio;
+use React\EventLoop\Factory;
 use Symfony\Component\Finder\Finder;
-use Symfony\Component\Process\Process;
 use Yosymfony\ResourceWatcher\ResourceWatcher;
+use Spatie\PhpUnitWatcher\Screens\Phpunit;
 use Yosymfony\ResourceWatcher\ResourceCacheMemory;
 
 class Watcher
@@ -15,9 +17,19 @@ class Watcher
     /** @var $string */
     protected $phpunitArguments;
 
+    /** @var \React\EventLoop\LibEventLoop */
+    protected $loop;
+
+    /** @var \Spatie\PhpUnitWatcher\Terminal */
+    protected $terminal;
+
     public function __construct(Finder $finder)
     {
         $this->finder = $finder;
+
+        $this->loop = Factory::create();
+
+        $this->terminal = new Terminal(new Stdio($this->loop));
     }
 
     public function usePhpunitArguments(string $arguments)
@@ -29,35 +41,24 @@ class Watcher
 
     public function startWatching()
     {
-        $this->runTests();
+        $this->terminal->displayScreen(new Phpunit($this->phpunitArguments), false);
 
         $watcher = new ResourceWatcher(new ResourceCacheMemory());
 
         $watcher->setFinder($this->finder);
 
-        while (true) {
+        $this->loop->addPeriodicTimer(1 / 4, function () use ($watcher) {
+            if (! $this->terminal->isDisplayingScreen(Phpunit::class)) {
+                return;
+            }
+
             $watcher->findChanges();
 
             if ($watcher->hasChanges()) {
-                $this->clearScreen();
-                $this->runTests();
+                $this->terminal->refreshScreen();
             }
+        });
 
-            usleep(250000);
-        }
-    }
-
-    protected function clearScreen()
-    {
-        passthru("echo '\033\143'");
-    }
-
-    protected function runTests()
-    {
-        (new Process("vendor/bin/phpunit {$this->phpunitArguments}"))
-            ->setTty(true)
-            ->run(function ($type, $line) {
-                echo $line;
-            });
+        $this->loop->run();
     }
 }
