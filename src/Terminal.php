@@ -83,6 +83,8 @@ class Terminal
 
         $this->currentScreen = $this->previousScreen;
 
+        $this->displayScreen($this->currentScreen);
+
         return $this;
     }
 
