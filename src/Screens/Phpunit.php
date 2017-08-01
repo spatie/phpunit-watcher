@@ -16,9 +16,10 @@ class Phpunit extends Screen
 
     public function draw()
     {
-        $this->writeHeader();
-        $this->runTests();
-        $this->displayManual();
+        $this
+            ->writeHeader()
+            ->runTests()
+            ->displayManual();
     }
 
     public function registerListeners()
@@ -52,13 +53,15 @@ class Phpunit extends Screen
     {
         $title = 'Starting PHPUnit';
 
-        if (! empty($this->phpunitArguments)) {
+        if (!empty($this->phpunitArguments)) {
             $title .= " with arguments: `{$this->phpunitArguments}`";
         }
 
         $this->terminal
             ->comment($title)
             ->emptyLine();
+
+        return $this;
     }
 
     protected function runTests()
@@ -68,6 +71,8 @@ class Phpunit extends Screen
             ->run(function ($type, $line) {
                 echo $line;
             });
+
+        return $this;
     }
 
     protected function displayManual()
@@ -79,5 +84,7 @@ class Phpunit extends Screen
             ->write('Press p to filter by a file name.')
             ->write('Press q to quit the watcher.')
             ->write('Press Enter to trigger a test run.');
+
+        return $this;
     }
 }

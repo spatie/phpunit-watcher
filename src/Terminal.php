@@ -27,6 +27,8 @@ class Terminal
         $this->io->on($eventName, function ($line) use ($callable) {
             $callable(trim($line));
         });
+
+        return $this;
     }
 
     public function onKeyPress(callable $callable)
@@ -35,6 +37,8 @@ class Terminal
             $this->io->getReadline()->deleteChar(0);
             $callable(trim($line));
         });
+
+        return $this;
     }
 
     public function emptyLine()
@@ -81,6 +85,8 @@ class Terminal
         }
 
         $screen->draw();
+
+        return $this;
     }
 
     public function goBack()
@@ -103,6 +109,8 @@ class Terminal
         }
 
         $this->displayScreen($this->currentScreen);
+
+        return $this;
     }
 
     public function isDisplayingScreen(string $screenClassName): bool

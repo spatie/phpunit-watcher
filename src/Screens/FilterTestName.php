@@ -13,6 +13,8 @@ class FilterTestName extends Screen
             ->emptyLine()
             ->comment('Start typing to filter by a test name.')
             ->prompt('pattern > ');
+
+        return $this;
     }
 
     public function registerListeners()
@@ -28,5 +30,7 @@ class FilterTestName extends Screen
 
             $this->terminal->displayScreen(new Phpunit($phpunitArguments));
         });
+
+        return $this;
     }
 }
