@@ -15,7 +15,7 @@ With the package installed you can do this:
 phpunit-watcher watch
 ```
 
-This will run the tests and rerun them whenever a file in the `src` or `tests` directory is modified.
+This will run the tests and rerun them whenever a file in the `app`, `src` or `tests` directory is modified.
 
 Want to pass some arguments to PHPUnit? No problem, just tack them on:
 
