@@ -73,7 +73,7 @@ class PhpunitScreen extends Screen
         $this->terminal
             ->emptyLine()
             ->write('Press a to run all tests.')
-            ->write('Press t to filter by a test name regex pattern.')
+            ->write('Press t to filter by a test name.')
             ->write('Press q to quit the watcher.')
             ->write('Press Enter to trigger a test run.');
     }

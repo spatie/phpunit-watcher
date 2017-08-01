@@ -13,7 +13,7 @@ class FilterScreen extends Screen
             ->write('Type a pattern and press Enter to apply pattern to all tests.')
             ->write('Press Enter with an empty pattern to keep the current pattern.')
             ->emptyLine()
-            ->comment('Start typing to filter by a test name regex pattern.')
+            ->comment('Start typing to filter by a test name.')
             ->prompt('pattern > ');
     }
 
