@@ -8,9 +8,12 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use function var_dump;
 
 class WatcherCommand extends Command
 {
+    const PHPUNIT_WATCH_CONFIG_FILENAME = "/.phpunit-watcher.yml";
+
     protected function configure()
     {
         $this->setName('watch')
@@ -38,9 +41,26 @@ class WatcherCommand extends Command
         return $options;
     }
 
+    protected function getOptionsConfigFile()
+    {
+        $configPath = getcwd();
+        $configFile = $configPath . self::PHPUNIT_WATCH_CONFIG_FILENAME;
+
+        while (! file_exists($configFile)):
+            $configPath = dirname($configPath);
+            $configFile = $configPath . self::PHPUNIT_WATCH_CONFIG_FILENAME;
+            if ($configPath === '/') {
+                $configFile = self::PHPUNIT_WATCH_CONFIG_FILENAME;
+                break;
+            }
+        endwhile;
+
+        return $configFile;
+    }
+
     protected function getOptionsFromConfigFile(): array
     {
-        $configFile = getcwd().'/.phpunit-watcher.yml';
+        $configFile = $this->getOptionsConfigFile();
 
         if (! file_exists($configFile)) {
             return [];
@@ -55,7 +75,7 @@ class WatcherCommand extends Command
 
         $output->title('PHPUnit Watcher');
 
-        $output->text("Tests will be rerun when {$options['watch']['fileMask']} files are modified in");
+        $output->text("Tests will be rerun when {$options['watch']['fileMask']} files are modified in the following directories:\n");
 
         $output->listing($options['watch']['directories']);
 
