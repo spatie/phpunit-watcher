@@ -17,6 +17,9 @@ class Watcher
     /** @var $string */
     protected $phpunitArguments;
 
+    /** @var bool */
+    protected $notifications;
+
     /** @var \React\EventLoop\LibEventLoop */
     protected $loop;
 
@@ -39,9 +42,13 @@ class Watcher
         return $this;
     }
 
+    public function setNotifications(bool $status) {
+        $this->notifications = $status;
+    }
+
     public function startWatching()
     {
-        $this->terminal->displayScreen(new Phpunit($this->phpunitArguments), false);
+        $this->terminal->displayScreen(new Phpunit($this->phpunitArguments, $this->notifications), false);
 
         $watcher = new ResourceWatcher(new ResourceCacheMemory());
 

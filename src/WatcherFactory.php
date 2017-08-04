@@ -27,6 +27,10 @@ class WatcherFactory
 
         $watcher = new Watcher($finder);
 
+        if(isset($options['notifications'])) {
+            $watcher->setNotifications($options['notifications'] === 'on');
+        }
+
         if (isset($options['phpunitArguments'])) {
             $watcher->usePhpunitArguments($options['phpunitArguments']);
         }
@@ -37,6 +41,7 @@ class WatcherFactory
     protected static function mergeWithDefaultOptions(array $options): array
     {
         $options = array_merge([
+            'notifications' => 'on',
             'watch' => [
                 'directories' => [
                     'app',
