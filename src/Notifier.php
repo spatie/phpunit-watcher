@@ -25,7 +25,7 @@ class Notifier
         self::send($notification);
     }
 
-    private static function send($notification)
+    private static function send(Notification $notification)
     {
         return NotifierFactory::create()->send($notification);
     }

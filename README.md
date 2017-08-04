@@ -76,6 +76,17 @@ watch:
   fileMask: '*.php'
 ```
 
+If you want to disable desktop notifications update `.phpunit-watcher.yml` by adding `notifications: off`:
+
+```yaml
+notifications: off
+watch:
+  directories:
+    - src
+    - tests
+  fileMask: '*.php'
+```
+
 Want to pass some arguments to PHPUnit no problem, just tack them on:
 
 ```bash
