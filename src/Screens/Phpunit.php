@@ -2,9 +2,8 @@
 
 namespace Spatie\PhpUnitWatcher\Screens;
 
-use Spatie\PhpUnitWatcher\Notification;
-use Spatie\PhpUnitWatcher\Notifier;
 use Symfony\Component\Process\Process;
+use Spatie\PhpUnitWatcher\Notification;
 
 class Phpunit extends Screen
 {
@@ -103,8 +102,8 @@ class Phpunit extends Screen
             ? 'passingTests'
             : 'failingTests';
 
-       if ($this->options['notifications'][$notificationName]) {
-           Notification::create()->$notificationName();
-       }
+        if ($this->options['notifications'][$notificationName]) {
+            Notification::create()->$notificationName();
+        }
     }
 }
