@@ -117,7 +117,7 @@ notifications:
 
 ### Initial PHPUnit arguments
 
-If you want to use pass the same arguments to PHPUnit everytime to watcher starts you can specificy those arguments in the `.phpunit-watcher.yml` config file. Here's an example:
+If you want to use pass the same arguments to PHPUnit everytime to watcher starts, you can specificy those in the `.phpunit-watcher.yml` config file. Here's an example:
 
 ```yaml
 phpunit:
