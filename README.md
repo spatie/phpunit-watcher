@@ -76,15 +76,17 @@ watch:
   fileMask: '*.php'
 ```
 
-If you want to disable desktop notifications update `.phpunit-watcher.yml` by adding `notifications: false`:
+If you want to disable certain desktop notifications update `.phpunit-watcher.yml` by adding a `notifications` key.
 
 ```yaml
-notifications: false
 watch:
   directories:
     - src
     - tests
   fileMask: '*.php'
+notifications:
+  - passingTests: false
+  - failingTests: false
 ```
 
 If a such a config file does not exist in the project directory, the tool will check if the file exists in any of the parent directories of the project directory.

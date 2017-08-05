@@ -41,7 +41,7 @@ class WatcherFactory
     protected static function mergeWithDefaultOptions(array $options): array
     {
         $options = array_merge([
-            'notifications' => 'true',
+
             'watch' => [
                 'directories' => [
                     'app',
@@ -49,6 +49,10 @@ class WatcherFactory
                     'tests',
                 ],
                 'fileMask' => '*.php',
+            ],
+            'notifications' => [
+                'passingTests' => true,
+                'failingTests' => true,
             ],
         ], $options);
 

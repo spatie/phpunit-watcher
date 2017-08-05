@@ -2,6 +2,7 @@
 
 namespace Spatie\PhpUnitWatcher\Screens;
 
+use Spatie\PhpUnitWatcher\Notification;
 use Spatie\PhpUnitWatcher\Notifier;
 use Symfony\Component\Process\Process;
 
@@ -78,7 +79,9 @@ class Phpunit extends Screen
             });
 
         if ($this->sendNotifications) {
-            $result === 0 ? Notifier::testsPassed() : Notifier::testsFailed();
+            $result === 0
+                ? Notification::create()->testsPassed()
+                : Notification::create()->testsFailed();
         }
 
         return $this;
