@@ -78,7 +78,7 @@ class WatcherCommand extends Command
 
         $output->title('PHPUnit Watcher');
 
-        $output->text("Tests will be rerun when {$options['watch']['fileMask']} files are modified in the following directories:\n");
+        $output->text("Tests will be rerun when {$options['watch']['fileMask']} files are modified in");
 
         $output->listing($options['watch']['directories']);
 
