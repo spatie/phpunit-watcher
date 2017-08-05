@@ -77,7 +77,7 @@ class Phpunit extends Screen
                 echo $line;
             });
 
-        if($this->sendNotifications) {
+        if ($this->sendNotifications) {
             $result === 0 ? Notifier::testsPassed() : Notifier::testsFailed();
         }
 

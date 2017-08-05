@@ -27,7 +27,7 @@ class WatcherFactory
 
         $watcher = new Watcher($finder);
 
-        if(isset($options['notifications'])) {
+        if (isset($options['notifications'])) {
             $watcher->setSendNotifications($options['notifications'] === 'true');
         }
 
