@@ -8,7 +8,7 @@ use Spatie\PhpUnitWatcher\Notification;
 class Phpunit extends Screen
 {
     /** @var array */
-    protected $options;
+    public $options;
 
     /** @var string */
     protected $phpunitArguments;
@@ -38,6 +38,8 @@ class Phpunit extends Screen
                     $this->terminal->refreshScreen();
                     break;
                 case 'a':
+                    $this->options['phpunit']['arguments'] = '';
+
                     $this->terminal->displayScreen(new Phpunit($this->options));
                     break;
                 case 't':

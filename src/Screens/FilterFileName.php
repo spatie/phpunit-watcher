@@ -28,7 +28,13 @@ class FilterFileName extends Screen
 
             $phpunitArguments = "{$line}";
 
-            $this->terminal->displayScreen(new Phpunit($phpunitArguments));
+            $phpunitScreen = $this->terminal->getPreviousScreen();
+
+            $options = $phpunitScreen->options;
+
+            $options['phpunit']['arguments'] = $phpunitArguments;
+
+            $this->terminal->displayScreen(new Phpunit($options));
         });
 
         return $this;

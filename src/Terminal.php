@@ -105,6 +105,11 @@ class Terminal
         return $this;
     }
 
+    public function getPreviousScreen(): Screen
+    {
+        return $this->previousScreen;
+    }
+
     public function refreshScreen()
     {
         if (is_null($this->currentScreen)) {
