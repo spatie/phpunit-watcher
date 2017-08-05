@@ -2,6 +2,7 @@
 
 namespace Spatie\PhpUnitWatcher\Screens;
 
+use Spatie\PhpUnitWatcher\Notifier;
 use Symfony\Component\Process\Process;
 
 class Phpunit extends Screen
@@ -9,9 +10,13 @@ class Phpunit extends Screen
     /** @var string */
     protected $phpunitArguments;
 
-    public function __construct(string $phpunitArguments = '')
+    /** @var bool */
+    protected $sendNotifications;
+
+    public function __construct(string $phpunitArguments = '', bool $sendNotifications = true)
     {
         $this->phpunitArguments = $phpunitArguments;
+        $this->sendNotifications = $sendNotifications;
     }
 
     public function draw()
@@ -66,11 +71,15 @@ class Phpunit extends Screen
 
     protected function runTests()
     {
-        (new Process("vendor/bin/phpunit {$this->phpunitArguments}"))
+        $result = (new Process("vendor/bin/phpunit {$this->phpunitArguments}"))
             ->setTty(true)
             ->run(function ($type, $line) {
                 echo $line;
             });
+
+        if($this->sendNotifications) {
+            $result === 0 ? Notifier::testsPassed() : Notifier::testsFailed();
+        }
 
         return $this;
     }

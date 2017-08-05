@@ -76,6 +76,17 @@ watch:
   fileMask: '*.php'
 ```
 
+If you want to disable desktop notifications update `.phpunit-watcher.yml` by adding `notifications: false`:
+
+```yaml
+notifications: false
+watch:
+  directories:
+    - src
+    - tests
+  fileMask: '*.php'
+```
+
 If a such a config file does not exist in the project directory, the tool will check if the file exists in any of the parent directories of the project directory.
 
 Want to pass some arguments to PHPUnit no problem, just tack them on:
