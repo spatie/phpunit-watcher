@@ -2,6 +2,11 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.3.0 - 2017-08-05
+
+- added desktop notifications
+- display used config file and application version
+
 ## 1.2.1 - 2017-08-05
 
 - throw exception if config file does not contain yml

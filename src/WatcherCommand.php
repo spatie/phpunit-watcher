@@ -12,8 +12,6 @@ use Spatie\PhpUnitWatcher\Exceptions\InvalidConfigfile;
 
 class WatcherCommand extends Command
 {
-    const PHPUNIT_WATCH_CONFIG_FILENAME = '/.phpunit-watcher.yml';
-
     protected function configure()
     {
         $this->setName('watch')
@@ -43,17 +41,19 @@ class WatcherCommand extends Command
 
     protected function getOptionsFromConfigFile(): array
     {
-        $configFile = $this->getConfigFileLocation();
+        $configFilePath = $this->getConfigFileLocation();
 
-        if (! file_exists($configFile)) {
+        if (!file_exists($configFilePath)) {
             return [];
         }
 
-        $options = Yaml::parse(file_get_contents($configFile));
+        $options = Yaml::parse(file_get_contents($configFilePath));
 
         if (is_null($options)) {
-            throw InvalidConfigfile::invalidContents($configFile);
+            throw InvalidConfigfile::invalidContents($configFilePath);
         }
+
+        $options['configFilePath'] = $configFilePath;
 
         return $options;
     }
@@ -83,6 +83,14 @@ class WatcherCommand extends Command
         $output = new SymfonyStyle($input, $output);
 
         $output->title('PHPUnit Watcher');
+
+        $output->text("PHPUnit Watcher {$this->getApplication()->getVersion()} by Spatie and contributors.");
+        $output->newLine();
+
+        if (isset($options['configFilePath'])) {
+            $output->text("Using options from configfile at `{$options['configFilePath']}`");
+            $output->newLine();
+        }
 
         $output->text("Tests will be rerun when {$options['watch']['fileMask']} files are modified in");
 
