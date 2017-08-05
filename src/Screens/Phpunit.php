@@ -2,9 +2,8 @@
 
 namespace Spatie\PhpUnitWatcher\Screens;
 
-use Spatie\PhpUnitWatcher\Notification;
-use Spatie\PhpUnitWatcher\Notifier;
 use Symfony\Component\Process\Process;
+use Spatie\PhpUnitWatcher\Notification;
 
 class Phpunit extends Screen
 {
