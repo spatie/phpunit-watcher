@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.2.1 - 2017-08-05
+
+- throw exception if config file does not contain yml
+
 ## 1.2.0 - 2017-08-05
 
 - check parent directories for config file

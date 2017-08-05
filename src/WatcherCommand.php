@@ -2,6 +2,7 @@
 
 namespace Spatie\PhpUnitWatcher;
 
+use Spatie\PhpUnitWatcher\Exceptions\InvalidConfigfile;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -48,7 +49,13 @@ class WatcherCommand extends Command
             return [];
         }
 
-        return Yaml::parse(file_get_contents($configFile));
+        $options = Yaml::parse(file_get_contents($configFile));
+
+        if (is_null($options)) {
+            throw InvalidConfigfile::invalidContents($configFile);
+        }
+
+        return $options;
     }
 
     protected function getConfigFileLocation()
