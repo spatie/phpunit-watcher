@@ -41,32 +41,35 @@ class WatcherCommand extends Command
         return $options;
     }
 
-    protected function getOptionsConfigFile()
-    {
-        $configPath = getcwd();
-        $configFile = $configPath . self::PHPUNIT_WATCH_CONFIG_FILENAME;
-
-        while (! file_exists($configFile)):
-            $configPath = dirname($configPath);
-            $configFile = $configPath . self::PHPUNIT_WATCH_CONFIG_FILENAME;
-            if ($configPath === '/') {
-                $configFile = self::PHPUNIT_WATCH_CONFIG_FILENAME;
-                break;
-            }
-        endwhile;
-
-        return $configFile;
-    }
-
     protected function getOptionsFromConfigFile(): array
     {
-        $configFile = $this->getOptionsConfigFile();
+        $configFile = $this->getConfigFileLocation();
 
         if (! file_exists($configFile)) {
             return [];
         }
 
         return Yaml::parse(file_get_contents($configFile));
+    }
+
+    protected function getConfigFileLocation()
+    {
+        $configName = '.phpunit-watcher.yml';
+
+        $configDirectory = getcwd();
+
+        while(is_dir($configDirectory)) {
+            $configFullPath = "{$configDirectory}/{$configName}";
+
+            if (file_exists($configFullPath)) {
+                return $configFullPath;
+            }
+
+            if ($configDirectory === DIRECTORY_SEPARATOR) {
+                return;
+            }
+            $configDirectory = dirname($configDirectory);
+        };
     }
 
     protected function displayOptions(array $options, InputInterface $input, OutputInterface $output)
