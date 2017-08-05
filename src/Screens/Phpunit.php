@@ -11,9 +11,14 @@ class Phpunit extends Screen
     /** @var array */
     protected $options;
 
+    /** @var string */
+    protected $phpunitArguments;
+
     public function __construct(array $options)
     {
         $this->options = $options;
+
+        $this->phpunitArguments = $options['phpunit']['arguments'] ?? '';
     }
 
     public function draw()
@@ -34,7 +39,7 @@ class Phpunit extends Screen
                     $this->terminal->refreshScreen();
                     break;
                 case 'a':
-                    $this->terminal->displayScreen(new Phpunit());
+                    $this->terminal->displayScreen(new Phpunit($this->options));
                     break;
                 case 't':
                     $this->terminal->displayScreen(new FilterTestName());
@@ -55,8 +60,8 @@ class Phpunit extends Screen
     {
         $title = 'Starting PHPUnit';
 
-        if (! empty($this->options['phpunitArguments'])) {
-            $title .= " with arguments: `{$this->options['phpunitArguments']}`";
+        if (! empty($this->phpunitArguments)) {
+            $title .= " with arguments: `{$this->phpunitArguments}`";
         }
 
         $this->terminal
@@ -68,7 +73,7 @@ class Phpunit extends Screen
 
     protected function runTests()
     {
-        $result = (new Process("vendor/bin/phpunit {$this->options['phpunitArguments']}"))
+        $result = (new Process("vendor/bin/phpunit {$this->phpunitArguments}"))
             ->setTty(true)
             ->run(function ($type, $line) {
                 echo $line;

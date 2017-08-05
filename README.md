@@ -66,17 +66,19 @@ phpunit-watcher watch
 
 This will run the tests and rerun them whenever a file in the `src` or `tests` directory is modified.
 
-You can customize the directories being watched by creating a file named `.phpunit-watcher.yml` in your project directory. Here's some example content:
+Want to pass some arguments to PHPUnit? No problem, just tack them on:
 
-```yaml
-watch:
-  directories:
-    - src
-    - tests
-  fileMask: '*.php'
+```bash
+phpunit-watcher watch --filter=it_can_run_a_single_test
 ```
 
-If you want to disable certain desktop notifications update `.phpunit-watcher.yml` by adding a `notifications` key.
+## Customization
+
+Certain aspects of the behaviour of the tool can be modified. All options can be set in a `.phpunit-watcher.yml` in your project directory.
+
+If a such a config file does not exist in the project directory, the tool will check if the file exists in any of the parent directories of the project directory.
+
+Here's some example content. Read on for a more detailed explanation of all the options.
 
 ```yaml
 watch:
@@ -87,15 +89,42 @@ watch:
 notifications:
   passingTests: false
   failingTests: false
+phpunit:
+  arguments: '--stop-on-failure'
 ```
 
-If a such a config file does not exist in the project directory, the tool will check if the file exists in any of the parent directories of the project directory.
+### Customize watched directories and files
 
-Want to pass some arguments to PHPUnit no problem, just tack them on:
+You can customize the directories being watched by creating a file named `.phpunit-watcher.yml` in your project directory. Here's some example content:
 
-```bash
-phpunit-watcher watch --filter=it_can_run_a_single_test
+```yaml
+watch:
+  directories:
+    - src
+    - tests
+  fileMask: '*.php'
 ```
+
+### Desktop notifications
+
+By default the tool will display desktop notifications whenever the tests pass or fail. If you want to disable certain desktop notifications update `.phpunit-watcher.yml` by adding a `notifications` key.
+
+```yaml
+notifications:
+  passingTests: false
+  failingTests: false
+```
+
+### Initial PHPUnit arguments
+
+If you want to use pass the same arguments to PHPUnit everytime to watcher starts you can specificy those arguments in the `.phpunit-watcher.yml` config file. Here's an example:
+
+```yaml
+phpunit:
+  arguments: '--stop-on-failure'
+```
+
+When starting the tool with some arguments (eg `phpunit-watcher watch --filter=my_favourite_test`) those arguments will get used instead of the ones specified in the config file.
 
 ## Changelog
 

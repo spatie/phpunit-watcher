@@ -1,0 +1,2 @@
+phpunit:
+  arguments: '--stop-on-failure'
