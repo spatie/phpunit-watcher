@@ -89,8 +89,10 @@ class WatcherCommand extends Command
 
         if (isset($options['configFilePath'])) {
             $output->text("Using options from configfile at `{$options['configFilePath']}`");
-            $output->newLine();
+        } else {
+            $output->text("No config file detected. Using default options.");
         }
+        $output->newLine();
 
         $output->text("Tests will be rerun when {$options['watch']['fileMask']} files are modified in");
 
