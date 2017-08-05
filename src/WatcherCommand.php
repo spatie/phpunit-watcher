@@ -11,6 +11,8 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class WatcherCommand extends Command
 {
+    const PHPUNIT_WATCH_CONFIG_FILENAME = "/.phpunit-watcher.yml";
+
     protected function configure()
     {
         $this->setName('watch')
@@ -40,13 +42,33 @@ class WatcherCommand extends Command
 
     protected function getOptionsFromConfigFile(): array
     {
-        $configFile = getcwd().'/.phpunit-watcher.yml';
+        $configFile = $this->getConfigFileLocation();
 
         if (! file_exists($configFile)) {
             return [];
         }
 
         return Yaml::parse(file_get_contents($configFile));
+    }
+
+    protected function getConfigFileLocation()
+    {
+        $configName = '.phpunit-watcher.yml';
+
+        $configDirectory = getcwd();
+
+        while(is_dir($configDirectory)) {
+            $configFullPath = "{$configDirectory}/{$configName}";
+
+            if (file_exists($configFullPath)) {
+                return $configFullPath;
+            }
+
+            if ($configDirectory === DIRECTORY_SEPARATOR) {
+                return;
+            }
+            $configDirectory = dirname($configDirectory);
+        };
     }
 
     protected function displayOptions(array $options, InputInterface $input, OutputInterface $output)
