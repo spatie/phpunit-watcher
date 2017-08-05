@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.3.2 - 2017-08-05
+
+- fix filters
+
 ## 1.3.1 - 2017-08-05
 
 - improved readability of manual
