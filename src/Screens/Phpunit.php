@@ -87,11 +87,11 @@ class Phpunit extends Screen
     {
         $this->terminal
             ->emptyLine()
-            ->write('Press a to run all tests.')
-            ->write('Press t to filter by test name.')
-            ->write('Press p to filter by file name.')
-            ->write('Press q to quit the watcher.')
-            ->write('Press Enter to trigger a test run.');
+            ->write('<dim>Press </dim>a<dim> to run all tests.</dim>')
+            ->write('<dim>Press </dim>t<dim> to filter by test name.</dim>')
+            ->write('<dim>Press </dim>p<dim> to filter by file name.</dim>')
+            ->write('<dim>Press </dim>q<dim> to quit the watcher.</dim>')
+            ->write('<dim>Press </dim>Enter<dim> to trigger a test run.</dim>');
 
         return $this;
     }

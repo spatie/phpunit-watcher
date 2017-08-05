@@ -63,6 +63,9 @@ class Terminal
 
         $formattedMessage = (new OutputFormatter(true))->format($message);
 
+        $formattedMessage = str_replace('<dim>', "\e[2m", $formattedMessage);
+        $formattedMessage = str_replace('</dim>', "\e[22m", $formattedMessage);
+
         $this->io->writeln($formattedMessage);
 
         return $this;
