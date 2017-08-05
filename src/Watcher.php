@@ -42,7 +42,8 @@ class Watcher
         return $this;
     }
 
-    public function setSendNotifications(bool $value) {
+    public function setSendNotifications(bool $value)
+    {
         $this->sendNotifications = $value;
     }
 
