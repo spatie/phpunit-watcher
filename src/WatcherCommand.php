@@ -43,7 +43,7 @@ class WatcherCommand extends Command
     {
         $configFilePath = $this->getConfigFileLocation();
 
-        if (!file_exists($configFilePath)) {
+        if (! file_exists($configFilePath)) {
             return [];
         }
 
