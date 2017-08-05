@@ -85,8 +85,8 @@ watch:
     - tests
   fileMask: '*.php'
 notifications:
-  - passingTests: false
-  - failingTests: false
+  passingTests: false
+  failingTests: false
 ```
 
 If a such a config file does not exist in the project directory, the tool will check if the file exists in any of the parent directories of the project directory.

@@ -25,15 +25,7 @@ class WatcherFactory
             ->files()
             ->in($options['watch']['directories']);
 
-        $watcher = new Watcher($finder);
-
-        if (isset($options['notifications'])) {
-            $watcher->setSendNotifications($options['notifications'] === 'true');
-        }
-
-        if (isset($options['phpunitArguments'])) {
-            $watcher->usePhpunitArguments($options['phpunitArguments']);
-        }
+        $watcher = new Watcher($finder, $options);
 
         return [$watcher, $options];
     }

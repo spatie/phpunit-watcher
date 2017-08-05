@@ -8,16 +8,12 @@ use Symfony\Component\Process\Process;
 
 class Phpunit extends Screen
 {
-    /** @var string */
-    protected $phpunitArguments;
+    /** @var array */
+    protected $options;
 
-    /** @var bool */
-    protected $sendNotifications;
-
-    public function __construct(string $phpunitArguments = '', bool $sendNotifications = true)
+    public function __construct(array $options)
     {
-        $this->phpunitArguments = $phpunitArguments;
-        $this->sendNotifications = $sendNotifications;
+        $this->options = $options;
     }
 
     public function draw()
@@ -59,8 +55,8 @@ class Phpunit extends Screen
     {
         $title = 'Starting PHPUnit';
 
-        if (! empty($this->phpunitArguments)) {
-            $title .= " with arguments: `{$this->phpunitArguments}`";
+        if (! empty($this->options['phpunitArguments'])) {
+            $title .= " with arguments: `{$this->options['phpunitArguments']}`";
         }
 
         $this->terminal
@@ -72,17 +68,13 @@ class Phpunit extends Screen
 
     protected function runTests()
     {
-        $result = (new Process("vendor/bin/phpunit {$this->phpunitArguments}"))
+        $result = (new Process("vendor/bin/phpunit {$this->options['phpunitArguments']}"))
             ->setTty(true)
             ->run(function ($type, $line) {
                 echo $line;
             });
 
-        if ($this->sendNotifications) {
-            $result === 0
-                ? Notification::create()->testsPassed()
-                : Notification::create()->testsFailed();
-        }
+        $this->sendDesktopNotification($result);
 
         return $this;
     }
@@ -98,5 +90,16 @@ class Phpunit extends Screen
             ->write('Press Enter to trigger a test run.');
 
         return $this;
+    }
+
+    protected function sendDesktopNotification(int $result)
+    {
+        $notificationName = $result === 0
+            ? 'passingTests'
+            : 'failingTests';
+
+       if ($this->options['notifications'][$notificationName]) {
+           Notification::create()->$notificationName();
+       }
     }
 }

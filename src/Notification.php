@@ -24,14 +24,14 @@ class Notification
         $this->joliNotification = $joliNotification;
     }
 
-    public function testsPassed()
+    public function passingTests()
     {
         $this->joliNotification->setBody('✅ Tests passed!');
 
         $this->send();
     }
 
-    public function testsFailed()
+    public function failingTests()
     {
         $this->joliNotification->setBody('❌ Tests failed!');
 

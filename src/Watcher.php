@@ -14,42 +14,29 @@ class Watcher
     /** @var \Symfony\Component\Finder\Finder */
     protected $finder;
 
-    /** @var $string */
-    protected $phpunitArguments;
-
-    /** @var bool */
-    protected $sendNotifications;
-
     /** @var \React\EventLoop\LibEventLoop */
     protected $loop;
 
     /** @var \Spatie\PhpUnitWatcher\Terminal */
     protected $terminal;
 
-    public function __construct(Finder $finder)
+    /** @var array */
+    protected $options;
+
+    public function __construct(Finder $finder, array $options)
     {
         $this->finder = $finder;
 
         $this->loop = Factory::create();
 
         $this->terminal = new Terminal(new Stdio($this->loop));
-    }
 
-    public function usePhpunitArguments(string $arguments)
-    {
-        $this->phpunitArguments = $arguments;
-
-        return $this;
-    }
-
-    public function setSendNotifications(bool $value)
-    {
-        $this->sendNotifications = $value;
+        $this->options = $options;
     }
 
     public function startWatching()
     {
-        $this->terminal->displayScreen(new Phpunit($this->phpunitArguments, $this->sendNotifications), false);
+        $this->terminal->displayScreen(new Phpunit($this->options), false);
 
         $watcher = new ResourceWatcher(new ResourceCacheMemory());
 
