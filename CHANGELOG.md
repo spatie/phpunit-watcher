@@ -6,6 +6,7 @@ All notable changes to `phpunit-watcher` will be documented in this file
 
 - added desktop notifications
 - display used config file and application version
+- allow initial arguments for PHPUnit to be set in the config file
 
 ## 1.2.1 - 2017-08-05
 
