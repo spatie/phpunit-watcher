@@ -47,7 +47,7 @@ class WatcherCommand extends Command
     {
         $configFilePath = $this->getConfigFileLocation();
 
-        if (!file_exists($configFilePath)) {
+        if (! file_exists($configFilePath)) {
             return [];
         }
 
@@ -94,7 +94,7 @@ class WatcherCommand extends Command
         if (isset($options['configFilePath'])) {
             $output->text("Using options from configfile at `{$options['configFilePath']}`");
         } else {
-            $output->text("No config file detected. Using default options.");
+            $output->text('No config file detected. Using default options.');
         }
         $output->newLine();
 
