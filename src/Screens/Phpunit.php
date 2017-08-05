@@ -11,12 +11,12 @@ class Phpunit extends Screen
     protected $phpunitArguments;
 
     /** @var bool */
-    protected $notifications;
+    protected $sendNotifications;
 
-    public function __construct(string $phpunitArguments = '', bool $notifications = true)
+    public function __construct(string $phpunitArguments = '', bool $sendNotifications = true)
     {
         $this->phpunitArguments = $phpunitArguments;
-        $this->notifications = $notifications;
+        $this->sendNotifications = $sendNotifications;
     }
 
     public function draw()
@@ -77,7 +77,7 @@ class Phpunit extends Screen
                 echo $line;
             });
 
-        if($this->notifications) {
+        if($this->sendNotifications) {
             $result === 0 ? Notifier::testsPassed() : Notifier::testsFailed();
         }
 

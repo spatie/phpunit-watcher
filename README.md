@@ -76,10 +76,10 @@ watch:
   fileMask: '*.php'
 ```
 
-If you want to disable desktop notifications update `.phpunit-watcher.yml` by adding `notifications: off`:
+If you want to disable desktop notifications update `.phpunit-watcher.yml` by adding `notifications: false`:
 
 ```yaml
-notifications: off
+notifications: false
 watch:
   directories:
     - src

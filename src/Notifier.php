@@ -20,12 +20,12 @@ class Notifier
     {
         $notification = (new Notification)
             ->setTitle('PHPUnit Watcher')
-            ->setBody('❗Tests failed!');
+            ->setBody('❌ Tests failed!');
 
-        self::send($notification);
+        static::send($notification);
     }
 
-    private static function send(Notification $notification)
+    protected static function send(Notification $notification)
     {
         return NotifierFactory::create()->send($notification);
     }
