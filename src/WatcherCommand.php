@@ -36,9 +36,7 @@ class WatcherCommand extends Command
 
         $commandLineArguments = trim($input->getArgument('phpunit-options'), "'");
 
-        if (! empty($commandLineArguments)) {
-            $options['phpunit']['arguments'] = $commandLineArguments;
-        }
+        $options['phpunit']['arguments'] = PhpunitArguments::fromString($commandLineArguments);
 
         return $options;
     }

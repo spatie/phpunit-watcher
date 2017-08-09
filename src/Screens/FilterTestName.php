@@ -26,13 +26,11 @@ class FilterTestName extends Screen
                 return;
             }
 
-            $phpunitArguments = "--filter={$line}";
-
             $phpunitScreen = $this->terminal->getPreviousScreen();
 
             $options = $phpunitScreen->options;
 
-            $options['phpunit']['arguments'] = $phpunitArguments;
+            $options['phpunit']['arguments']->addArgument('--filter', $line);
 
             $this->terminal->displayScreen(new Phpunit($options));
         });
