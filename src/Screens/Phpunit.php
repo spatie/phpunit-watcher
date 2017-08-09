@@ -34,9 +34,6 @@ class Phpunit extends Screen
             $line = strtolower($line);
 
             switch ($line) {
-                case '':
-                    $this->terminal->refreshScreen();
-                    break;
                 case 'a':
                     $this->options['phpunit']['arguments'] = '';
 
@@ -50,6 +47,9 @@ class Phpunit extends Screen
                     break;
                 case 'q':
                     die();
+                    break;
+                default:
+                    $this->terminal->refreshScreen();
                     break;
             }
         });
@@ -93,7 +93,7 @@ class Phpunit extends Screen
             ->write('<dim>Press </dim>t<dim> to filter by test name.</dim>')
             ->write('<dim>Press </dim>p<dim> to filter by file name.</dim>')
             ->write('<dim>Press </dim>q<dim> to quit the watcher.</dim>')
-            ->write('<dim>Press </dim>Enter<dim> to trigger a test run.</dim>');
+            ->write('<dim>Press any key to trigger a test run.</dim>');
 
         return $this;
     }
