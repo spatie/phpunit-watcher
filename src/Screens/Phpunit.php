@@ -51,6 +51,9 @@ class Phpunit extends Screen
                 case 'q':
                     die();
                     break;
+                default:
+                    $this->registerListeners();
+                    break;
             }
         });
 
