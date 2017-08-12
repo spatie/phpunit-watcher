@@ -2,13 +2,13 @@
 
 namespace Spatie\PhpUnitWatcher;
 
-class PhpunitArguments
+class Arguments
 {
     protected $arguments;
 
     public static function fromString($argumentsInput)
     {
-        $phpunitArguments = new PhpunitArguments;
+        $phpunitArguments = new Arguments;
 
         $arguments = explode(' ', $argumentsInput);
 
