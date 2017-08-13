@@ -22,7 +22,7 @@ class Arguments
      */
     public static function fromString($argumentsInput)
     {
-        return (new self)->parse($argumentsInput);
+        return (new static)->parse($argumentsInput);
     }
 
     /**
