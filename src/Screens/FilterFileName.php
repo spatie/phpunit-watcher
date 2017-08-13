@@ -26,13 +26,11 @@ class FilterFileName extends Screen
                 return;
             }
 
-            $phpunitArguments = "{$line}";
-
             $phpunitScreen = $this->terminal->getPreviousScreen();
 
             $options = $phpunitScreen->options;
 
-            $options['phpunit']['arguments'] = $phpunitArguments;
+            $options['phpunit']['arguments']->setTestFile($line);
 
             $this->terminal->displayScreen(new Phpunit($options));
         });
