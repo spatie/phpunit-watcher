@@ -13,15 +13,26 @@ class Phpunit extends Screen
     /** @var string */
     protected $phpunitArguments;
 
+    /** @var bool */
+    protected $skip;
+
     public function __construct(array $options)
     {
         $this->options = $options;
 
         $this->phpunitArguments = $options['phpunit']['arguments']->phpUnitArguments();
+
+        $this->skip = $this->options['phpunit']['arguments']->disableOnStart();
     }
 
     public function draw()
     {
+        if ($this->skip) {
+            $this->skip = false;
+
+            return $this;
+        }
+
         $this
             ->writeHeader()
             ->runTests()

@@ -8,7 +8,9 @@ class Arguments
 {
     use ArgumentAccessors;
 
-    const APPLICATION_OPTIONS = [];
+    const APPLICATION_OPTIONS = [
+        'disable-on-start',
+    ];
 
     protected $testFile;
     protected $phpUnitOptions = [];

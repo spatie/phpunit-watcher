@@ -13,4 +13,9 @@ trait ArgumentAccessors
     {
         $this->addArgument('--filter', $query, ' ');
     }
+
+    public function disableOnStart()
+    {
+        return array_key_exists('--disable-on-start', $this->applicationOptions);
+    }
 }
