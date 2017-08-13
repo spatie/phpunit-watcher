@@ -8,16 +8,16 @@ use Spatie\PhpUnitWatcher\PhpUnit\Command;
 class CommandTest extends TestCase
 {
     /** @test */
-    public function options_can_be_retrieved()
+    public function regular_options_can_be_retrieved()
     {
         $arguments = Command::options();
 
         $this->assertContains('help', $arguments);
         $this->assertContains('testdox', $arguments);
     }
-    
+
     /** @test */
-    public function option_names_with_arguments_are_converted_into_regular_option_names()
+    public function regular_option_names_with_arguments_are_converted_into_regular_option_names()
     {
         $arguments = Command::options();
 

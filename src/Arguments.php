@@ -22,7 +22,7 @@ class Arguments
      */
     public static function fromString($argumentsInput)
     {
-        return (new Arguments)->parse($argumentsInput);
+        return (new self)->parse($argumentsInput);
     }
 
     /**
@@ -45,6 +45,7 @@ class Arguments
 
         if ($this->isApplicationOption($this->optionName($name))) {
             $this->applicationOptions[$name] = $valueWithSeparator;
+
             return;
         }
 
@@ -68,7 +69,7 @@ class Arguments
             $arguments[] = $name.$optionValue['separator'].$optionValue['value'];
         }
 
-        if (!empty($this->testFile)) {
+        if (! empty($this->testFile)) {
             $arguments[] = $this->testFile;
         }
 
@@ -76,7 +77,7 @@ class Arguments
     }
 
     /**
-     * Returns an array representation containing application options, PHPUnit options and the test file,
+     * Returns an array representation containing application options, PHPUnit options and the test file.
      *
      * @return array
      */
@@ -127,7 +128,7 @@ class Arguments
                 continue;
             }
 
-            if (!$fileSet) {
+            if (! $fileSet) {
                 $this->testFile = $argument;
                 $fileSet = true;
             }

@@ -18,14 +18,14 @@ class Command extends PhpUnitCommand
         $options = array_keys((new static)->longOptions);
 
         return self::removeEqualSigns(array_filter($options, function ($option) {
-            return substr($option, -1)  == '=' && substr($option, -2)  != '==';
+            return substr($option, -1) == '=' && substr($option, -2) != '==';
         }));
     }
 
     private static function removeEqualSigns($options)
     {
         return array_map(function ($option) {
-            return str_replace('=','',$option);
+            return str_replace('=', '', $option);
         }, $options);
     }
 }
