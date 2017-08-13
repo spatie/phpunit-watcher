@@ -17,7 +17,7 @@ class Phpunit extends Screen
     {
         $this->options = $options;
 
-        $this->phpunitArguments = $options['phpunit']['arguments'] ?? '';
+        $this->phpunitArguments = $options['phpunit']['arguments']->phpUnitArguments();
     }
 
     public function draw()
