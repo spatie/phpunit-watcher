@@ -30,7 +30,7 @@ class FilterTestName extends Screen
 
             $options = $phpunitScreen->options;
 
-            $options['phpunit']['arguments']->addArgument('--filter', $line);
+            $options['phpunit']['arguments']->setFilter($line);
 
             $this->terminal->displayScreen(new Phpunit($options));
         });

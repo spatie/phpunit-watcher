@@ -30,7 +30,7 @@ class FilterFileName extends Screen
 
             $options = $phpunitScreen->options;
 
-            $options['phpunit']['arguments']->addArgument($line);
+            $options['phpunit']['arguments']->setTestFile($line);
 
             $this->terminal->displayScreen(new Phpunit($options));
         });

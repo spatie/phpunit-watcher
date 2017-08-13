@@ -28,4 +28,24 @@ class ArgumentsTest extends TestCase
 
         $this->assertEquals('--colors=never -h --filter filter_on_this.php --stop-on-failure filename', $arguments->phpUnitArguments());
     }
+
+    /** @test */
+    public function a_filter_can_be_set_without_changing_other_arguments()
+    {
+        $arguments = Arguments::fromString('filename --colors=never -h --filter filter_on_this.php something_else --stop-on-failure');
+
+        $arguments->setFilter('new_filter.php');
+
+        $this->assertEquals('--colors=never -h --filter new_filter.php --stop-on-failure filename', $arguments->phpUnitArguments());
+    }
+
+    /** @test */
+    public function a_test_file_can_be_set_without_changing_other_arguments()
+    {
+        $arguments = Arguments::fromString('filename.php --colors=never -h --filter filter_on_this.php something_else --stop-on-failure');
+
+        $arguments->setTestFile('new_filename.php');
+
+        $this->assertEquals('--colors=never -h --filter filter_on_this.php --stop-on-failure new_filename.php', $arguments->phpUnitArguments());
+    }
 }
