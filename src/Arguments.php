@@ -6,7 +6,7 @@ use Spatie\PhpUnitWatcher\PhpUnit\Command as PhpUnitCommand;
 
 class Arguments
 {
-    /** @var string  */
+    /** @var string */
     protected $filterArgument;
     protected $phpUnitOptions = [];
     protected $applicationOptions = [];
@@ -102,12 +102,11 @@ class Arguments
 
     public function phpUnitArguments(): string
     {
-        $arguments = array_map(function($name, $optionValue) {
+        $arguments = array_map(function ($name, $optionValue) {
             return is_null($optionValue)
                 ? $name
                 : $name.$optionValue['separator'].$optionValue['value'];
         }, array_keys($this->phpUnitOptions), $this->phpUnitOptions);
-
 
         if (! empty($this->filterArgument)) {
             $arguments[] = $this->filterArgument;
