@@ -10,6 +10,7 @@ class Arguments
 
     const APPLICATION_OPTIONS = [];
 
+    /** @var string  */
     protected $testFile;
     protected $phpUnitOptions = [];
     protected $applicationOptions = [];
