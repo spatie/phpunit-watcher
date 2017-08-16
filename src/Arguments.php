@@ -6,8 +6,6 @@ use Spatie\PhpUnitWatcher\PhpUnit\Command as PhpUnitCommand;
 
 class Arguments
 {
-    const APPLICATION_OPTIONS = [];
-
     /** @var string  */
     protected $testFile;
     protected $phpUnitOptions = [];
@@ -168,7 +166,7 @@ class Arguments
 
     protected function isApplicationOption(string $option): bool
     {
-        return in_array($option, self::APPLICATION_OPTIONS);
+        return in_array($option, $this->applicationOptions);
     }
 
     protected function isOptionWithSpaceSeparatedArgument(string $option): bool

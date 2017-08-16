@@ -22,7 +22,7 @@ class Command extends PhpUnitCommand
         }));
     }
 
-    private static function removeEqualSigns($options)
+    protected static function removeEqualSigns($options)
     {
         return array_map(function ($option) {
             return str_replace('=', '', $option);
