@@ -7,7 +7,7 @@ use Spatie\PhpUnitWatcher\PhpUnit\Command as PhpUnitCommand;
 class Arguments
 {
     /** @var string  */
-    protected $testFile;
+    protected $filterArgument;
     protected $phpUnitOptions = [];
     protected $applicationOptions = [];
 
@@ -16,9 +16,9 @@ class Arguments
         return (new static)->parse($argumentsInput);
     }
 
-    public function setTestFile($testFile)
+    public function setFilterArgument($filterArgument)
     {
-        $this->testFile = $testFile;
+        $this->filterArgument = $filterArgument;
 
         return $this;
     }
@@ -49,7 +49,7 @@ class Arguments
         $nextArgumentBelongsTo = false;
 
         // PHPUnit only uses first file when multiple are given
-        $fileSet = false;
+        $filterArgumentHasBeenUsed = false;
 
         foreach ($arguments as $argument) {
             if ($nextArgumentBelongsTo) {
@@ -68,9 +68,9 @@ class Arguments
                 continue;
             }
 
-            if (! $fileSet) {
-                $this->testFile = $argument;
-                $fileSet = true;
+            if (! $filterArgumentHasBeenUsed) {
+                $this->filterArgument = $argument;
+                $filterArgumentHasBeenUsed = true;
             }
         }
 
@@ -109,8 +109,8 @@ class Arguments
         }, array_keys($this->phpUnitOptions), $this->phpUnitOptions);
 
 
-        if (! empty($this->testFile)) {
-            $arguments[] = $this->testFile;
+        if (! empty($this->filterArgument)) {
+            $arguments[] = $this->filterArgument;
         }
 
         return implode(' ', $arguments);
@@ -121,9 +121,9 @@ class Arguments
         return array_merge(
             $this->applicationOptions,
             $this->phpUnitOptions,
-            empty($this->testFile)
+            empty($this->filterArgument)
                 ? []
-                : [$this->testFile => null]
+                : [$this->filterArgument => null]
         );
     }
 

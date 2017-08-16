@@ -44,7 +44,7 @@ class ArgumentsTest extends TestCase
     {
         $arguments = Arguments::fromString('filename.php --colors=never -h --filter filter_on_this.php something_else --stop-on-failure');
 
-        $arguments->setTestFile('new_filename.php');
+        $arguments->setFilterArgument('new_filename.php');
 
         $this->assertEquals('--colors=never -h --filter filter_on_this.php --stop-on-failure new_filename.php', $arguments->phpUnitArguments());
     }
