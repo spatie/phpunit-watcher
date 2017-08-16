@@ -26,7 +26,7 @@ class Arguments
         return (new static)->parse($argumentsInput);
     }
 
-    /**
+    /*
      * Adds an argument if it does not yet exist, otherwise the argument value is replaced.
      *
      * In case $value is left empty, the argument will be treated as a boolean option. If the
@@ -35,12 +35,8 @@ class Arguments
      *
      * Unless an option is registered (in this class) as an application option, we will assume
      * the option is meant to be passed through to PHPUnit.
-     *
-     * @param  string $name
-     * @param  mixed $value
-     * @param  string $separator
      */
-    public function addArgument($name, $value = null, $separator = '=')
+    public function addArgument(string $name, string $value = null, string $separator = '=')
     {
         $valueWithSeparator = is_null($value) ? $value : ['value' => $value, 'separator' => $separator];
 
@@ -53,12 +49,7 @@ class Arguments
         $this->phpUnitOptions[$name] = $valueWithSeparator;
     }
 
-    /**
-     * Returns a string containing all PHPUnit options with corresponding values in the correct format.
-     *
-     * @return string
-     */
-    public function phpUnitArguments()
+    public function phpUnitArguments(): string
     {
         $arguments = array_map(function($name, $optionValue) {
             return is_null($optionValue)
@@ -74,17 +65,14 @@ class Arguments
         return implode(' ', $arguments);
     }
 
-    /**
-     * Returns an array representation containing application options, PHPUnit options and the test file.
-     *
-     * @return array
-     */
-    public function toArray()
+    public function toArray(): array
     {
         return array_merge(
             $this->applicationOptions,
             $this->phpUnitOptions,
-            empty($this->testFile) ? [] : [$this->testFile => null]
+            empty($this->testFile)
+                ? []
+                : [$this->testFile => null]
         );
     }
 
@@ -99,7 +87,7 @@ class Arguments
      * @param $argumentsInput
      * @return $this
      */
-    protected function parse($argumentsInput)
+    protected function parse(string $argumentsInput)
     {
         $arguments = explode(' ', $argumentsInput);
 
@@ -135,12 +123,7 @@ class Arguments
         return $this;
     }
 
-    /**
-     * Parses an argument string of an option (either key/value or boolean) and adds it to the list of arguments.
-     *
-     * @param  string  $argument
-     */
-    protected function parseOption($argument)
+    protected function parseOption(string $argument)
     {
         if (strpos($argument, '=') !== false) {
             list($name, $value) = explode('=', $argument);
@@ -153,25 +136,16 @@ class Arguments
         $this->addArgument($argument);
     }
 
-    /**
-     * Converts an argument string into the name of the option.
-     *
-     * @param  string  $argument
-     * @return mixed
-     */
-    protected function optionName($argument)
+    protected function optionName(string $argument): string
     {
-        // String starts with --
         if (substr($argument, 0, 2) == '--') {
             $argument = substr($argument, 2);
         }
 
-        // String starts with -
         if (substr($argument, 0, 1) == '-') {
             $argument = substr($argument, 1);
         }
 
-        // Remove everything after (and including) equals sign
         if (strpos($argument, '=') !== false) {
             $argument = substr($argument, 0, strpos($argument, '='));
         }
@@ -179,35 +153,17 @@ class Arguments
         return $argument;
     }
 
-    /**
-     * Determines if the given argument string is an option.
-     *
-     * @param  string  $argument
-     * @return bool
-     */
-    protected function isOption($argument)
+    protected function isOption(string $argument): bool
     {
         return substr($argument, 0, 1) == '-';
     }
 
-    /**
-     * Determines if the given option name is an application option.
-     *
-     * @param  string  $option
-     * @return bool
-     */
-    protected function isApplicationOption($option)
+    protected function isApplicationOption(string $option): bool
     {
         return in_array($option, self::APPLICATION_OPTIONS);
     }
 
-    /**
-     * Determines if the given option name belongs to an option that takes a space separated argument.
-     *
-     * @param  string  $option
-     * @return bool
-     */
-    protected function isOptionWithSpaceSeparatedArgument($option)
+    protected function isOptionWithSpaceSeparatedArgument(string $option): bool
     {
         return in_array($option, PhpUnitCommand::optionsWithArguments());
     }
