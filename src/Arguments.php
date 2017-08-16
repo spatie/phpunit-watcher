@@ -15,15 +15,56 @@ class Arguments
     protected $phpUnitOptions = [];
     protected $applicationOptions = [];
 
-    /**
-     * Parses the given arguments string and instantiates a new object containing the arguments.
-     *
-     * @param  string $argumentsInput
-     * @return $this
-     */
-    public static function fromString($argumentsInput)
+    public static function fromString(string $argumentsInput)
     {
         return (new static)->parse($argumentsInput);
+    }
+
+    /**
+     * Parses a raw arguments string.
+     *
+     * The following types of arguments will be parsed: space separated arguments, key/value and boolean arguments,
+     * and test file name arguments. Space separated arguments are key/value arguments separated by a space. Boolean
+     * and key/value arguments are regular options that either take no parameters or take a =-separated parameter.
+     * Test file name arguments are file names (without option flags).
+     *
+     * @param $argumentsInput
+     * @return $this
+     */
+    protected function parse(string $argumentsInput)
+    {
+        $arguments = explode(' ', $argumentsInput);
+
+        // Keeps track of option name belonging to value when option name and value are space separated
+        $nextArgumentBelongsTo = false;
+
+        // PHPUnit only uses first file when multiple are given
+        $fileSet = false;
+
+        foreach ($arguments as $argument) {
+            if ($nextArgumentBelongsTo) {
+                $this->addArgument($nextArgumentBelongsTo, $argument, ' ');
+                $nextArgumentBelongsTo = false;
+                continue;
+            }
+
+            if ($this->isOption($argument) && $this->isOptionWithSpaceSeparatedArgument($this->optionName($argument))) {
+                $nextArgumentBelongsTo = $argument;
+                continue;
+            }
+
+            if ($this->isOption($argument)) {
+                $this->parseOption($argument);
+                continue;
+            }
+
+            if (! $fileSet) {
+                $this->testFile = $argument;
+                $fileSet = true;
+            }
+        }
+
+        return $this;
     }
 
     /*
@@ -76,52 +117,7 @@ class Arguments
         );
     }
 
-    /**
-     * Parses a raw arguments string.
-     *
-     * The following types of arguments will be parsed: space separated arguments, key/value and boolean arguments,
-     * and test file name arguments. Space separated arguments are key/value arguments separated by a space. Boolean
-     * and key/value arguments are regular options that either take no parameters or take a =-separated parameter.
-     * Test file name arguments are file names (without option flags).
-     *
-     * @param $argumentsInput
-     * @return $this
-     */
-    protected function parse(string $argumentsInput)
-    {
-        $arguments = explode(' ', $argumentsInput);
 
-        // Keeps track of option name belonging to value when option name and value are space separated
-        $nextArgumentBelongsTo = false;
-
-        // PHPUnit only uses first file when multiple are given
-        $fileSet = false;
-
-        foreach ($arguments as $argument) {
-            if ($nextArgumentBelongsTo) {
-                $this->addArgument($nextArgumentBelongsTo, $argument, ' ');
-                $nextArgumentBelongsTo = false;
-                continue;
-            }
-
-            if ($this->isOption($argument) && $this->isOptionWithSpaceSeparatedArgument($this->optionName($argument))) {
-                $nextArgumentBelongsTo = $argument;
-                continue;
-            }
-
-            if ($this->isOption($argument)) {
-                $this->parseOption($argument);
-                continue;
-            }
-
-            if (! $fileSet) {
-                $this->testFile = $argument;
-                $fileSet = true;
-            }
-        }
-
-        return $this;
-    }
 
     protected function parseOption(string $argument)
     {

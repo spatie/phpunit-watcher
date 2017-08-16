@@ -18,7 +18,7 @@ class Command extends PhpUnitCommand
         $options = array_keys((new static)->longOptions);
 
         return self::removeEqualSigns(array_filter($options, function ($option) {
-            return substr($option, -1) == '=' && substr($option, -2) != '==';
+            return substr($option, -1) === '=' && substr($option, -2) !== '==';
         }));
     }
 
