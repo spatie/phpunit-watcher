@@ -60,15 +60,12 @@ class Arguments
      */
     public function phpUnitArguments()
     {
-        $arguments = [];
+        $arguments = array_map(function($name, $optionValue) {
+            return is_null($optionValue)
+                ? $name
+                : $name.$optionValue['separator'].$optionValue['value'];
+        }, array_keys($this->phpUnitOptions), $this->phpUnitOptions);
 
-        foreach ($this->phpUnitOptions as $name => $optionValue) {
-            if (is_null($optionValue)) {
-                $arguments[] = $name;
-                continue;
-            }
-            $arguments[] = $name.$optionValue['separator'].$optionValue['value'];
-        }
 
         if (! empty($this->testFile)) {
             $arguments[] = $this->testFile;
