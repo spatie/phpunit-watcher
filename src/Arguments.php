@@ -127,8 +127,6 @@ class Arguments
         );
     }
 
-
-
     protected function parseOption(string $argument)
     {
         if (strpos($argument, '=') !== false) {
