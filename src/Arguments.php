@@ -6,8 +6,6 @@ use Spatie\PhpUnitWatcher\PhpUnit\Command as PhpUnitCommand;
 
 class Arguments
 {
-    use ArgumentAccessors;
-
     const APPLICATION_OPTIONS = [];
 
     /** @var string  */
@@ -18,6 +16,20 @@ class Arguments
     public static function fromString(string $argumentsInput)
     {
         return (new static)->parse($argumentsInput);
+    }
+
+    public function setTestFile($testFile)
+    {
+        $this->testFile = $testFile;
+
+        return $this;
+    }
+
+    public function setFilter($query)
+    {
+        $this->addArgument('--filter', $query, ' ');
+
+        return $this;
     }
 
     /**
