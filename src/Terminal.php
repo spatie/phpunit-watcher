@@ -132,7 +132,7 @@ class Terminal
 
     public function removeAllListeners()
     {
-        $this->io->removeAllListeners();
+        $this->io->getInput()->removeAllListeners();
 
         return $this;
     }
