@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.3.4 - 2017-08-23
+
+- fix for tests being run too many times
+
 ## 1.3.3 - 2017-08-09
 
 - fix tool becoming unresponsive after pressing a key with no action
