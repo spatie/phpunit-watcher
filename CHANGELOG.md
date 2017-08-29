@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.3.6 - 2017-08-29
+
+- fix typing in interactive mode
+
 ## 1.3.5 - 2017-08-29
 
 - add back version number
