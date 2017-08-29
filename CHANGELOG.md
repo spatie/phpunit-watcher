@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.3.4 - 2017-08-29
+
+- add back version number
+
 ## 1.3.4 - 2017-08-23
 
 - fix for tests being run too many times

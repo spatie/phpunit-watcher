@@ -8,13 +8,13 @@ class ConsoleApplication extends Application
 {
     public function __construct()
     {
-        parent::__construct('PHPUnit Watcher');
+        parent::__construct('PHPUnit Watcher', '1.3.5');
 
         $this->add(new WatcherCommand());
     }
 
     public function getLongVersion()
     {
-        return ' by <comment>Spatie</comment>';
+        return parent::getLongVersion().' by <comment>Spatie</comment>';
     }
 }
