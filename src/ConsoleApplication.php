@@ -15,6 +15,6 @@ class ConsoleApplication extends Application
 
     public function getLongVersion()
     {
-        return parent::getLongVersion().' by <comment>Spatie</comment>';
+        return ' by <comment>Spatie</comment>';
     }
 }
