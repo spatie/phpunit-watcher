@@ -27,6 +27,10 @@ Want to pass some arguments to PHPUnit? No problem, just tack them on:
 phpunit-watcher watch --filter=it_can_run_a_single_test
 ```
 
+In [his excellent talk at Laracon EU 2017](https://www.youtube.com/watch?v=CF1UhUj9LG0) [Amo Chohan](https://github.com/amochohan) shows our phpunit-watcher in action.
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/CF1UhUj9LG0?rel=0&amp;start=1573" frameborder="0" allowfullscreen></iframe>
+
 ## Postcardware
 
 You're free to use this package (it's [MIT-licensed](LICENSE.md)), but if you use it often we highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using.
