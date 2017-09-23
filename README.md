@@ -27,7 +27,7 @@ Want to pass some arguments to PHPUnit? No problem, just tack them on:
 phpunit-watcher watch --filter=it_can_run_a_single_test
 ```
 
-In his excellent talk at Laracon EU 2017 https://www.youtube.com/watch?v=CF1UhUj9LG0 [Amo Chohan](https://github.com/amochohan) shows our phpunit-watcher in action.
+In his excellent talk at Laracon EU 2017 [Amo Chohan](https://github.com/amochohan) shows our phpunit-watcher in action.
 
 [![Amo Chohan demo](https://spatie.github.io/phpunit-watcher/videothumb.png)](https://youtu.be/CF1UhUj9LG0?t=26m13s)
 
