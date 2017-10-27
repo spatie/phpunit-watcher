@@ -16,6 +16,9 @@ class Phpunit extends Screen
     /** @var string */
     protected $phpunitBinaryPath;
 
+    /** @var string */
+    protected $phpunitBinaryName;
+
     public function __construct(array $options)
     {
         $this->options = $options;
