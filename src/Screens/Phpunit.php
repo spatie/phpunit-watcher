@@ -22,6 +22,7 @@ class Phpunit extends Screen
 
         $this->phpunitArguments = $options['phpunit']['arguments'] ?? '';
         $this->phpunitBinaryPath = $options['phpunit']['binPath'] ?? './vendor/bin/';
+        $this->phpunitBinaryName = $options['phpunit']['binName'] ?? 'phpunit';
     }
 
     public function draw()
@@ -85,7 +86,7 @@ class Phpunit extends Screen
 
     protected function runTests()
     {
-        $result = (new Process("{$this->phpunitBinaryPath}/phpunit {$this->phpunitArguments}"))
+        $result = (new Process("{$this->phpunitBinaryPath}/{$this->phpunitBinaryName} {$this->phpunitArguments}"))
             ->setTty(true)
             ->run(function ($type, $line) {
                 echo $line;

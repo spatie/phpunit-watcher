@@ -111,7 +111,7 @@ notifications:
   failingTests: false
 ```
 
-### Vendor bin directory path
+### Vendor bin directory path and binary name
 
 Not everyone will want to use the default `vendor/bin` as the bin path. If you have the `bin` directory in a custom place simple add:
 
@@ -121,6 +121,13 @@ phpunit:
 ```
 
 Without this setting, it will default to `/vendor/bin`
+
+You can also modify the name [link-to-documentation](https://getcomposer.org).
+
+```yaml
+phpunit:
+    binName: 'test
+```
 
 ### Initial PHPUnit arguments
 
