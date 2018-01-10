@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.3.7 - 2018-01-10
+
+- allow symfony 4
+
 ## 1.3.6 - 2017-08-29
 
 - fix typing in interactive mode
