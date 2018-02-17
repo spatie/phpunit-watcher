@@ -2,7 +2,7 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
-## 1.3.8 - 2018-02-17
+## 1.3.9 - 2018-02-17
 
 - use Jolinotif 2
 
