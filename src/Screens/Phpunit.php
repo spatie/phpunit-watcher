@@ -98,6 +98,7 @@ class Phpunit extends Screen
             ->write('<dim>Press </dim>a<dim> to run all tests.</dim>')
             ->write('<dim>Press </dim>t<dim> to filter by test name.</dim>')
             ->write('<dim>Press </dim>p<dim> to filter by file name.</dim>')
+            ->write('<dim>Press </dim>g<dim> to filter by group name.</dim>')
             ->write('<dim>Press </dim>q<dim> to quit the watcher.</dim>')
             ->write('<dim>Press </dim>Enter<dim> to trigger a test run.</dim>');
 
