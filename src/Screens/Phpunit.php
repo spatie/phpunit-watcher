@@ -42,6 +42,9 @@ class Phpunit extends Screen
 
                     $this->terminal->displayScreen(new Phpunit($this->options));
                     break;
+                case 'g':
+                    $this->terminal->displayScreen(new FilterGroupName());
+                    break;
                 case 't':
                     $this->terminal->displayScreen(new FilterTestName());
                     break;
