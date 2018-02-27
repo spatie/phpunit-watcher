@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.5.0 - 2018-02-27
+
+- add filter for groups
+
 ## 1.4.0 - 2018-02-26
 
 - add filter on testsuite
