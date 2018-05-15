@@ -44,6 +44,7 @@ class Phpunit extends Screen
                     break;
                 case 'g':
                     $this->terminal->displayScreen(new FilterGroupName());
+                    break;
                 case 's':
                     $this->terminal->displayScreen(new FilterTestSuiteName());
                     break;
