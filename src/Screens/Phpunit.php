@@ -13,11 +13,19 @@ class Phpunit extends Screen
     /** @var string */
     protected $phpunitArguments;
 
+    /** @var string */
+    protected $phpunitBinaryPath;
+
+    /** @var string */
+    protected $phpunitBinaryName;
+
     public function __construct(array $options)
     {
         $this->options = $options;
 
         $this->phpunitArguments = $options['phpunit']['arguments'] ?? '';
+        $this->phpunitBinaryPath = $options['phpunit']['binPath'] ?? './vendor/bin/';
+        $this->phpunitBinaryName = $options['phpunit']['binName'] ?? 'phpunit';
     }
 
     public function draw()
@@ -70,6 +78,10 @@ class Phpunit extends Screen
     {
         $title = 'Starting PHPUnit';
 
+        if (! empty($this->phpunitBinaryPath)) {
+            $title .= " with customer bin path: `{$this->phpunitBinaryPath}`";
+        }
+
         if (! empty($this->phpunitArguments)) {
             $title .= " with arguments: `{$this->phpunitArguments}`";
         }
@@ -83,7 +95,7 @@ class Phpunit extends Screen
 
     protected function runTests()
     {
-        $result = (new Process("vendor/bin/phpunit {$this->phpunitArguments}"))
+        $result = (new Process("{$this->phpunitBinaryPath}/{$this->phpunitBinaryName} {$this->phpunitArguments}"))
             ->setTty(true)
             ->run(function ($type, $line) {
                 echo $line;

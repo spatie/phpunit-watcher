@@ -111,6 +111,24 @@ notifications:
   failingTests: false
 ```
 
+### Vendor bin directory path and binary name
+
+Not everyone will want to use the default `vendor/bin` as the bin path. If you have the `bin` directory in a custom place simple add:
+
+```yaml
+phpunit:
+    binPath: 'bin'
+```
+
+Without this setting, it will default to `/vendor/bin`
+
+You can also modify the name [link-to-documentation](https://getcomposer.org).
+
+```yaml
+phpunit:
+    binName: 'test
+```
+
 ### Initial PHPUnit arguments
 
 If you want to use pass the same arguments to PHPUnit everytime to watcher starts, you can specificy those in the `.phpunit-watcher.yml` config file. Here's an example:
