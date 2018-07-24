@@ -34,7 +34,7 @@ class Terminal
     public function onKeyPress(callable $callable)
     {
         $this->io->getInput()->once('data', function ($line) use ($callable) {
-            $this->io->getReadline()->deleteChar(0);
+            $this->getReadline()->deleteChar(0);
             $callable(trim($line));
         });
 
@@ -139,15 +139,20 @@ class Terminal
 
     public function prompt(string $prompt)
     {
-        $this->io->getReadline()->setPrompt($prompt);
+        $this->getReadline()->setPrompt($prompt);
 
         return $this;
     }
 
     public function clearPrompt()
     {
-        $this->io->getReadline()->setPrompt('');
+        $this->getReadline()->setPrompt('');
 
         return $this;
+    }
+
+    public function getReadline()
+    {
+        return $this->io->getReadline();
     }
 }

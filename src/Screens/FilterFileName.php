@@ -19,6 +19,8 @@ class FilterFileName extends Screen
 
     public function registerListeners()
     {
+        $readline = $this->terminal->getReadline();
+
         $this->terminal->on('data', function ($line) {
             if ($line == '') {
                 $this->terminal->goBack();
@@ -35,6 +37,38 @@ class FilterFileName extends Screen
             $options['phpunit']['arguments'] = $phpunitArguments;
 
             $this->terminal->displayScreen(new Phpunit($options));
+        });
+
+        $readline->setAutocomplete(function ($word, $startOffset, $endOffset) use ($readline) {
+            $input = $readline->getInput();
+
+            $paths = glob("$word*", GLOB_MARK);
+
+            if (empty($paths)) {
+                return [];
+            }
+
+            if (count($paths) > 1) {
+                return $paths;
+            }
+
+            $path = $paths[0];
+
+            $lineStart = mb_substr($input, 0, $startOffset);
+            $lineEnd = mb_substr($input, $endOffset);
+
+            // Add potential quote if path is a file
+            if ($startOffset > 0 && mb_strlen($path) > 1 && mb_substr($path, -1) != DIRECTORY_SEPARATOR) {
+                $previousChar = mb_substr($input, $startOffset - 1, 1);
+                if ($previousChar === '"' || $previousChar === '\'') {
+                    $path .= $previousChar;
+                }
+            }
+
+            $newInput = $lineStart . $path . $lineEnd;
+
+            $readline->setInput($newInput);
+            $readline->moveCursorTo($startOffset + mb_strlen($path));
         });
 
         return $this;
