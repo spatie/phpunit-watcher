@@ -45,11 +45,12 @@ class FilterFileName extends Screen
             $paths = glob("$word*", GLOB_MARK);
 
             if (empty($paths)) {
-                return [];
+                return;
             }
 
             if (count($paths) > 1) {
-                return $paths;
+                $this->terminal->getStdio()->write(implode('  ', $paths) . "\n");
+                return;
             }
 
             $path = $paths[0];

@@ -155,4 +155,9 @@ class Terminal
     {
         return $this->io->getReadline();
     }
+
+    public function getStdio()
+    {
+        return $this->io;
+    }
 }
