@@ -2,6 +2,8 @@
 
 namespace Spatie\PhpUnitWatcher\Screens;
 
+use Spatie\PhpUnitWatcher\Screens\Completers\FilenameCompleter;
+
 class FilterFileName extends Screen
 {
     public function draw()
@@ -19,8 +21,15 @@ class FilterFileName extends Screen
 
     public function registerListeners()
     {
-        $readline = $this->terminal->getReadline();
+        $this->registerDataListener();
 
+        $this->registerAutocompleter();
+
+        return $this;
+    }
+
+    protected function registerDataListener()
+    {
         $this->terminal->on('data', function ($line) {
             if ($line == '') {
                 $this->terminal->goBack();
@@ -38,40 +47,36 @@ class FilterFileName extends Screen
 
             $this->terminal->displayScreen(new Phpunit($options));
         });
+    }
 
-        $readline->setAutocomplete(function ($word, $startOffset, $endOffset) use ($readline) {
-            $input = $readline->getInput();
+    protected function registerAutocompleter()
+    {
+        $readline = $this->terminal->getReadline();
 
-            $paths = glob("$word*", GLOB_MARK);
+        $filenameAutocompleter = new FilenameCompleter($readline);
 
-            if (empty($paths)) {
-                return;
-            }
-
-            if (count($paths) > 1) {
-                $this->terminal->getStdio()->write(implode('  ', $paths) . "\n");
-                return;
-            }
-
-            $path = $paths[0];
-
-            $lineStart = mb_substr($input, 0, $startOffset);
-            $lineEnd = mb_substr($input, $endOffset);
-
-            // Add potential quote if path is a file
-            if ($startOffset > 0 && mb_strlen($path) > 1 && mb_substr($path, -1) != DIRECTORY_SEPARATOR) {
-                $previousChar = mb_substr($input, $startOffset - 1, 1);
-                if ($previousChar === '"' || $previousChar === '\'') {
-                    $path .= $previousChar;
-                }
-            }
-
-            $newInput = $lineStart . $path . $lineEnd;
-
-            $readline->setInput($newInput);
-            $readline->moveCursorTo($startOffset + mb_strlen($path));
+        $filenameAutocompleter->onSuggestions(function ($suggestions) {
+            $this->refreshScreenWithSuggestions($suggestions, 10);
         });
 
-        return $this;
+        $readline->setAutocomplete($filenameAutocompleter);
+    }
+
+    protected function refreshScreenWithSuggestions($suggestions, $limit)
+    {
+        $firstSuggestions = array_slice($suggestions, 0 , $limit);
+
+        $this->terminal->refreshScreen();
+
+        $stdio = $this->terminal->getStdio();
+
+        $stdio->write("\n" . implode("\n", $firstSuggestions) . "\n");
+
+        $count = count($suggestions) - $limit;
+        if ($count > 0) {
+            $stdio->write("(+$count others)\n");
+        }
+
+        $stdio->write("\n");
     }
 }
