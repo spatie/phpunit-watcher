@@ -56,7 +56,8 @@ class FilterFileName extends Screen
             }
 
             if (count($paths) > 1) {
-                $this->terminal->getStdio()->write(implode('  ', $paths) . "\n");
+                $this->terminal->getStdio()->write(implode('  ', $paths)."\n");
+
                 return;
             }
 
@@ -67,7 +68,7 @@ class FilterFileName extends Screen
 
             $path = $this->sanitzeOffset($startOffset, $path, $input);
 
-            $newInput = $lineStart . $path . $lineEnd;
+            $newInput = $lineStart.$path.$lineEnd;
 
             $readline->setInput($newInput);
 
@@ -83,6 +84,7 @@ class FilterFileName extends Screen
                 $path .= $previousChar;
             }
         }
+
         return $path;
     }
 }
