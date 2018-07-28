@@ -40,7 +40,7 @@ abstract class Completer
     }
 
     /**
-     * Start completion
+     * Start completion.
      *
      * @param string $word
      * @param int $startOffset
@@ -59,7 +59,7 @@ abstract class Completer
     }
 
     /**
-     * Search for things related to the completed word and return an array of suggestions
+     * Search for things related to the completed word and return an array of suggestions.
      *
      * Use an array with one element to autocomplete the word
      *
@@ -68,7 +68,7 @@ abstract class Completer
     abstract protected function search();
 
     /**
-     * Display suggestions or complete the word depending on number of results
+     * Display suggestions or complete the word depending on number of results.
      *
      * When returning an array reactphp-stdio will display suggestions with the default behavior.
      *
@@ -78,7 +78,7 @@ abstract class Completer
     protected function handleSearchResults($searchResults)
     {
         if (empty($searchResults)) {
-            return null;
+            return;
         }
 
         if (count($searchResults) > 1) {
@@ -89,7 +89,7 @@ abstract class Completer
     }
 
     /**
-     * Filter suggestions to display
+     * Filter suggestions to display.
      *
      * @param array $suggestions
      * @return array|null
@@ -99,11 +99,12 @@ abstract class Completer
         if (is_callable($this->filterSuggestionsCallback)) {
             $suggestions = ($this->filterSuggestionsCallback)($suggestions);
         }
+
         return $suggestions;
     }
 
     /**
-     * Register callback called when more than one suggestion is available
+     * Register callback called when more than one suggestion is available.
      *
      * You can use this callback to filter suggestions or to abort the
      * default display behavior by returning null
@@ -116,7 +117,7 @@ abstract class Completer
     }
 
     /**
-     * Refresh the input with the completed word and move cursor to end of the word
+     * Refresh the input with the completed word and move cursor to end of the word.
      *
      * @param string $newWord
      */
@@ -125,14 +126,14 @@ abstract class Completer
         $endQuotedWord = $this->appendQuoteIfNeeded($newWord);
 
         $this->readline->setInput(
-            $this->getInputBeforeWord() . $endQuotedWord . $this->getInputAfterWord()
+            $this->getInputBeforeWord().$endQuotedWord.$this->getInputAfterWord()
         );
 
         $this->readline->moveCursorTo($this->wordStartOffset + mb_strlen($endQuotedWord));
     }
 
     /**
-     * Return input string before the word
+     * Return input string before the word.
      *
      * @return string
      */
@@ -142,7 +143,7 @@ abstract class Completer
     }
 
     /**
-     * Return input string after the word
+     * Return input string after the word.
      *
      * @return string
      */
@@ -152,7 +153,7 @@ abstract class Completer
     }
 
     /**
-     * Return the character before the word
+     * Return the character before the word.
      *
      * @return null|string
      */
@@ -164,7 +165,7 @@ abstract class Completer
     }
 
     /**
-     * Append a quote if word is prefixed with a quote
+     * Append a quote if word is prefixed with a quote.
      *
      * @param string $word
      * @return string
@@ -174,12 +175,12 @@ abstract class Completer
         $char = $this->getCharBeforeWord();
 
         return ($char === '"' || $char === '\'')
-            ? $word . $char
+            ? $word.$char
             : $word;
     }
 
     /**
-     * Return the input string
+     * Return the input string.
      *
      * @return string
      */

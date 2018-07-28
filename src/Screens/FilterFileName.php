@@ -64,13 +64,13 @@ class FilterFileName extends Screen
 
     protected function refreshScreenWithSuggestions($suggestions, $limit)
     {
-        $firstSuggestions = array_slice($suggestions, 0 , $limit);
+        $firstSuggestions = array_slice($suggestions, 0, $limit);
 
         $this->terminal->refreshScreen();
 
         $stdio = $this->terminal->getStdio();
 
-        $stdio->write("\n" . implode("\n", $firstSuggestions) . "\n");
+        $stdio->write("\n".implode("\n", $firstSuggestions)."\n");
 
         $count = count($suggestions) - $limit;
         if ($count > 0) {
