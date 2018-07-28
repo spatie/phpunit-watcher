@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.6.0 - 2018-07-28
+
+- add autocomplete when filtering on file names
+
 ## 1.5.1 - 2018-05-15
 
 - fix a bug around screen switching
