@@ -13,7 +13,7 @@ class FilterFileName extends Screen
             ->write('Type a pattern and press Enter to only run tests in the giving path or file.')
             ->write('Press Enter with an empty pattern to execute all tests in all files.')
             ->emptyLine()
-            ->comment('Start typing to filter by a test name.')
+            ->comment('Start typing to filter by file name.')
             ->prompt('pattern > ');
 
         return $this;
