@@ -7,17 +7,24 @@ use Spatie\PhpUnitWatcher\Notification;
 
 class Phpunit extends Screen
 {
+    const DEFAULT_BINARY_PATH = 'vendor/bin/phpunit';
+
     /** @var array */
     public $options;
 
     /** @var string */
     protected $phpunitArguments;
 
+    /** @var string */
+    private $phpunitBinaryPath;
+
     public function __construct(array $options)
     {
         $this->options = $options;
 
         $this->phpunitArguments = $options['phpunit']['arguments'] ?? '';
+
+        $this->phpunitBinaryPath = $options['phpunit']['binaryPath'] ?? self::DEFAULT_BINARY_PATH;
     }
 
     public function draw()
@@ -83,7 +90,7 @@ class Phpunit extends Screen
 
     protected function runTests()
     {
-        $result = (new Process("vendor/bin/phpunit {$this->phpunitArguments}"))
+        $result = (new Process("{$this->phpunitBinaryPath} {$this->phpunitArguments}"))
             ->setTty(true)
             ->run(function ($type, $line) {
                 echo $line;
