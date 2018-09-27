@@ -64,15 +64,21 @@ class WatcherCommand extends Command
 
     protected function getConfigFileLocation()
     {
-        $configName = '.phpunit-watcher.yml';
+        $configNames = [
+            '.phpunit-watcher.yml',
+            'phpunit-watcher.yml',
+            'phpunit-watcher.yml.dist',
+        ];
 
         $configDirectory = getcwd();
 
         while (is_dir($configDirectory)) {
-            $configFullPath = "{$configDirectory}/{$configName}";
+            foreach ($configNames as $configName) {
+                $configFullPath = "{$configDirectory}/{$configName}";
 
-            if (file_exists($configFullPath)) {
-                return $configFullPath;
+                if (file_exists($configFullPath)) {
+                    return $configFullPath;
+                }
             }
 
             if ($configDirectory === DIRECTORY_SEPARATOR) {
