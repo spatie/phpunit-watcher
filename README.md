@@ -69,9 +69,9 @@ phpunit-watcher watch --filter=it_can_run_a_single_test
 
 ## Customization
 
-Certain aspects of the behaviour of the tool can be modified. All options can be set in a `.phpunit-watcher.yml` in your project directory.
+Certain aspects of the behaviour of the tool can be modified. The file for options may be named `.phpunit-watcher.yml`, `phpunit-watcher.yml` or `phpunit-watcher.yml.dist`. The tool will look for a file in that order.
 
-If a such a config file does not exist in the project directory, the tool will check if the file exists in any of the parent directories of the project directory.
+If a config file does not exist in the project directory, the tool will check if a file exists in any of the parent directories of the project directory.
 
 Here's some example content. Read on for a more detailed explanation of all the options.
 
