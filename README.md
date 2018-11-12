@@ -85,6 +85,7 @@ notifications:
   passingTests: false
   failingTests: false
 phpunit:
+  binaryPath: vendor/bin/phpunit
   arguments: '--stop-on-failure'
 ```
 
@@ -110,7 +111,20 @@ notifications:
   failingTests: false
 ```
 
-### Initial PHPUnit arguments
+### Customize PHPUnit
+
+#### Binary
+
+By default the tool use `vendor/bin/phpunit` as default PHPUnit binary file, however, it may be useful to be able to customize this value for people who have a binary file in a different location. 
+
+You can specificy it in the `.phpunit-watcher.yml` config file. Here's an example:
+
+```yaml
+phpunit:
+  binaryPath: ./vendor/phpunit/phpunit/phpunit
+```
+
+#### Initial arguments
 
 If you want to use pass the same arguments to PHPUnit everytime to watcher starts, you can specificy those in the `.phpunit-watcher.yml` config file. Here's an example:
 
