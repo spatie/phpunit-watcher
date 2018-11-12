@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.8.0 - 2018-11-12
+
+- add `binaryPath` to configuration file
+
 ## 1.7.0 - 2018-10-18
 
 - support for alternative config file names
