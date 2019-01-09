@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.8.1 - 2019-01-09
+
+- allow new versions of deps
+
 ## 1.8.0 - 2018-11-12
 
 - add `binaryPath` to configuration file
