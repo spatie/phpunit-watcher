@@ -2,7 +2,12 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.8.2 - 2019-01-10
+
+- reverts 1.8.1
+
 ## 1.8.1 - 2019-01-09
+**THIS VERSION DOES NOT WORK**
 
 - allow new versions of deps
 
