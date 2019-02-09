@@ -33,7 +33,7 @@ class Terminal
 
     public function onKeyPress(callable $callable)
     {
-        $this->io->getInput()->once('data', function ($line) use ($callable) {
+        $this->io->once('data', function ($line) use ($callable) {
             $this->getReadline()->deleteChar(0);
             $callable(trim($line));
         });
@@ -66,7 +66,7 @@ class Terminal
         $formattedMessage = str_replace('<dim>', "\e[2m", $formattedMessage);
         $formattedMessage = str_replace('</dim>', "\e[22m", $formattedMessage);
 
-        $this->io->writeln($formattedMessage);
+        $this->io->write($formattedMessage.PHP_EOL);
 
         return $this;
     }
