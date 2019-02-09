@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.8.3 - 2019-02-09
+
+- update to version 2 of react-stdio and use new methods
+
 ## 1.8.2 - 2019-01-10
 
 - reverts 1.8.1
