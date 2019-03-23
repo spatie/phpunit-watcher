@@ -111,6 +111,13 @@ notifications:
   failingTests: false
 ```
 
+### Help messages
+By default the tool will display a helper for keyboard actions after each run. You can hide these help messages by adding a `hideManual` key in the `.phpunit-watcher.yml`.
+
+```yaml
+hideManual: true
+```
+
 ### Customize PHPUnit
 
 #### Binary
