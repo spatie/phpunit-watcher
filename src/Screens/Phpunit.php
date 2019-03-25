@@ -103,6 +103,10 @@ class Phpunit extends Screen
 
     protected function displayManual()
     {
+        if ($this->options['hideManual']) {
+            return $this;
+        }
+
         $this->terminal
             ->emptyLine()
             ->write('<dim>Press </dim>a<dim> to run all tests.</dim>')
