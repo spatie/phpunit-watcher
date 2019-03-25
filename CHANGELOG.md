@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.9.0 - 2019-03-25
+
+- add `hideManual` option
+
 ## 1.8.3 - 2019-02-09
 
 - update to version 2 of react-stdio and use new methods
