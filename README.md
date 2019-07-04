@@ -67,6 +67,17 @@ Want to pass some arguments to PHPUnit? No problem, just tack them on:
 phpunit-watcher watch --filter=it_can_run_a_single_test
 ```
 
+### Auto-filter mode
+This package has a secondary mode that automatically runs only the tests related to changed files:
+
+```bash
+phpunit-watcher --auto-filter watch
+```
+
+In this mode, making a change to SomeClass.php will run the tests in `SomeClassTest`. It also works when editing tests.
+
+Note: The `--auto-filter` (or `-a`) option must come **before** the `watch` command, or else it will be passed to PHPUnit.
+
 ## Customization
 
 Certain aspects of the behaviour of the tool can be modified. The file for options may be named `.phpunit-watcher.yml`, `phpunit-watcher.yml` or `phpunit-watcher.yml.dist`. The tool will look for a file in that order.
@@ -122,7 +133,7 @@ hideManual: true
 
 #### Binary
 
-By default the tool use `vendor/bin/phpunit` as default PHPUnit binary file, however, it may be useful to be able to customize this value for people who have a binary file in a different location. 
+By default the tool use `vendor/bin/phpunit` as default PHPUnit binary file, however, it may be useful to be able to customize this value for people who have a binary file in a different location.
 
 You can specificy it in the `.phpunit-watcher.yml` config file. Here's an example:
 
@@ -181,7 +192,7 @@ Interactive commands were inspired by [Jest](https://facebook.github.io/jest/).
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
-Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie). 
+Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie).
 All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
 
 ## License

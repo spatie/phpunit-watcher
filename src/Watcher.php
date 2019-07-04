@@ -50,7 +50,16 @@ class Watcher
             $watcher->findChanges();
 
             if ($watcher->hasChanges()) {
-                $this->terminal->refreshScreen();
+                $changedFilePaths = [];
+
+                if ($this->options['autoFilter']) {
+                    $changedFilePaths = array_merge(
+                        $watcher->getUpdatedResources(),
+                        $watcher->getDeletedResources(),
+                        $watcher->getNewResources());
+                }
+
+                $this->terminal->refreshScreen($changedFilePaths);
             }
         });
 

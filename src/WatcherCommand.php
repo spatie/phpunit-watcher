@@ -4,6 +4,7 @@ namespace Spatie\PhpUnitWatcher;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -16,6 +17,11 @@ class WatcherCommand extends Command
     {
         $this->setName('watch')
             ->setDescription('Rerun PHPUnit tests when source code changes.')
+            ->addOption(
+                'auto-filter',
+                'a',
+                InputOption::VALUE_NONE,
+                'Only run tests corresponding to edited files.')
             ->addArgument('phpunit-options', InputArgument::OPTIONAL, 'Options passed to phpunit');
     }
 
@@ -33,6 +39,8 @@ class WatcherCommand extends Command
     protected function determineOptions(InputInterface $input): array
     {
         $options = $this->getOptionsFromConfigFile();
+
+        $options['autoFilter'] = $input->getOption('auto-filter');
 
         $commandLineArguments = trim($input->getArgument('phpunit-options'), "'");
 
@@ -102,12 +110,17 @@ class WatcherCommand extends Command
         } else {
             $output->text('No config file detected. Using default options.');
         }
-        $output->newLine();
 
         $output->text("Tests will be rerun when {$options['watch']['fileMask']} files are modified in");
 
         $output->listing($options['watch']['directories']);
 
         $output->newLine();
+
+        if ($options['autoFilter']) {
+            $output->text('Tests will be filtered corresponding to the changed filename.');
+            $output->text('For example, editing BlogService.php will filter for BlogServiceTest.');
+            $output->newLine();
+        }
     }
 }

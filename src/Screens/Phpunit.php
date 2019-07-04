@@ -27,16 +27,27 @@ class Phpunit extends Screen
         $this->phpunitBinaryPath = $options['phpunit']['binaryPath'] ?? self::DEFAULT_BINARY_PATH;
     }
 
-    public function draw()
+    public function draw(array $changedFilePaths = [])
     {
-        $this
-            ->writeHeader()
-            ->runTests()
-            ->displayManual();
+        $this->determineAutoFilter($changedFilePaths);
+
+        if (! $this->options['autoFilter'] || ($this->options['autoFilter'] && ! empty($changedFilePaths))) {
+            $this
+                ->writeHeader()
+                ->runTests();
+        }
+
+        if (! $this->options['autoFilter']) {
+            $this->displayManual();
+        }
     }
 
     public function registerListeners()
     {
+        if ($this->options['autoFilter']) {
+            return $this;
+        }
+
         $this->terminal->onKeyPress(function ($line) {
             $line = strtolower($line);
 
@@ -129,5 +140,42 @@ class Phpunit extends Screen
         if ($this->options['notifications'][$notificationName]) {
             Notification::create()->$notificationName();
         }
+    }
+
+    public function determineAutoFilter(array $changedFilePaths = [])
+    {
+        $autoFilterOption = null;
+        $this->phpunitArguments = isset($this->options['phpunit']['arguments']) ? $this->options['phpunit']['arguments'] : '';
+
+        // Apply a filter based on the changed files
+        if (! empty($changedFilePaths)) {
+            $testNames = array_map(function ($filePath) {
+                $filePathParts = explode('/', $filePath);
+                $fileName = end($filePathParts);
+                $fileNameParts = explode('.', $fileName);
+
+                $testName = current($fileNameParts);
+
+                // Suffix with "Test" if it's not already a test
+                $strlen = strlen($testName);
+                if ($strlen < 4 || ! (substr_compare(strtolower($testName), 'test', $strlen - 4, 4) === 0)) {
+                    $testName .= 'Test';
+                }
+
+                return $testName;
+            }, $changedFilePaths);
+
+            $testFilterPattern = '/('.implode('|', $testNames).')/';
+            $autoFilterOption = " --filter=\"$testFilterPattern\"";
+
+            $this->phpunitArguments .= $autoFilterOption;
+        }
+
+        return $this;
+    }
+
+    public function getPhpunitArguments()
+    {
+        return isset($this->phpunitArguments) ? $this->phpunitArguments : null;
     }
 }

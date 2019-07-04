@@ -71,7 +71,7 @@ class Terminal
         return $this;
     }
 
-    public function displayScreen(Screen $screen, $clearScreen = true)
+    public function displayScreen(Screen $screen, $clearScreen = true, array $changedFilePaths = [])
     {
         $this->previousScreen = $this->currentScreen;
 
@@ -87,7 +87,7 @@ class Terminal
             $screen->clear();
         }
 
-        $screen->draw();
+        $screen->draw($changedFilePaths);
 
         return $this;
     }
@@ -110,13 +110,13 @@ class Terminal
         return $this->previousScreen;
     }
 
-    public function refreshScreen()
+    public function refreshScreen(array $changedFilePaths = [])
     {
         if (is_null($this->currentScreen)) {
             return;
         }
 
-        $this->displayScreen($this->currentScreen);
+        $this->displayScreen($this->currentScreen, true, $changedFilePaths);
 
         return $this;
     }
