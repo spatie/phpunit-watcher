@@ -23,7 +23,7 @@ class WatcherCommand extends Command
     {
         $options = $this->determineOptions($input);
 
-        list($watcher, $options) = WatcherFactory::create($options);
+        [$watcher, $options] = WatcherFactory::create($options);
 
         $this->displayOptions($options, $input, $output);
 
