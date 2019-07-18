@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.9.1 - 2019-03-25
+
+- fix for deprecated symfony/process string construction
+
 ## 1.9.0 - 2019-03-25
 
 - add `hideManual` option
