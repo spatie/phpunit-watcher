@@ -47,7 +47,7 @@ class Phpunit extends Screen
                 case 'a':
                     $this->options['phpunit']['arguments'] = '';
 
-                    $this->terminal->displayScreen(new Phpunit($this->options));
+                    $this->terminal->displayScreen(new self($this->options));
                     break;
                 case 'g':
                     $this->terminal->displayScreen(new FilterGroupName());

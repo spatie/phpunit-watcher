@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^7.0",
+        "php": "^7.1",
         "clue/stdio-react": "^2.0",
         "jolicode/jolinotif": "^2.0",
         "symfony/console": "^3.0|^4.0",
