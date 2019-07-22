@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.10.1 - 2019-07-24
+
+- fix compatiblity with newer symfony versions
+
 ## 1.10.0 - 2019-07-19
 
 - fix for deprecated symfony/process string construction
