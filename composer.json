@@ -16,16 +16,16 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "clue/stdio-react": "^2.0",
         "jolicode/jolinotif": "^2.0",
-        "symfony/console": "^3.4|^4.0",
-        "symfony/process": "^3.4|^4.0",
-        "symfony/yaml": "^3.4|^4.0",
+        "symfony/console": "^4.0",
+        "symfony/process": "^4.0",
+        "symfony/yaml": "^4.0",
         "yosymfony/resource-watcher": "^1.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.0|^7.0"
+        "phpunit/phpunit": "^8.0"
     },
     "autoload": {
         "psr-4": {

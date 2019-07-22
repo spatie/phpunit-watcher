@@ -2,9 +2,14 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.11.0 - 2019-07-24
+
+- drop support for older symfony versions
+- drop support for PHP 7.1
+
 ## 1.10.1 - 2019-07-24
 
-- fix compatiblity with newer symfony versions
+- fix compatibly with newer symfony versions
 
 ## 1.10.0 - 2019-07-19
 
