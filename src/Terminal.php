@@ -34,7 +34,6 @@ class Terminal
     public function onKeyPress(callable $callable)
     {
         $this->io->once('data', function ($line) use ($callable) {
-            $this->getReadline()->deleteChar(0);
             $callable(trim($line));
         });
 
