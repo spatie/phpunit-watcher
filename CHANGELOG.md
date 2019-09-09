@@ -2,7 +2,7 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
-## Unreleased
+## 1.12.0 - 2019-09-09
 
 - new random seed feature. Run tests in random order.
 
