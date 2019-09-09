@@ -61,6 +61,9 @@ class Phpunit extends Screen
                 case 'p':
                     $this->terminal->displayScreen(new FilterFileName());
                     break;
+                case 'r':
+                    $this->terminal->displayScreen(new RandomSeed());
+                    break;
                 case 'q':
                     die();
                     break;
@@ -114,6 +117,7 @@ class Phpunit extends Screen
             ->write('<dim>Press </dim>p<dim> to filter by file name.</dim>')
             ->write('<dim>Press </dim>g<dim> to filter by group name.</dim>')
             ->write('<dim>Press </dim>s<dim> to filter by test suite name.</dim>')
+            ->write('<dim>Press </dim>r<dim> to run tests with a random seed.</dim>')
             ->write('<dim>Press </dim>q<dim> to quit the watcher.</dim>')
             ->write('<dim>Press </dim>Enter<dim> to trigger a test run.</dim>');
 

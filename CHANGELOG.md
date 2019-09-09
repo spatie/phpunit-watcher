@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## Unreleased
+
+- new random seed feature. Run tests in random order.
+
 ## 1.11.2 - 2019-09-09
 
 - Remove `deleteChar` call
