@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.11.2 - 2019-09-09
+
+- Remove `deleteChar` call
+
 ## 1.11.1 - 2019-08-23
 
 - update version number
