@@ -67,6 +67,10 @@ Want to pass some arguments to PHPUnit? No problem, just tack them on:
 phpunit-watcher watch --filter=it_can_run_a_single_test
 ```
 
+#### A note for Windows users
+Currently, TTY is not being supported, so any interaction has been disabled. While watching for changes works,
+any arguments for PHPUnit have to be provided when initially calling `phpunit-watcher`.
+
 ## Customization
 
 Certain aspects of the behaviour of the tool can be modified. The file for options may be named `.phpunit-watcher.yml`, `phpunit-watcher.yml` or `phpunit-watcher.yml.dist`. The tool will look for a file in that order.
