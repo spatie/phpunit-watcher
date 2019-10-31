@@ -66,7 +66,7 @@ class Watcher
             // Interaction on windows is currently not supported
             fclose(STDIN);
 
-            // Simple fix for windows comparability since we don't write a lot of data at once
+            // Simple fix for windows compatibility since we don't write a lot of data at once
             // https://github.com/clue/reactphp-stdio/issues/83#issuecomment-546678609
             $output = new ThroughStream(static function ($data) {
                 echo $data;
