@@ -40,7 +40,7 @@ class WatcherCommand extends Command
             $options['phpunit']['arguments'] = $commandLineArguments;
         }
 
-        if (DIRECTORY_SEPARATOR === '\\') {
+        if (OS::isOnWindows()) {
             $options['hideManual'] = true;
         }
 

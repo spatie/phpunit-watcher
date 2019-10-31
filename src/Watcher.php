@@ -62,7 +62,7 @@ class Watcher
     {
         $output = null;
 
-        if (DIRECTORY_SEPARATOR !== '/') {
+        if (OS::isOnWindows()) {
             // Interaction on windows is currently not supported
             fclose(STDIN);
 
