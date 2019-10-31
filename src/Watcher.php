@@ -4,6 +4,7 @@ namespace Spatie\PhpUnitWatcher;
 
 use Clue\React\Stdio\Stdio;
 use React\EventLoop\Factory;
+use React\Stream\ThroughStream;
 use Symfony\Component\Finder\Finder;
 use Spatie\PhpUnitWatcher\Screens\Phpunit;
 use Yosymfony\ResourceWatcher\ResourceWatcher;
@@ -29,7 +30,7 @@ class Watcher
 
         $this->loop = Factory::create();
 
-        $this->terminal = new Terminal(new Stdio($this->loop));
+        $this->terminal = new Terminal($this->buildStdio());
 
         $this->options = $options;
     }
@@ -55,5 +56,23 @@ class Watcher
         });
 
         $this->loop->run();
+    }
+
+    protected function buildStdio()
+    {
+        $output = null;
+
+        if (OS::isOnWindows()) {
+            // Interaction on windows is currently not supported
+            fclose(STDIN);
+
+            // Simple fix for windows compatibility since we don't write a lot of data at once
+            // https://github.com/clue/reactphp-stdio/issues/83#issuecomment-546678609
+            $output = new ThroughStream(static function ($data) {
+                echo $data;
+            });
+        }
+
+        return new Stdio($this->loop, null, $output);
     }
 }

@@ -40,6 +40,10 @@ class WatcherCommand extends Command
             $options['phpunit']['arguments'] = $commandLineArguments;
         }
 
+        if (OS::isOnWindows()) {
+            $options['hideManual'] = true;
+        }
+
         return $options;
     }
 
@@ -74,17 +78,23 @@ class WatcherCommand extends Command
 
         while (is_dir($configDirectory)) {
             foreach ($configNames as $configName) {
-                $configFullPath = "{$configDirectory}/{$configName}";
+                $configFullPath = $configDirectory.DIRECTORY_SEPARATOR.$configName;
 
                 if (file_exists($configFullPath)) {
                     return $configFullPath;
                 }
             }
 
-            if ($configDirectory === DIRECTORY_SEPARATOR) {
+            $parentDirectory = dirname($configDirectory);
+
+            // We do a direct comparison here since there's a difference between
+            // the root directories on windows / *nix systems which does not
+            // let us compare it against the DIRECTORY_SEPARATOR directly
+            if ($parentDirectory === $configDirectory) {
                 return;
             }
-            $configDirectory = dirname($configDirectory);
+
+            $configDirectory = $parentDirectory;
         }
     }
 

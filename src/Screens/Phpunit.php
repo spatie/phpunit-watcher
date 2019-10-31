@@ -94,7 +94,7 @@ class Phpunit extends Screen
     protected function runTests()
     {
         $result = (new Process(array_merge([$this->phpunitBinaryPath], explode(' ', $this->phpunitArguments))))
-            ->setTty(true)
+            ->setTty(Process::isTtySupported())
             ->run(function ($type, $line) {
                 echo $line;
             });
