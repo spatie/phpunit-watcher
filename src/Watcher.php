@@ -5,10 +5,10 @@ namespace Spatie\PhpUnitWatcher;
 use Clue\React\Stdio\Stdio;
 use React\EventLoop\Factory;
 use React\Stream\ThroughStream;
-use Symfony\Component\Finder\Finder;
 use Spatie\PhpUnitWatcher\Screens\Phpunit;
-use Yosymfony\ResourceWatcher\ResourceWatcher;
+use Symfony\Component\Finder\Finder;
 use Yosymfony\ResourceWatcher\ResourceCacheMemory;
+use Yosymfony\ResourceWatcher\ResourceWatcher;
 
 class Watcher
 {
