@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.12.3 - 2019-12-02
+
+- update dependencies
+
 ## 1.12.2 - 2019-01-15
 
 - improve windows compatibility (#98)
