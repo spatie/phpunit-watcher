@@ -5,10 +5,11 @@ namespace Spatie\PhpUnitWatcher;
 use Clue\React\Stdio\Stdio;
 use React\EventLoop\Factory;
 use React\Stream\ThroughStream;
-use Symfony\Component\Finder\Finder;
 use Spatie\PhpUnitWatcher\Screens\Phpunit;
-use Yosymfony\ResourceWatcher\ResourceWatcher;
+use Symfony\Component\Finder\Finder;
+use Yosymfony\ResourceWatcher\Crc32ContentHash;
 use Yosymfony\ResourceWatcher\ResourceCacheMemory;
+use Yosymfony\ResourceWatcher\ResourceWatcher;
 
 class Watcher
 {
@@ -39,18 +40,14 @@ class Watcher
     {
         $this->terminal->displayScreen(new Phpunit($this->options), false);
 
-        $watcher = new ResourceWatcher(new ResourceCacheMemory());
-
-        $watcher->setFinder($this->finder);
+        $watcher = new ResourceWatcher(new ResourceCacheMemory(), $this->finder, new Crc32ContentHash());
 
         $this->loop->addPeriodicTimer(1 / 4, function () use ($watcher) {
             if (! $this->terminal->isDisplayingScreen(Phpunit::class)) {
                 return;
             }
 
-            $watcher->findChanges();
-
-            if ($watcher->hasChanges()) {
+            if ($watcher->findChanges()->hasChanges()) {
                 $this->terminal->refreshScreen();
             }
         });
