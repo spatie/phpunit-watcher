@@ -2,9 +2,14 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
-## 1.12.4 - 2019-12-04
+## 1.21.4 - 2019-12-04
 
 - fix compatibility with yosymfony/resource-watcher (#101)
+
+## 1.12 - 1.21
+
+- some version numbers were skipped due to mistagging
+
 
 ## 1.12.3 - 2019-12-02
 
