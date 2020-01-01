@@ -91,6 +91,7 @@ notifications:
 phpunit:
   binaryPath: vendor/bin/phpunit
   arguments: '--stop-on-failure'
+  timeout: 180
 ```
 
 ### Customize watched directories and files

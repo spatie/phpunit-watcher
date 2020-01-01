@@ -2,8 +2,8 @@
 
 namespace Spatie\PhpUnitWatcher\Screens;
 
-use Symfony\Component\Process\Process;
 use Spatie\PhpUnitWatcher\Notification;
+use Symfony\Component\Process\Process;
 
 class Phpunit extends Screen
 {
@@ -18,13 +18,16 @@ class Phpunit extends Screen
     /** @var string */
     private $phpunitBinaryPath;
 
+    /** @var int */
+    private $phpunitTimeout;
+
     public function __construct(array $options)
     {
         $this->options = $options;
 
         $this->phpunitArguments = $options['phpunit']['arguments'] ?? '';
-
         $this->phpunitBinaryPath = $options['phpunit']['binaryPath'] ?? self::DEFAULT_BINARY_PATH;
+        $this->phpunitTimeout = $options['phpunit']['timeout'] ?? 60;
     }
 
     public function draw()
@@ -94,6 +97,7 @@ class Phpunit extends Screen
     protected function runTests()
     {
         $result = (new Process(array_merge([$this->phpunitBinaryPath], explode(' ', $this->phpunitArguments))))
+            ->setTimeout($this->phpunitTimeout)
             ->setTty(Process::isTtySupported())
             ->run(function ($type, $line) {
                 echo $line;
