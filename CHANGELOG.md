@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.22.0 - 2020-01-04
+
+- add ability to control timeout for PHPUnit process (#104)
+
 ## 1.21.4 - 2019-12-04
 
 - fix compatibility with yosymfony/resource-watcher (#101)
