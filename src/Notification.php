@@ -2,8 +2,8 @@
 
 namespace Spatie\PhpUnitWatcher;
 
-use Joli\JoliNotif\NotifierFactory;
 use Joli\JoliNotif\Notification as JoliNotification;
+use Joli\JoliNotif\NotifierFactory;
 
 class Notification
 {
