@@ -30,6 +30,16 @@ In his excellent talk at Laracon EU 2017 [Amo Chohan](https://github.com/amochoh
 
 [![Amo Chohan demo](https://spatie.github.io/phpunit-watcher/videothumb.png)](https://youtu.be/CF1UhUj9LG0?t=26m13s)
 
+## Support us
+
+Learn how to create a package like this one, by watching our premium video course:
+
+[![Laravel Package training](https://spatie.be/github/package-training.jpg)](https://laravelpackage.training)
+
+We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+
+We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+
 ## Installation
 
 You can install this package globally like this
@@ -47,7 +57,6 @@ composer require spatie/phpunit-watcher --dev
 ```
 
 Locally installed you can run it with `vendor/bin/phpunit-watcher watch`
-
 
 ## Usage
 
@@ -181,13 +190,6 @@ We publish all received postcards [on our company website](https://spatie.be/en/
 We started creating this package after reading [this excellent article](https://www.sitepoint.com/write-javascript-style-test-watchers-php/) by [Christoper Pitt](https://twitter.com/assertchris)
 
 Interactive commands were inspired by [Jest](https://facebook.github.io/jest/).
-
-## Support us
-
-Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
-
-Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie). 
-All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
 
 ## License
 
