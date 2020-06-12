@@ -76,8 +76,13 @@ Want to pass some arguments to PHPUnit? No problem, just tack them on:
 phpunit-watcher watch --filter=it_can_run_a_single_test
 ```
 
-#### A note for Windows users
-Currently, TTY is not being supported, so any interaction has been disabled. While watching for changes works,
+#### Notes on interactive commands
+
+When running `phpunit-watcher` from a Composer script, you may need to [redirect input](https://github.com/spatie/phpunit-watcher/issues/54) in order for the interactive commands to work:
+
+`"test:watch": "phpunit-watcher watch < /dev/tty"`
+
+On Windows, Currently, TTY is not being supported, so any interaction has been disabled. While watching for changes works,
 any arguments for PHPUnit have to be provided when initially calling `phpunit-watcher`.
 
 ## Customization
