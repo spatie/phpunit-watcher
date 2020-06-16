@@ -30,10 +30,9 @@ class WatcherFactory
         return [$watcher, $options];
     }
 
-    protected static function mergeWithDefaultOptions(array $options): array
+    public static function getDefaultOptions(): array
     {
-        $options = array_merge([
-
+        return [
             'watch' => [
                 'directories' => [
                     'app',
@@ -47,7 +46,12 @@ class WatcherFactory
                 'failingTests' => true,
             ],
             'hideManual' => false,
-        ], $options);
+        ];
+    }
+
+    protected static function mergeWithDefaultOptions(array $options): array
+    {
+        $options = array_replace_recursive(self::getDefaultOptions(), $options);
 
         $options['watch']['directories'] = array_map(function ($directory) {
             return getcwd()."/{$directory}";
