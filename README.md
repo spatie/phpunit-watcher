@@ -78,21 +78,22 @@ phpunit-watcher watch --filter=it_can_run_a_single_test
 
 #### Notes on interactive commands
 
-When running `phpunit-watcher` from a Composer script, you may need to [redirect input](https://github.com/spatie/phpunit-watcher/issues/54) in order for the interactive commands to work:
+When running `phpunit-watcher` from a Composer script, you may need to [redirect input](https://github.com/spatie/phpunit-watcher/issues/54) in order for the interactive commands to work and [disabled the default timeout](https://getcomposer.org/doc/06-config.md#process-timeout):
 
-`"test:watch": "phpunit-watcher watch < /dev/tty"`
+```json
+{
+    "scripts": {
+        "test:watch": [
+            "Composer\\Config::disableProcessTimeout",
+            "phpunit-watcher watch < /dev/tty"
+        ]
+    }
+}
+```
 
 On Windows, Currently, TTY is not being supported, so any interaction has been disabled. While watching for changes works,
 any arguments for PHPUnit have to be provided when initially calling `phpunit-watcher`.
 
-Composer scripts have a default timeout of 300 seconds. In order to watch for changes forever, you can disable this timeout for every script on your project by using this composer.json configuration.
-```json
-{
-    "config": {
-        "process-timeout": 0
-    }
-}
-```
 
 ## Customization
 
