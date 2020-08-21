@@ -85,6 +85,15 @@ When running `phpunit-watcher` from a Composer script, you may need to [redirect
 On Windows, Currently, TTY is not being supported, so any interaction has been disabled. While watching for changes works,
 any arguments for PHPUnit have to be provided when initially calling `phpunit-watcher`.
 
+Composer scripts have a default timeout of 300 seconds. In order to watch for changes forever, you can disable this timeout for every script on your project by using this composer.json configuration.
+```json
+{
+    "config": {
+        "process-timeout": 0
+    }
+}
+```
+
 ## Customization
 
 Certain aspects of the behaviour of the tool can be modified. The file for options may be named `.phpunit-watcher.yml`, `phpunit-watcher.yml` or `phpunit-watcher.yml.dist`. The tool will look for a file in that order.
