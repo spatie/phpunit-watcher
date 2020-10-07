@@ -32,9 +32,7 @@ In his excellent talk at Laracon EU 2017 [Amo Chohan](https://github.com/amochoh
 
 ## Support us
 
-Learn how to create a package like this one, by watching our premium video course:
-
-[![Laravel Package training](https://spatie.be/github/package-training.jpg)](https://laravelpackage.training)
+[![Image](https://github-ads.s3.eu-central-1.amazonaws.com/phpunit-watcher.jpg)](https://spatie.be/github-ad-click/phpunit-watcher)
 
 We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
 
@@ -93,7 +91,6 @@ When running `phpunit-watcher` from a Composer script, you may need to [redirect
 
 On Windows, Currently, TTY is not being supported, so any interaction has been disabled. While watching for changes works,
 any arguments for PHPUnit have to be provided when initially calling `phpunit-watcher`.
-
 
 ## Customization
 
