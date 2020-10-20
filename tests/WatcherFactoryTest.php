@@ -37,7 +37,7 @@ class WatcherFactorTest extends TestCase
     {
         $userOptions = [
             'watch' => [
-                'directories' => ['foo', 'bar'],
+                'directories' => ['lib', 'tests'],
             ],
         ];
 
