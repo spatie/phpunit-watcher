@@ -7,19 +7,7 @@ use Spatie\PhpUnitWatcher\WatcherFactory;
 
 class WatcherFactorTest extends TestCase
 {
-	public function setUp() {
-		parent::setUp();
-
-		// todo need to create foo and bar folders inside current working dir
-	}
-
-	public function tearDown() {
-		parent::tearDown();
-
-		// todo revert setUp();
-	}
-
-	/** @test */
+    /** @test */
     public function it_can_be_instantiated()
     {
         $factory = new WatcherFactory();
@@ -27,35 +15,36 @@ class WatcherFactorTest extends TestCase
         $this->assertInstanceOf(WatcherFactory::class, $factory);
     }
 
-    /**
-     * @test
-     *
-     * @covers WatcherFactory::create
-     *
-     * @dataProvider data_options_are_replaced_recursively
-     */
-	public function options_are_replaced_recursively( $userOptions, $expectedOptions ) {
-		$watcher = WatcherFactory::create( $userOptions );
-		$actualOptions = $watcher[1];
+    /** @test */
+    public function setting_notification_preserves_other_options()
+    {
+        $userOptions = [
+            'notifications' => [
+                'passingTests' => false,
+            ],
+        ];
 
-		$this->assertEquals( $expectedOptions, $actualOptions );
-	}
+        $actualOptions = WatcherFactory::create($userOptions)[1];
 
-	public function data_options_are_replaced_recursively() {
-		$cases = array();
-		$defaults = WatcherFactory::getDefaultOptions();
+        $this->assertFalse($actualOptions['notifications']['passingTests']);
+        $this->assertTrue($actualOptions['notifications']['failingTests']);
+        $this->assertFalse($actualOptions['hideManual']);
+        $this->assertSame('*.php', $actualOptions['watch']['fileMask']);
+    }
 
-		// Setting watch.directories should leave all other defaults in tact.
-		$cases['overwriteDirectoriesButNotMask'] = array(
-    	    array(
-    	    	'watch' => array(
-	                'directories' => array( 'foo', 'bar' )
-		        ),
-            ),
-			$defaults
-		);
-    	$cases['overwriteDirectoriesButNotMask'][1]['watch']['directories'] = array( 'foo', 'bar' );
+    /** @test */
+    public function setting_directories_preserves_other_options()
+    {
+        $userOptions = [
+            'watch' => [
+                'directories' => ['foo', 'bar'],
+            ],
+        ];
 
-    	return $cases;
-	}
+        $actualOptions = WatcherFactory::create($userOptions)[1];
+
+        $this->assertTrue($actualOptions['notifications']['failingTests']);
+        $this->assertFalse($actualOptions['hideManual']);
+        $this->assertSame('*.php', $actualOptions['watch']['fileMask']);
+    }
 }
