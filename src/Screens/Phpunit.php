@@ -68,7 +68,7 @@ class Phpunit extends Screen
                     $this->terminal->displayScreen(new RandomSeed());
                     break;
                 case 'q':
-                    die();
+                    exit();
                     break;
                 default:
                     $this->registerListeners();
