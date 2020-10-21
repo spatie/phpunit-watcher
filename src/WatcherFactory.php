@@ -30,10 +30,9 @@ class WatcherFactory
         return [$watcher, $options];
     }
 
-    protected static function mergeWithDefaultOptions(array $options): array
+    public static function getDefaultOptions(): array
     {
-        $options = array_merge([
-
+        return [
             'watch' => [
                 'directories' => [
                     'app',
@@ -47,16 +46,29 @@ class WatcherFactory
                 'failingTests' => true,
             ],
             'hideManual' => false,
-        ], $options);
+        ];
+    }
 
-        $options['watch']['directories'] = array_map(function ($directory) {
+    protected static function mergeWithDefaultOptions(array $userOptions): array
+    {
+        // Merge all options with the defaults, so that there's always a complete set.
+        $mergedOptions = array_replace_recursive(self::getDefaultOptions(), $userOptions);
+
+        // Exception to above: Allow directories to be overwritten entirely, because that's usually desired.
+        if (isset($userOptions['watch']['directories'])) {
+            $mergedOptions['watch']['directories'] = $userOptions['watch']['directories'];
+        }
+
+        $mergedOptions['watch']['directories'] = array_unique($mergedOptions['watch']['directories']);
+
+        $mergedOptions['watch']['directories'] = array_map(function ($directory) {
             return getcwd()."/{$directory}";
-        }, $options['watch']['directories']);
+        }, $mergedOptions['watch']['directories']);
 
-        $options['watch']['directories'] = array_filter($options['watch']['directories'], function ($directory) {
+        $mergedOptions['watch']['directories'] = array_filter($mergedOptions['watch']['directories'], function ($directory) {
             return file_exists($directory);
         });
 
-        return $options;
+        return $mergedOptions;
     }
 }
