@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.22.1 - 2020-10-21
+
+- merge options recursively in `WatcherFactory` to preserve nested values (#115)
+
 ## 1.22.0 - 2020-01-04
 
 - add ability to control timeout for PHPUnit process (#104)
