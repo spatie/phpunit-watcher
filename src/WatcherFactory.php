@@ -19,10 +19,12 @@ class WatcherFactory
         }
 
         $finder = (new Finder())
-            ->ignoreDotFiles(false)
-            ->ignoreVCS(false)
+            ->ignoreDotFiles($options['watch']['ignoreDotFiles'])
+            ->ignoreVCS($options['watch']['ignoreVCS'])
+            ->ignoreVCSIgnored($options['watch']['ignoreVCSIgnored'])
             ->name($options['watch']['fileMask'])
             ->files()
+            ->exclude($options['watch']['exclude'])
             ->in($options['watch']['directories']);
 
         $watcher = new Watcher($finder, $options);
@@ -39,6 +41,10 @@ class WatcherFactory
                     'src',
                     'tests',
                 ],
+                'exclude' => [],
+                'ignoreDotFiles' => false,
+                'ignoreVCS' => false,
+                'ignoreVCSIgnored' => false,
                 'fileMask' => '*.php',
             ],
             'notifications' => [

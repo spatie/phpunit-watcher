@@ -124,8 +124,17 @@ watch:
   directories:
     - src
     - tests
+  exclude:
+    - lib
   fileMask: '*.php'
+  ignoreDotFiles: true
+  ignoreVCS: true
+  ignoreVCSIgnored: false
 ```
+
+See [the documentation for Finder](https://symfony.com/doc/current/components/finder.html) for more details.
+
+If you experience performance delays with large repositories, try adding `exclude` entries for any large subdirectories that you don't need to watch. Enabling the `ignore...` options can also be helpful. It's also important to ensure you're also using the `'*.php'` file mask.
 
 ### Desktop notifications
 
