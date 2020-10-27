@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.23.0 - 2020-10-27
+
+- add support for `exclude` and `ignore` options
+
 ## 1.22.1 - 2020-10-21
 
 - merge options recursively in `WatcherFactory` to preserve nested values (#115)
