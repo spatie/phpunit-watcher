@@ -6,5 +6,5 @@ function dd(...$args)
         var_dump($arg);
     }
 
-    die();
+    exit();
 }
