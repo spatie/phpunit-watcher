@@ -46,32 +46,41 @@ class Phpunit extends Screen
             switch ($line) {
                 case '':
                     $this->terminal->refreshScreen();
+
                     break;
                 case 'a':
                     $this->options['phpunit']['arguments'] = '';
 
                     $this->terminal->displayScreen(new self($this->options));
+
                     break;
                 case 'g':
                     $this->terminal->displayScreen(new FilterGroupName());
+
                     break;
                 case 's':
                     $this->terminal->displayScreen(new FilterTestSuiteName());
+
                     break;
                 case 't':
                     $this->terminal->displayScreen(new FilterTestName());
+
                     break;
                 case 'p':
                     $this->terminal->displayScreen(new FilterFileName());
+
                     break;
                 case 'r':
                     $this->terminal->displayScreen(new RandomSeed());
+
                     break;
                 case 'q':
                     die();
+
                     break;
                 default:
                     $this->registerListeners();
+
                     break;
             }
         });
