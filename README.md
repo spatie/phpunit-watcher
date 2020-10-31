@@ -1,9 +1,7 @@
 # Automatically rerun PHPUnit tests when source code changes
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/phpunit-watcher.svg?style=flat-square)](https://packagist.org/packages/spatie/phpunit-watcher)
-[![Build Status](https://img.shields.io/travis/spatie/phpunit-watcher/master.svg?style=flat-square)](https://travis-ci.org/spatie/phpunit-watcher)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/phpunit-watcher.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/phpunit-watcher)
-[![StyleCI](https://styleci.io/repos/98163923/shield?branch=master)](https://styleci.io/repos/98163923)
+![Tests](https://github.com/spatie/phpunit-watcher/workflows/Tests/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/phpunit-watcher.svg?style=flat-square)](https://packagist.org/packages/spatie/phpunit-watcher)
 
 Wouldn't it be great if your PHPUnit tests would be automatically rerun whenever you change some code? This package can do exactly that.
