@@ -36,10 +36,43 @@ class WatcherCommand extends Command
 
         $commandLineArguments = trim($input->getArgument('phpunit-options'), "'");
 
-        if (! empty($commandLineArguments)) {
-            $options['phpunit']['arguments'] = $commandLineArguments;
-        }
+//var_dump(
+//	$options['phpunit']['arguments'] ,
+////	explode( ) - better built in function like getopt() ?
+//	$commandLineArguments,
+////$argv,
+////$input->getArguments(),
+//);
 
+
+	// maybe support it being an array instead of a string?
+	// maintain backcompat though
+	    // but then can't accept it as an array from command line input, so still need to parse
+
+        // first get working w/ ./vendor...
+	    // then w/ composer run ...
+
+        if (! empty($commandLineArguments)) {
+//            $options['phpunit']['arguments'] = array_replace_recursive(
+//            	$options['phpunit']['arguments'],
+//	            $commandLineArguments
+//            );
+//            // need to parse them into arrays instead of just strings
+            // check if failed?
+
+	        /*
+	         * Merge config and command-line arguments.
+	         *
+	         * Parsing and literally merging the strings would be error-prone. Appending the CLI string to the
+	         * config string will result in the config args being treated as defaults, with command args
+	         * individually overriding them.
+	         *
+	         * todo will that build up over time though, so you'll have strings really with tons of redundant options?
+	         */
+	        $options['phpunit']['arguments'] = $options['phpunit']['arguments'] . ' ' . $commandLineArguments;
+        }
+//var_dump( $options['phpunit']['arguments'] );
+//die();
         if (OS::isOnWindows()) {
             $options['hideManual'] = true;
         }

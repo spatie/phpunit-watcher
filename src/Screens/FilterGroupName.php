@@ -28,11 +28,17 @@ class FilterGroupName extends Screen
 
             $phpunitArguments = "--group={$line}";
 
+            // if need to do anything here, then make sure you also do it in the other filters. maybe find a way to make it DRY
+
             $phpunitScreen = $this->terminal->getPreviousScreen();
 
             $options = $phpunitScreen->options;
 
-            $options['phpunit']['arguments'] = $phpunitArguments;
+            var_dump( $options['phpunit']['arguments'], $phpunitArguments );
+            $options['phpunit']['arguments'] .= $phpunitArguments;
+
+			var_dump( $options['phpunit']['arguments'] );
+			die();
 
             $this->terminal->displayScreen(new Phpunit($options));
         });

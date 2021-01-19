@@ -21,6 +21,10 @@ class RandomSeed extends Screen
     {
         $this->terminal->on('data', function ($line) {
             $phpunitArguments = '--order-by=random';
+            // merge w/ config. here, or lower down just before set options?
+	        // leaning towards down below
+	        // nah here seems fine
+
             if ($line !== '') {
                 $phpunitArguments .= " --random-order-seed={$line}";
             }
