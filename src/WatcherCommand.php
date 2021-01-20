@@ -6,9 +6,16 @@ use Spatie\PhpUnitWatcher\Exceptions\InvalidConfigfile;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Yaml\Yaml;
+
+use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\Console\Input\InputDefinition;
+
+use PHPUnit\TextUI\CliArguments\Builder;
+use PHPUnit\TextUI\CliArguments\Mapper;
 
 class WatcherCommand extends Command
 {
@@ -32,9 +39,113 @@ class WatcherCommand extends Command
 
     protected function determineOptions(InputInterface $input): array
     {
+
         $options = $this->getOptionsFromConfigFile();
 
         $commandLineArguments = trim($input->getArgument('phpunit-options'), "'");
+
+        var_dump(
+        	explode( ' ', $options['phpunit']['arguments'] ),
+	        explode( ' ', $commandLineArguments ),
+        );die();
+
+//        var_dump(
+//        	$input->getArguments(),
+//            $input->getOptions()
+//        );die();
+
+        $stringinput_config = new StringInput( $options['phpunit']['arguments'] );
+        $stringinput_cli = new StringInput( $commandLineArguments );
+
+        $commandLineArgumentsArray = explode( ' ', $commandLineArguments );
+        $stringinput_cli->bind( new InputDefinition( $commandLineArgumentsArray ) ); // have to do this before parse() is called?
+
+        var_dump(
+//        	$stringinput_config,
+//	        $stringinput_cli,       // looks correct, just can't access anything
+//        $stringinput_config->__toString() // works
+//        $stringinput_cli->getParameterOption(  )  // what to pass here?
+
+//        	$stringinput_config->getOptions(),
+//	        $stringinput_cli->getOptions()
+        $stringinput_config->getArguments()
+        );die();
+
+
+
+
+
+//        $b = new Builder();
+            // document warning that this is internal, no back-compat
+	        // rename
+
+//        var_dump(
+//        	$options['phpunit']['arguments'],
+//        	$GLOBALS['argv'],
+//        	$commandLineArguments,
+//        	$b->fromParameters( $GLOBALS['argv'], array() ), // gives back an array with ALL options
+//            // can't call ^ w/ phpunit.xml.dist b/c not array. can maybe convert to array that mathces though? how does argv split things? just by space?
+//                // oh yeah it is just sep by space, so maybe that'll work
+//            $b->fromParameters( explode( ' ', $options['phpunit']['arguments'] ), array() ), // gives back an array with ALL options
+//
+//            // should be passing 2nd arg to fromparams?
+//
+//        );die();
+//
+
+//	    require_once( '/home/api/public_html/vendor/phpunit/phpunit/src/TextUI/CliArguments/Mapper.php' );
+//	        // make dynamic? - no, composer should autoload it
+//
+//	    $obj = $b->fromParameters( explode( ' ', $commandLineArguments ), array() );
+//	    $map = new Mapper();
+////	    var_dump(
+////	    	// $obj
+////	        $map->mapToLegacyArray( $obj )
+////	    );
+////	    die();
+//
+//	    $fullParams = array_merge_recursive(
+//            $map->mapToLegacyArray( $b->fromParameters( explode( ' ', $commandLineArguments ), array() ) ), // just use  $argv instead?
+//            $map->mapToLegacyArray( $b->fromParameters( explode( ' ', $options['phpunit']['arguments'] ), array() ) ),
+//
+//	            // does legacy array contain all the same aprams just in array format?
+//	    );
+////
+//	    var_dump($fullParams);die();    // this does work, but might not be sustainable, and processisolation is array with two entries
+
+        // how to display the options being used if you have the whole array?
+	        // just show the strings before being merged?
+	        // diff the parsed against the defaults? get defaults by passing empty string
+
+//
+//        $parsedCLIArgs = new StringInput( $commandLineArguments );
+//
+////        var_dump(
+//////        	$input->getArguments(),
+//////    		$input->getArgument('phpunit-options'),
+//////        $parsedCLIArgs->
+////
+//////        $input->getOptions()
+////	    );
+//        die();
+//
+
+        // check php src for getopt(), see what it does
+
+//	    var_dump(
+//	    	strtok( $options, '-' ),
+//	    	strtok( $options, '--' ),
+//            strtok( $commandLineArguments, '--' ),
+//		    preg_split( "/[--]+/", $options ),
+//		    $GLOBALS['argv'],
+//		    explode( '--', $commandLineArguments )
+//	    );
+//	    die();
+//
+	    // use https://github.com/docopt/docopt.php ?
+	    // or commando?
+	    // doesn't seem like symphone/console can work w/ arbitrary string, which is needed for config
+
 
 //var_dump(
 //	$options['phpunit']['arguments'] ,
@@ -68,11 +179,16 @@ class WatcherCommand extends Command
 	         * individually overriding them.
 	         *
 	         * todo will that build up over time though, so you'll have strings really with tons of redundant options?
+	         * if so, then maybe `composer require docopt/docopt.php or nategood/commando or c9s/getoptkit or one of those others from stackoverflow thread
+	         *      do those work for this case? maybe not b/c they want you to explicitly define accepted args instead of just parsing whatever you throw at it?
+	         *              if ^ then maybe refactor so that screens always have access to original config args, and can append the new ones to that, removing the snowballing
+	         * how does phpunit itself handle it, can you reuse that?
 	         */
 	        $options['phpunit']['arguments'] = $options['phpunit']['arguments'] . ' ' . $commandLineArguments;
         }
 //var_dump( $options['phpunit']['arguments'] );
 //die();
+
         if (OS::isOnWindows()) {
             $options['hideManual'] = true;
         }

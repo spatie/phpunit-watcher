@@ -34,11 +34,16 @@ class FilterGroupName extends Screen
 
             $options = $phpunitScreen->options;
 
-            var_dump( $options['phpunit']['arguments'], $phpunitArguments );
-            $options['phpunit']['arguments'] .= $phpunitArguments;
+//            var_dump(
+//            	$options['phpunit']['arguments'],
+//	            $phpunitArguments
+//            );
+//
+//            $options['phpunit']['arguments'] .= " $phpunitArguments";
+	        $options['phpunit']['arguments'] = $phpunitScreen->getOptionsFromConfigFile() . ' ' . $phpunitArguments;
 
-			var_dump( $options['phpunit']['arguments'] );
-			die();
+//			var_dump( $options['phpunit']['arguments'] );
+//			die();
 
             $this->terminal->displayScreen(new Phpunit($options));
         });
