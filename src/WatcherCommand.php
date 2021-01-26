@@ -11,12 +11,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Yaml\Yaml;
 
-use Symfony\Component\Console\Input\StringInput;
-use Symfony\Component\Console\Input\InputDefinition;
-
-use PHPUnit\TextUI\CliArguments\Builder;
-use PHPUnit\TextUI\CliArguments\Mapper;
-
 class WatcherCommand extends Command
 {
     protected function configure()
@@ -39,12 +33,11 @@ class WatcherCommand extends Command
 
     protected function determineOptions(InputInterface $input): array
     {
-
         $options = $this->getOptionsFromConfigFile();
 
         $commandLineArguments = trim($input->getArgument('phpunit-options'), "'");
 
-        $options['phpunit']['arguments'] = $this->mergePHPUnitArguments( $options['phpunit']['arguments'], $commandLineArguments );
+        $options['phpunit']['arguments'] = $this->mergePHPUnitArguments($options['phpunit']['arguments'], $commandLineArguments);
 
         if (OS::isOnWindows()) {
             $options['hideManual'] = true;
@@ -56,9 +49,10 @@ class WatcherCommand extends Command
     // credit: modified version of https://stackoverflow.com/a/65891967/450127
     // https://stackoverflow.com/users/1889685/christos-lytras
     // license CC BY-SA 4.0 -- https://creativecommons.org/licenses/by-sa/4.0/
-    public static function mergePHPUnitArguments( $config_params, $runtime_params ) {
-        $config_params  = explode( ' ', $config_params );
-        $runtime_params = explode( ' ', $runtime_params );
+    public static function mergePHPUnitArguments($config_params, $runtime_params)
+    {
+        $config_params = explode(' ', $config_params);
+        $runtime_params = explode(' ', $runtime_params);
 
         // todo test edge case where config has "--var foo" and the other has "--var=foo"
         // should accept and merge, but probably not critical
@@ -71,13 +65,13 @@ class WatcherCommand extends Command
         // clean all this up
 
         // Merge all parameters, CLI arguments and from config
-        $all_params = array_merge( $config_params, $runtime_params );
+        $all_params = array_merge($config_params, $runtime_params);
 
         // We'll save all the params here using assoc array
         // to identify and handle/override duplicate commands
         $params = [];
 
-        foreach ( $all_params as $param ) {
+        foreach ($all_params as $param) {
             // This regex will match everything:
             // -d
             // xdebug.mode=off
@@ -87,20 +81,20 @@ class WatcherCommand extends Command
             // 2: the cmd, actual command
             // 3: the eq char, =
             // 4: the value
-            if ( preg_match( '/^(-[-]?)?([\w.]+)(=?)(.*)/', $param, $matches ) ) {
+            if (preg_match('/^(-[-]?)?([\w.]+)(=?)(.*)/', $param, $matches)) {
                 // Destructure matches
                 [ , $pre, $cmd, $eq, $value ] = $matches;
                 $param = [
-                    'pre'   => $pre,
-                    'cmd'   => $cmd,
-                    'eq'    => $eq,
+                    'pre' => $pre,
+                    'cmd' => $cmd,
+                    'eq' => $eq,
                     'value' => $value,
                 ];
 
                 // If the command is set, merge it with the previous,
                 // else add it to $params array
-                if ( isset( $params[ $cmd ] ) ) {
-                    $params[ $cmd ] = array_merge( $params[ $cmd ], $param );
+                if (isset($params[ $cmd ])) {
+                    $params[ $cmd ] = array_merge($params[ $cmd ], $param);
                 } else {
                     $params[ $cmd ] = $param;
                 }
@@ -110,22 +104,22 @@ class WatcherCommand extends Command
         $merged = [];
 
         // Loop through all unique params and re-build the commands
-        foreach ( $params as $param ) {
+        foreach ($params as $param) {
             [
-                'pre'   => $pre,
-                'cmd'   => $cmd,
-                'eq'    => $eq,
+                'pre' => $pre,
+                'cmd' => $cmd,
+                'eq' => $eq,
                 'value' => $value,
             ] = $param;
 
-            if ( ! empty( $pre ) ) {
+            if (! empty($pre)) {
                 $cmd = $pre . $cmd;
             }
 
-            if ( ! empty( $eq ) ) {
+            if (! empty($eq)) {
                 $cmd .= $eq;
 
-                if ( ! empty( $value ) ) {
+                if (! empty($value)) {
                     $cmd .= $value;
                 }
             }
@@ -133,7 +127,7 @@ class WatcherCommand extends Command
             $merged[] = $cmd;
         }
 
-        return implode( ' ', $merged );
+        return implode(' ', $merged);
     }
 
     protected function getOptionsFromConfigFile(): array

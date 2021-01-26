@@ -34,7 +34,7 @@ class FilterGroupName extends Screen
 
             $options = $phpunitScreen->options;
 
-            $options['phpunit']['arguments'] = WatcherCommand::mergePHPUnitArguments( $options['phpunit']['arguments'], $phpunitArguments );
+            $options['phpunit']['arguments'] = WatcherCommand::mergePHPUnitArguments($options['phpunit']['arguments'], $phpunitArguments);
             // todo do similar in the other filters
 
             $this->terminal->displayScreen(new Phpunit($options));
