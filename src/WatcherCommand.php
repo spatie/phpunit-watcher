@@ -54,8 +54,28 @@ class WatcherCommand extends Command
 //            $input->getOptions()
 //        );die();
 
-        $stringinput_config = new StringInput( $options['phpunit']['arguments'] );
-        $stringinput_cli = new StringInput( $commandLineArguments );
+//        $stringinput_config = new StringInput( $options['phpunit']['arguments'] );
+//        $stringinput_cli = new StringInput( $commandLineArguments );
+
+//        $commandLineArgumentsArray = explode( ' ', $commandLineArguments );
+//        $stringinput_cli->bind( new InputDefinition( $commandLineArgumentsArray ) ); // have to do this before parse() is called?
+//
+//        var_dump(
+////        	$stringinput_config,
+////	        $stringinput_cli,       // looks correct, just can't access anything
+////        $stringinput_config->__toString() // works
+////        $stringinput_cli->getParameterOption(  )  // what to pass here?
+//
+////        	$stringinput_config->getOptions(),
+////	        $stringinput_cli->getOptions()
+//        $stringinput_config->getArguments()
+//        );die();
+//
+
+
+
+
+
 
         $commandLineArgumentsArray = explode( ' ', $commandLineArguments );
         $stringinput_cli->bind( new InputDefinition( $commandLineArgumentsArray ) ); // have to do this before parse() is called?
@@ -186,6 +206,29 @@ class WatcherCommand extends Command
 	         */
 	        $options['phpunit']['arguments'] = $options['phpunit']['arguments'] . ' ' . $commandLineArguments;
         }
+//        if (! empty($commandLineArguments)) {
+////            $options['phpunit']['arguments'] = array_replace_recursive(
+////            	$options['phpunit']['arguments'],
+////	            $commandLineArguments
+////            );
+////            // need to parse them into arrays instead of just strings
+//            // check if failed?
+//
+//	        /*
+//	         * Merge config and command-line arguments.
+//	         *
+//	         * Parsing and literally merging the strings would be error-prone. Appending the CLI string to the
+//	         * config string will result in the config args being treated as defaults, with command args
+//	         * individually overriding them.
+//	         *
+//	         * todo will that build up over time though, so you'll have strings really with tons of redundant options?
+//	         * if so, then maybe `composer require docopt/docopt.php or nategood/commando or c9s/getoptkit or one of those others from stackoverflow thread
+//	         *      do those work for this case? maybe not b/c they want you to explicitly define accepted args instead of just parsing whatever you throw at it?
+//	         *              if ^ then maybe refactor so that screens always have access to original config args, and can append the new ones to that, removing the snowballing
+//	         * how does phpunit itself handle it, can you reuse that?
+//	         */
+//	        $options['phpunit']['arguments'] = $options['phpunit']['arguments'] . ' ' . $commandLineArguments;
+//        }
 //var_dump( $options['phpunit']['arguments'] );
 //die();
 
