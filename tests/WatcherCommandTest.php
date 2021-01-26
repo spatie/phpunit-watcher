@@ -18,6 +18,7 @@ class WatcherCommandTest extends TestCase
     /** @test */
     public function command_line_phpunit_arguments_merged_with_config_arguments()
     {
+        $this->markTestIncomplete();
         // mock the config somehow, maybe just overwrite $options?
         // cant, so just manually tweak the real file to test?
 
