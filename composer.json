@@ -18,7 +18,6 @@
     "require": {
         "php": "^7.2 | ^8.0",
         "clue/stdio-react": "^2.0",
-        "docopt/docopt": "^1.0",
         "jolicode/jolinotif": "^2.0",
         "symfony/console": "^5.0",
         "symfony/process": "^5.0",
