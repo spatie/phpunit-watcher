@@ -2,6 +2,8 @@
 
 namespace Spatie\PhpUnitWatcher\Screens;
 
+use Spatie\PhpUnitWatcher\WatcherCommand;
+
 class FilterGroupName extends Screen
 {
     public function draw()
@@ -28,22 +30,12 @@ class FilterGroupName extends Screen
 
             $phpunitArguments = "--group={$line}";
 
-            // if need to do anything here, then make sure you also do it in the other filters. maybe find a way to make it DRY
-
             $phpunitScreen = $this->terminal->getPreviousScreen();
 
             $options = $phpunitScreen->options;
 
-//            var_dump(
-//            	$options['phpunit']['arguments'],
-//	            $phpunitArguments
-//            );
-//
-//            $options['phpunit']['arguments'] .= " $phpunitArguments";
-	        $options['phpunit']['arguments'] = $phpunitScreen->getOptionsFromConfigFile() . ' ' . $phpunitArguments;
-
-//			var_dump( $options['phpunit']['arguments'] );
-//			die();
+            $options['phpunit']['arguments'] = WatcherCommand::mergePHPUnitArguments( $options['phpunit']['arguments'], $phpunitArguments );
+            // todo do similar in the other filters
 
             $this->terminal->displayScreen(new Phpunit($options));
         });

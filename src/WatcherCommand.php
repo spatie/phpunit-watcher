@@ -44,199 +44,96 @@ class WatcherCommand extends Command
 
         $commandLineArguments = trim($input->getArgument('phpunit-options'), "'");
 
-        var_dump(
-        	explode( ' ', $options['phpunit']['arguments'] ),
-	        explode( ' ', $commandLineArguments ),
-        );die();
-
-//        var_dump(
-//        	$input->getArguments(),
-//            $input->getOptions()
-//        );die();
-
-//        $stringinput_config = new StringInput( $options['phpunit']['arguments'] );
-//        $stringinput_cli = new StringInput( $commandLineArguments );
-
-//        $commandLineArgumentsArray = explode( ' ', $commandLineArguments );
-//        $stringinput_cli->bind( new InputDefinition( $commandLineArgumentsArray ) ); // have to do this before parse() is called?
-//
-//        var_dump(
-////        	$stringinput_config,
-////	        $stringinput_cli,       // looks correct, just can't access anything
-////        $stringinput_config->__toString() // works
-////        $stringinput_cli->getParameterOption(  )  // what to pass here?
-//
-////        	$stringinput_config->getOptions(),
-////	        $stringinput_cli->getOptions()
-//        $stringinput_config->getArguments()
-//        );die();
-//
-
-
-
-
-
-
-        $commandLineArgumentsArray = explode( ' ', $commandLineArguments );
-        $stringinput_cli->bind( new InputDefinition( $commandLineArgumentsArray ) ); // have to do this before parse() is called?
-
-        var_dump(
-//        	$stringinput_config,
-//	        $stringinput_cli,       // looks correct, just can't access anything
-//        $stringinput_config->__toString() // works
-//        $stringinput_cli->getParameterOption(  )  // what to pass here?
-
-//        	$stringinput_config->getOptions(),
-//	        $stringinput_cli->getOptions()
-        $stringinput_config->getArguments()
-        );die();
-
-
-
-
-
-//        $b = new Builder();
-            // document warning that this is internal, no back-compat
-	        // rename
-
-//        var_dump(
-//        	$options['phpunit']['arguments'],
-//        	$GLOBALS['argv'],
-//        	$commandLineArguments,
-//        	$b->fromParameters( $GLOBALS['argv'], array() ), // gives back an array with ALL options
-//            // can't call ^ w/ phpunit.xml.dist b/c not array. can maybe convert to array that mathces though? how does argv split things? just by space?
-//                // oh yeah it is just sep by space, so maybe that'll work
-//            $b->fromParameters( explode( ' ', $options['phpunit']['arguments'] ), array() ), // gives back an array with ALL options
-//
-//            // should be passing 2nd arg to fromparams?
-//
-//        );die();
-//
-
-//	    require_once( '/home/api/public_html/vendor/phpunit/phpunit/src/TextUI/CliArguments/Mapper.php' );
-//	        // make dynamic? - no, composer should autoload it
-//
-//	    $obj = $b->fromParameters( explode( ' ', $commandLineArguments ), array() );
-//	    $map = new Mapper();
-////	    var_dump(
-////	    	// $obj
-////	        $map->mapToLegacyArray( $obj )
-////	    );
-////	    die();
-//
-//	    $fullParams = array_merge_recursive(
-//            $map->mapToLegacyArray( $b->fromParameters( explode( ' ', $commandLineArguments ), array() ) ), // just use  $argv instead?
-//            $map->mapToLegacyArray( $b->fromParameters( explode( ' ', $options['phpunit']['arguments'] ), array() ) ),
-//
-//	            // does legacy array contain all the same aprams just in array format?
-//	    );
-////
-//	    var_dump($fullParams);die();    // this does work, but might not be sustainable, and processisolation is array with two entries
-
-        // how to display the options being used if you have the whole array?
-	        // just show the strings before being merged?
-	        // diff the parsed against the defaults? get defaults by passing empty string
-
-//
-//        $parsedCLIArgs = new StringInput( $commandLineArguments );
-//
-////        var_dump(
-//////        	$input->getArguments(),
-//////    		$input->getArgument('phpunit-options'),
-//////        $parsedCLIArgs->
-////
-//////        $input->getOptions()
-////	    );
-//        die();
-//
-
-        // check php src for getopt(), see what it does
-
-//	    var_dump(
-//	    	strtok( $options, '-' ),
-//	    	strtok( $options, '--' ),
-//            strtok( $commandLineArguments, '--' ),
-//		    preg_split( "/[--]+/", $options ),
-//		    $GLOBALS['argv'],
-//		    explode( '--', $commandLineArguments )
-//	    );
-//	    die();
-//
-	    // use https://github.com/docopt/docopt.php ?
-	    // or commando?
-	    // doesn't seem like symphone/console can work w/ arbitrary string, which is needed for config
-
-
-//var_dump(
-//	$options['phpunit']['arguments'] ,
-////	explode( ) - better built in function like getopt() ?
-//	$commandLineArguments,
-////$argv,
-////$input->getArguments(),
-//);
-
-
-	// maybe support it being an array instead of a string?
-	// maintain backcompat though
-	    // but then can't accept it as an array from command line input, so still need to parse
-
-        // first get working w/ ./vendor...
-	    // then w/ composer run ...
-
-        if (! empty($commandLineArguments)) {
-//            $options['phpunit']['arguments'] = array_replace_recursive(
-//            	$options['phpunit']['arguments'],
-//	            $commandLineArguments
-//            );
-//            // need to parse them into arrays instead of just strings
-            // check if failed?
-
-	        /*
-	         * Merge config and command-line arguments.
-	         *
-	         * Parsing and literally merging the strings would be error-prone. Appending the CLI string to the
-	         * config string will result in the config args being treated as defaults, with command args
-	         * individually overriding them.
-	         *
-	         * todo will that build up over time though, so you'll have strings really with tons of redundant options?
-	         * if so, then maybe `composer require docopt/docopt.php or nategood/commando or c9s/getoptkit or one of those others from stackoverflow thread
-	         *      do those work for this case? maybe not b/c they want you to explicitly define accepted args instead of just parsing whatever you throw at it?
-	         *              if ^ then maybe refactor so that screens always have access to original config args, and can append the new ones to that, removing the snowballing
-	         * how does phpunit itself handle it, can you reuse that?
-	         */
-	        $options['phpunit']['arguments'] = $options['phpunit']['arguments'] . ' ' . $commandLineArguments;
-        }
-//        if (! empty($commandLineArguments)) {
-////            $options['phpunit']['arguments'] = array_replace_recursive(
-////            	$options['phpunit']['arguments'],
-////	            $commandLineArguments
-////            );
-////            // need to parse them into arrays instead of just strings
-//            // check if failed?
-//
-//	        /*
-//	         * Merge config and command-line arguments.
-//	         *
-//	         * Parsing and literally merging the strings would be error-prone. Appending the CLI string to the
-//	         * config string will result in the config args being treated as defaults, with command args
-//	         * individually overriding them.
-//	         *
-//	         * todo will that build up over time though, so you'll have strings really with tons of redundant options?
-//	         * if so, then maybe `composer require docopt/docopt.php or nategood/commando or c9s/getoptkit or one of those others from stackoverflow thread
-//	         *      do those work for this case? maybe not b/c they want you to explicitly define accepted args instead of just parsing whatever you throw at it?
-//	         *              if ^ then maybe refactor so that screens always have access to original config args, and can append the new ones to that, removing the snowballing
-//	         * how does phpunit itself handle it, can you reuse that?
-//	         */
-//	        $options['phpunit']['arguments'] = $options['phpunit']['arguments'] . ' ' . $commandLineArguments;
-//        }
-//var_dump( $options['phpunit']['arguments'] );
-//die();
+        $options['phpunit']['arguments'] = $this->mergePHPUnitArguments( $options['phpunit']['arguments'], $commandLineArguments );
 
         if (OS::isOnWindows()) {
             $options['hideManual'] = true;
         }
 
         return $options;
+    }
+
+    // credit: modified version of https://stackoverflow.com/a/65891967/450127
+    // https://stackoverflow.com/users/1889685/christos-lytras
+    // license CC BY-SA 4.0 -- https://creativecommons.org/licenses/by-sa/4.0/
+    public static function mergePHPUnitArguments( $config_params, $runtime_params ) {
+        $config_params  = explode( ' ', $config_params );
+        $runtime_params = explode( ' ', $runtime_params );
+
+        // todo test edge case where config has "--var foo" and the other has "--var=foo"
+        // should accept and merge, but probably not critical
+        // cover this case in unit tests
+
+        // todo also messes up with longopts with dashes, e.g. `--process-isolation`
+        // regex needs to account for that
+        // cover that case in unit tests
+
+        // clean all this up
+
+        // Merge all parameters, CLI arguments and from config
+        $all_params = array_merge( $config_params, $runtime_params );
+
+        // We'll save all the params here using assoc array
+        // to identify and handle/override duplicate commands
+        $params = [];
+
+        foreach ( $all_params as $param ) {
+            // This regex will match everything:
+            // -d
+            // xdebug.mode=off
+            // --columns=95
+            // and create 4 groups:
+            // 1: the pre char(s), - or --
+            // 2: the cmd, actual command
+            // 3: the eq char, =
+            // 4: the value
+            if ( preg_match( '/^(-[-]?)?([\w.]+)(=?)(.*)/', $param, $matches ) ) {
+                // Destructure matches
+                [ , $pre, $cmd, $eq, $value ] = $matches;
+                $param = [
+                    'pre'   => $pre,
+                    'cmd'   => $cmd,
+                    'eq'    => $eq,
+                    'value' => $value,
+                ];
+
+                // If the command is set, merge it with the previous,
+                // else add it to $params array
+                if ( isset( $params[ $cmd ] ) ) {
+                    $params[ $cmd ] = array_merge( $params[ $cmd ], $param );
+                } else {
+                    $params[ $cmd ] = $param;
+                }
+            }
+        }
+
+        $merged = [];
+
+        // Loop through all unique params and re-build the commands
+        foreach ( $params as $param ) {
+            [
+                'pre'   => $pre,
+                'cmd'   => $cmd,
+                'eq'    => $eq,
+                'value' => $value,
+            ] = $param;
+
+            if ( ! empty( $pre ) ) {
+                $cmd = $pre . $cmd;
+            }
+
+            if ( ! empty( $eq ) ) {
+                $cmd .= $eq;
+
+                if ( ! empty( $value ) ) {
+                    $cmd .= $value;
+                }
+            }
+
+            $merged[] = $cmd;
+        }
+
+        return implode( ' ', $merged );
     }
 
     protected function getOptionsFromConfigFile(): array

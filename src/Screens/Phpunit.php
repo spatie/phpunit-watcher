@@ -26,7 +26,6 @@ class Phpunit extends Screen
         $this->options = $options;
 
         $this->phpunitArguments = $options['phpunit']['arguments'] ?? '';
-        var_dump($this->phpunitArguments);
         $this->phpunitBinaryPath = $options['phpunit']['binaryPath'] ?? self::DEFAULT_BINARY_PATH;
         $this->phpunitTimeout = $options['phpunit']['timeout'] ?? 60;
     }
