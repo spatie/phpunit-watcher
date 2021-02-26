@@ -28,7 +28,7 @@ abstract class Screen
 
     public function clear()
     {
-        passthru("echo '\033\143'");
+        echo("\033\143");
 
         return $this;
     }
