@@ -2,6 +2,10 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.23.1 - 2021-02-26
+
+- replace passthru with echo (#133)
+
 ## 1.23.0 - 2020-10-27
 
 - add support for `exclude` and `ignore` options
