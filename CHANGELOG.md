@@ -2,7 +2,7 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
-## 1.23.1 - 2021-02-26
+## 1.23.2 - 2021-02-26
 
 - replace passthru with echo (#133)
 
