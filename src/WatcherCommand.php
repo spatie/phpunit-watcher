@@ -118,7 +118,8 @@ class WatcherCommand extends Command
         }
         $output->newLine();
 
-        $output->text("Tests will be rerun when {$options['watch']['fileMask']} files are modified in");
+        $fileMask = is_array($options['watch']['fileMask']) ? implode(',', $options['watch']['fileMask']) : $options['watch']['fileMask'];
+        $output->text("Tests will be rerun when {$fileMask} files are modified in");
 
         $output->listing($options['watch']['directories']);
 
