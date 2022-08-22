@@ -15,6 +15,12 @@
             "role": "Developer"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:delhombre/phpunit-watcher.git"
+        }
+    ],
     "require": {
         "php": "^7.2 | ^8.0 | ^8.1",
         "clue/stdio-react": "^2.4",
@@ -23,7 +29,7 @@
         "symfony/finder": "^5.4 | ^6",
         "symfony/process": "^5.4 | ^6",
         "symfony/yaml": "^5.2 | ^6",
-        "yosymfony/resource-watcher": "^2.0 | ^3.0"
+        "yosymfony/resource-watcher": "^2.0 | ^3.0 | dev-fix/packages-version"
     },
     "conflict": {
         "yosymfony/resource-watcher": "<2.0",
