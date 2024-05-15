@@ -13,7 +13,7 @@ class ConsoleApplication extends Application
         $this->add(new WatcherCommand());
     }
 
-    public function getLongVersion()
+    public function getLongVersion(): string
     {
         return parent::getLongVersion().' by <comment>Spatie</comment>';
     }
