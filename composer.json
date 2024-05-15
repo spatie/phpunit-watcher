@@ -29,7 +29,7 @@
         "symfony/finder": "^5.4 | ^6 | ^7",
         "symfony/process": "^5.4 | ^6 | ^7",
         "symfony/yaml": "^5.2 | ^6 | ^7",
-        "yosymfony/resource-watcher": "^2.0 | ^3.0"
+        "yosymfony/resource-watcher": "^2.0 | ^3.1"
     },
     "conflict": {
         "yosymfony/resource-watcher": "<2.0",
