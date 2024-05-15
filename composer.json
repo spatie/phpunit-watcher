@@ -15,12 +15,6 @@
             "role": "Developer"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/michaelw85/resource-watcher"
-        }
-    ],
     "require": {
         "php": "^7.2 | ^8.0",
         "clue/stdio-react": "^2.4",
@@ -29,7 +23,7 @@
         "symfony/finder": "^5.4 | ^6 | ^7",
         "symfony/process": "^5.4 | ^6 | ^7",
         "symfony/yaml": "^5.2 | ^6 | ^7",
-        "yosymfony/resource-watcher": "^2.0 | ^3.1"
+        "yosymfony/resource-watcher": "^2.0 | ^3.0"
     },
     "conflict": {
         "yosymfony/resource-watcher": "<2.0",
