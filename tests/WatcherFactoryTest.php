@@ -2,12 +2,13 @@
 
 namespace Spatie\PhpUnitWatcher\Test;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Spatie\PhpUnitWatcher\WatcherFactory;
 
 class WatcherFactoryTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_be_instantiated()
     {
         $factory = new WatcherFactory();
@@ -15,7 +16,7 @@ class WatcherFactoryTest extends TestCase
         $this->assertInstanceOf(WatcherFactory::class, $factory);
     }
 
-    /** @test */
+    #[Test]
     public function setting_notification_preserves_other_options()
     {
         $userOptions = [
@@ -32,7 +33,7 @@ class WatcherFactoryTest extends TestCase
         $this->assertSame('*.php', $actualOptions['watch']['fileMask']);
     }
 
-    /** @test */
+    #[Test]
     public function setting_directories_preserves_other_options()
     {
         $userOptions = [

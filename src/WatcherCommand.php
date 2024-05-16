@@ -19,7 +19,7 @@ class WatcherCommand extends Command
             ->addArgument('phpunit-options', InputArgument::OPTIONAL, 'Options passed to phpunit');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $options = $this->determineOptions($input);
 
@@ -28,6 +28,8 @@ class WatcherCommand extends Command
         $this->displayOptions($options, $input, $output);
 
         $watcher->startWatching();
+
+        return 0;
     }
 
     protected function determineOptions(InputInterface $input): array
