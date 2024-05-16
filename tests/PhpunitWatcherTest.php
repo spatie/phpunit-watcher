@@ -9,7 +9,6 @@ use PHPUnit\Framework\Attributes\Test;
 
 class PhpunitWatcherTest extends TestCase
 {
-    /** @test */
     #[Test]
     public function the_watcher_can_be_executed()
     {

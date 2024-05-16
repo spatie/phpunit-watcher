@@ -8,7 +8,6 @@ use Spatie\PhpUnitWatcher\WatcherFactory;
 
 class WatcherFactoryTest extends TestCase
 {
-    /** @test */
     #[Test]
     public function it_can_be_instantiated()
     {
@@ -17,7 +16,6 @@ class WatcherFactoryTest extends TestCase
         $this->assertInstanceOf(WatcherFactory::class, $factory);
     }
 
-    /** @test */
     #[Test]
     public function setting_notification_preserves_other_options()
     {
@@ -35,7 +33,6 @@ class WatcherFactoryTest extends TestCase
         $this->assertSame('*.php', $actualOptions['watch']['fileMask']);
     }
 
-    /** @test */
     #[Test]
     public function setting_directories_preserves_other_options()
     {

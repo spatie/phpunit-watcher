@@ -8,7 +8,6 @@ use Spatie\PhpUnitWatcher\WatcherCommand;
 
 class WatcherCommandTest extends TestCase
 {
-    /** @test */
     #[Test]
     public function it_can_be_instantiated()
     {
