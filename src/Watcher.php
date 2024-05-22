@@ -7,9 +7,9 @@ use React\EventLoop\Factory;
 use React\Stream\ThroughStream;
 use Spatie\PhpUnitWatcher\Screens\Phpunit;
 use Symfony\Component\Finder\Finder;
-use Yosymfony\ResourceWatcher\Crc32ContentHash;
-use Yosymfony\ResourceWatcher\ResourceCacheMemory;
-use Yosymfony\ResourceWatcher\ResourceWatcher;
+use Spatie\PhpUnitWatcher\ResourceWatcher\Crc32ContentHash;
+use Spatie\PhpUnitWatcher\ResourceWatcher\ResourceCacheMemory;
+use Spatie\PhpUnitWatcher\ResourceWatcher\ResourceWatcher;
 
 class Watcher
 {
