@@ -12,8 +12,8 @@
 namespace Spatie\PhpUnitWatcher\ResourceWatcher\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Filesystem\Filesystem;
 use Spatie\PhpUnitWatcher\ResourceWatcher\ResourceCachePhpFile;
+use Symfony\Component\Filesystem\Filesystem;
 
 class ResourceCachePhpFileTest extends TestCase
 {

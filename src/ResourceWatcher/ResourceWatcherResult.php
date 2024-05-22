@@ -11,8 +11,6 @@
 
 namespace Spatie\PhpUnitWatcher\ResourceWatcher;
 
-use Symfony\Component\Finder\Finder;
-
 /**
  * A Resource Watcher result with the filesystem changes.
  *
@@ -34,6 +32,7 @@ class ResourceWatcherResult
         $this->deletedResources = $deletedResources;
         $this->updatedResources = $updatedResources;
     }
+
     /**
      * Has any change in resources?
      *

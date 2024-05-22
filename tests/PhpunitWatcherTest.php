@@ -2,10 +2,10 @@
 
 namespace Spatie\PhpUnitWatcher\Test;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Spatie\PhpUnitWatcher\OS;
 use Symfony\Component\Process\Process;
-use PHPUnit\Framework\Attributes\Test;
 
 class PhpunitWatcherTest extends TestCase
 {

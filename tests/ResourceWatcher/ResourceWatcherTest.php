@@ -12,11 +12,11 @@
 namespace Spatie\PhpUnitWatcher\ResourceWatcher\Tests;
 
 use PHPUnit\Framework\TestCase;
+use Spatie\PhpUnitWatcher\ResourceWatcher\Crc32ContentHash;
+use Spatie\PhpUnitWatcher\ResourceWatcher\ResourceCacheMemory;
+use Spatie\PhpUnitWatcher\ResourceWatcher\ResourceWatcher;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
-use Spatie\PhpUnitWatcher\ResourceWatcher\Crc32ContentHash;
-use Spatie\PhpUnitWatcher\ResourceWatcher\ResourceWatcher;
-use Spatie\PhpUnitWatcher\ResourceWatcher\ResourceCacheMemory;
 
 class ResourceWatcherTest extends TestCase
 {

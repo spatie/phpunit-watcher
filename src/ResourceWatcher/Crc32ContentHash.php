@@ -25,7 +25,7 @@ class Crc32ContentHash implements HashInterface
     {
         $fileContent = $filepath;
 
-        if (!\is_dir($filepath)) {
+        if (! \is_dir($filepath)) {
             $fileContent = file_get_contents($filepath);
         }
 
