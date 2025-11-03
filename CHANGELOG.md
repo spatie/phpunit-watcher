@@ -2,6 +2,26 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.24.1 - 2025-11-03
+
+### What's Changed
+
+* Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot[bot] in https://github.com/spatie/phpunit-watcher/pull/163
+* Bump actions/checkout from 2 to 4 by @dependabot[bot] in https://github.com/spatie/phpunit-watcher/pull/162
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot[bot] in https://github.com/spatie/phpunit-watcher/pull/165
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/spatie/phpunit-watcher/pull/166
+* Update issue template by @AlexVanderbist in https://github.com/spatie/phpunit-watcher/pull/170
+* Added Symfony 8 support to all symfony/* packages. by @thecaliskan in https://github.com/spatie/phpunit-watcher/pull/174
+* Bump stefanzweifel/git-auto-commit-action from 5 to 7 by @dependabot[bot] in https://github.com/spatie/phpunit-watcher/pull/171
+
+### New Contributors
+
+* @dependabot[bot] made their first contribution in https://github.com/spatie/phpunit-watcher/pull/163
+* @AlexVanderbist made their first contribution in https://github.com/spatie/phpunit-watcher/pull/170
+* @thecaliskan made their first contribution in https://github.com/spatie/phpunit-watcher/pull/174
+
+**Full Changelog**: https://github.com/spatie/phpunit-watcher/compare/1.24.0...1.24.1
+
 ## 1.23.2 - 2021-02-26
 
 - replace passthru with echo (#133)
@@ -25,7 +45,6 @@ All notable changes to `phpunit-watcher` will be documented in this file
 ## 1.12 - 1.21
 
 - some version numbers were skipped due to mistagging
-
 
 ## 1.12.3 - 2019-12-02
 
@@ -78,6 +97,7 @@ All notable changes to `phpunit-watcher` will be documented in this file
 - reverts 1.8.1
 
 ## 1.8.1 - 2019-01-09
+
 **THIS VERSION DOES NOT WORK**
 
 - allow new versions of deps
