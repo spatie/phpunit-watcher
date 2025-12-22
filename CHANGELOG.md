@@ -2,6 +2,19 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.24.2 - 2025-12-22
+
+### What's Changed
+
+* Make it work properly with Symfony 8 by @KentarouTakeda in https://github.com/spatie/phpunit-watcher/pull/177
+* Bump actions/checkout from 4 to 6 by @dependabot[bot] in https://github.com/spatie/phpunit-watcher/pull/175
+
+### New Contributors
+
+* @KentarouTakeda made their first contribution in https://github.com/spatie/phpunit-watcher/pull/177
+
+**Full Changelog**: https://github.com/spatie/phpunit-watcher/compare/1.24.1...1.24.2
+
 ## 1.24.1 - 2025-11-03
 
 ### What's Changed
