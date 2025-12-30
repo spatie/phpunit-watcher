@@ -10,7 +10,14 @@ class ConsoleApplication extends Application
     {
         parent::__construct('PHPUnit Watcher', '1.23.2');
 
-        $this->add(new WatcherCommand());
+        // Removed in Symfony Console 8.0
+        if (method_exists($this, 'add')) {
+            $this->add(new WatcherCommand());
+
+            return;
+        }
+
+        $this->addCommand(new WatcherCommand());
     }
 
     public function getLongVersion(): string
