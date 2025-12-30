@@ -2,6 +2,14 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.24.3 - 2025-12-30
+
+### What's Changed
+
+* Support php new versions and higher and `symfony/console@8` by @KentarouTakeda in https://github.com/spatie/phpunit-watcher/pull/178
+
+**Full Changelog**: https://github.com/spatie/phpunit-watcher/compare/1.24.2...1.24.3
+
 ## 1.24.2 - 2025-12-22
 
 ### What's Changed
