@@ -12,7 +12,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class WatcherCommand extends Command
 {
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('watch')
             ->setDescription('Rerun PHPUnit tests when source code changes.')
