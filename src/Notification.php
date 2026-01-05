@@ -2,6 +2,7 @@
 
 namespace Spatie\PhpUnitWatcher;
 
+use Joli\JoliNotif\DefaultNotifier;
 use Joli\JoliNotif\Notification as JoliNotification;
 use Joli\JoliNotif\NotifierFactory;
 
@@ -40,6 +41,8 @@ class Notification
 
     protected function send()
     {
-        return NotifierFactory::create()->send($this->joliNotification);
+        return class_exists(NotifierFactory::class)
+            ? NotifierFactory::create()->send($this->joliNotification) // Removed in JoliNotif 3
+            : (new DefaultNotifier())->send($this->joliNotification);
     }
 }
