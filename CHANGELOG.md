@@ -2,6 +2,14 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.24.4 - 2026-01-05
+
+### What's Changed
+
+* Fix crash when using `JoliNotif@3` by @KentarouTakeda in https://github.com/spatie/phpunit-watcher/pull/179
+
+**Full Changelog**: https://github.com/spatie/phpunit-watcher/compare/1.24.3...1.24.4
+
 ## 1.24.3 - 2025-12-30
 
 ### What's Changed
