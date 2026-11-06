@@ -6,10 +6,10 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        php: [8.6, 8.5, 8.4, 8.3, 8.2, 8.1]
+        php: [8.6, 8.5, 8.4]
         dependency-version: [prefer-lowest, prefer-stable]
 
     name: P${{ matrix.php }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
@@ -28,5 +28,11 @@ jobs:
       - name: Install dependencies
         run: composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
+      - name: Validate dependencies
+        run: |
+          composer validate --strict
+          composer check-platform-reqs
+          composer audit
+
       - name: Execute tests
-        run: vendor/bin/phpunit
+        run: vendor/bin/phpunit --fail-on-all-issues

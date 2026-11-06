@@ -38,6 +38,10 @@ We highly appreciate you sending us a postcard from your hometown, mentioning wh
 
 ## Installation
 
+PHP 8.4.1 or higher is required. PHP 8.1–8.3 are no longer supported.
+Symfony components must be version 7.4 or 8.x, and `clue/stdio-react` must be
+version 2.7 or higher within 2.x.
+
 You can install this package globally like this
 
 ```bash
@@ -180,6 +184,10 @@ When starting the tool with some arguments (eg `phpunit-watcher watch --filter=m
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Testing
+
+The package's development suite requires PHPUnit 13. This does not require your
+watched project to use PHPUnit 13: the watcher still invokes the project's own
+PHPUnit executable (or the configured `phpunit.binaryPath`).
 
 ``` bash
 composer test
