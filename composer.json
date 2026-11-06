@@ -16,20 +16,17 @@
         }
     ],
     "require": {
-        "php": "^8.1",
-        "clue/stdio-react": "^2.6",
+        "php": "^8.4.1",
+        "clue/stdio-react": "^2.7",
         "jolicode/jolinotif": "^2.7.1 || ^3.0",
-        "symfony/console": "^6.0 || ^7.0.7 || ^8.0",
-        "symfony/finder": "^6.0 || ^7.0.7 || ^8.0",
-        "symfony/process": "^6.0 || ^7.0.7 || ^8.0",
-        "symfony/yaml": "^6.0 || ^7.0.7 || ^8.0"
-    },
-    "conflict": {
-        "symfony/console": "<5.2"
+        "symfony/console": "^7.4 || ^8.0",
+        "symfony/finder": "^7.4 || ^8.0",
+        "symfony/process": "^7.4 || ^8.0",
+        "symfony/yaml": "^7.4 || ^8.0"
     },
     "require-dev": {
-        "symfony/filesystem": "^6.0 || ^7.0.7 || ^8.0",
-        "phpunit/phpunit": "^10.5.20 | ^11.1.3 || ^12.0"
+        "symfony/filesystem": "^7.4 || ^8.0",
+        "phpunit/phpunit": "^13.4.5"
     },
     "autoload": {
         "psr-4": {
