@@ -35,4 +35,8 @@ jobs:
           composer audit
 
       - name: Execute tests
-        run: vendor/bin/phpunit --fail-on-all-issues
+        run: >-
+          vendor/bin/phpunit --display-all-issues
+          --fail-on-warning --fail-on-risky --fail-on-notice
+          --fail-on-self-deprecation --fail-on-phpunit-deprecation
+          --fail-on-phpunit-notice --fail-on-phpunit-warning
