@@ -2,6 +2,30 @@
 
 All notable changes to `phpunit-watcher` will be documented in this file
 
+## 1.25.0 - 2026-11-06
+
+### What's changed
+
+- Upgrade the package's development test suite to PHPUnit 13 and migrate its XML schema while retaining source coverage.
+- Add end-to-end watcher coverage for argument forwarding, filtered failures, continued watching, and successful reruns after file edits.
+- Validate Composer manifests, actual platform requirements and security advisories in CI; run supported PHP versions with lowest and latest dependencies without fail-fast cancellations.
+- Retain the separately merged PHP 8.6 CI coverage and update GitHub Actions dependencies and Dependabot actor checks since 1.24.4.
+
+### Requirements
+
+- PHP **8.4.1+** (within PHP 8.x); PHP 8.1–8.3 support is dropped.
+- Symfony components **7.4 or 8.x**; Symfony 6.x and 7.0–7.3 support is dropped.
+- `clue/stdio-react` **2.7+** (within 2.x); version 2.6 support is dropped.
+- Developing this package requires PHPUnit **13.4.5+** (within 13.x). This does **not** force watched projects to upgrade their PHPUnit executable. Real watcher subprocesses were verified with PHPUnit 10, 11, 12, and 13. Runtime source and the public CLI entry point are unchanged.
+
+These dependency/platform floor changes were explicitly approved for this minor package release.
+
+### Known upstream warnings
+
+PHP 8.6 continues to report two third-party constructor-return deprecations in `clue/term-react` and `clue/utf8-react`, also present before this release. CI keeps them visible and preserves the existing non-failing third-party-deprecation policy while failing first-party/PHPUnit issues. No vendor patches or blanket suppressions are included.
+
+**Full changelog:** https://github.com/spatie/phpunit-watcher/compare/1.24.4...1.25.0
+
 ## 1.24.4 - 2026-01-05
 
 ### What's Changed
